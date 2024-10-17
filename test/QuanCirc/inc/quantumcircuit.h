@@ -1,0 +1,54 @@
+#ifndef _QUANTUMCIRCUIT
+#define _QUANTUMCIRCUIT
+
+#include "random/genfactory.h"
+#include "tensors/tensor.h"
+
+#include <error.h>
+#include <set>
+#include <list>
+
+inline void error_qubits_range(IntArr qubits, int n_qubits);
+inline void error_qubits_coinc(IntArr qubits);
+
+void validate_instruction_qubits(int n_qubits, const IntArr& qubits);
+
+struct Instruction{
+
+    void            evolve(tensor::State& s){ un.evolve(s, qubits); }
+    void            reverse_qubits(const IntArr& qubits);
+    tensor::Unitary un;
+    IntArr          qubits;
+};
+
+using UnitaryArr = std::list<Instruction>;
+
+
+class QuantumCircuit{
+public:
+    QuantumCircuit(int n_qubits) : n_qubits{n_qubits}, s{n_qubits}{ s[0] = 1; }
+    const UnitaryArr& get_qc_data() const { return qc_data; };
+    void              add_instruction(const tensor::Unitary un, const IntArr qubits);
+    void              add_instruction(Instruction instr);
+    void              compose(QuantumCircuit& circ);
+    void              simplifiation();
+    tensor::State     execute();
+    tensor::State     s;
+private:
+    int        n_qubits;
+    UnitaryArr qc_data;
+};
+
+std::ostream& operator<<(std::ostream& os, const QuantumCircuit& qc);
+
+namespace instr{
+    const tensor::Unitary CX();
+    const tensor::Unitary TOF();
+    const tensor::Unitary X();
+    const tensor::Unitary Y();
+    const tensor::Unitary Z();
+    const tensor::Unitary I();
+    const tensor::Unitary H();
+}
+#endif
+
