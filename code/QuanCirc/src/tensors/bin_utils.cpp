@@ -26,7 +26,21 @@ int bit_on_pos(int val, int pos ){
 int change_on_pos(int index, int pos, int bit){
     return (bit == 1) ? (index | (1<<pos)) : (index & ~(1<<pos));
 }
-
+int del_on_pos(int val, IntArr pos){
+    int i = 0;
+    int j = 0;
+    int j10 = 2;
+    while(i < pos.size()){
+        if (pos[i] == j){
+            val = ((val / j10) << (j - i)) + val % (j10/2);
+            i++;
+        }else{
+            j10 = j10 << 1;
+        }
+        j++;
+    }
+    return val;
+}
 int bit_on_pos(int val, IntArr positions){
     int x = 0;
     for (auto pos=positions.rbegin(); pos != positions.rend(); pos++)

@@ -75,7 +75,30 @@ int main(){
     QuantumCircuit prep = grover(n);
     std::cout << prep;
     tensor::State st = prep.execute();
+    IntArr ia(n - 2);
+    IntArr ia2(n - 2);
+
+    for (int i = 0; i < n - 2; i++){
+        ia[i] = i;
+        ia2[i] = n + i;
+    }
     std::cout << st;
+    tensor::State st1(n - 2);
+    // st1[0] = 0;
+    // st1[2] = 1;
+    std::cout << st1;
+    // std::cout << tensor::State(n - 2);
+    tensor::State s = tensor::statedot(st1, st, ia, ia2);
+    std::cout << s.get_n_qubits() << std::endl;
+    std::cout << s.get_array().size() << std::endl;
+    std::cout << s;
+    int n_qubits = 5;
+    // std::vector<tensor::State> vs;
+    // for (int i=0; i< n_qubits; i++){
+    //     vs.push_back(tensor::State(1));
+    // }
+    // tensor::State s3(vs);
+    // std::cout << " toto: " <<  s3;
 }
 
 // int main(){

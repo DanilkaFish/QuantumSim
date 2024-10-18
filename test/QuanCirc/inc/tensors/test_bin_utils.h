@@ -14,19 +14,24 @@ const char *NOTE_PREFIX = "  $$ ";  // For printed notes/comments
 
 class BinTest : public TestWithParam<std::tuple<float, float, float>> {
  protected:
-  // Declare some member variables local to each test case
   int num, pos, chg;
 
-  // GTest runs this before any test code
   void SetUp() override {
-    // `GetParam()` fetches the parameter, then we unpack the tuple
     num = std::get<0>(GetParam());
     pos = std::get<1>(GetParam());
     chg = std::get<2>(GetParam());
   }
 
-  // GTest runs after all test code
-//   void TearDown() override {  }
+};
+
+class Power2Test : public TestWithParam<int> {
+ protected:
+  int n;
+
+  void SetUp() override {
+    n = GetParam();
+  }
+
 };
 
 class BinsTest : public TestWithParam<std::tuple<float, IntArr, int>> {
@@ -42,4 +47,5 @@ protected:
     }
 
 };
+
 #endif

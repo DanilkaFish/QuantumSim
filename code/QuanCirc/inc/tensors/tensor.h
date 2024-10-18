@@ -9,18 +9,35 @@ inline void custom_error(std::string s);
 
 namespace tensor{
 class HSMatrix;
+class State;
 // TODO
 // void is_unitary(const HSMatrix& hs){};
 // TODO
 // void is_hermite(const HSMatrix& hs){};
-
+State statedot( const tensor::State& l, 
+                 const tensor::State& r, 
+                 const IntArr& axisl,
+                 const IntArr& axisr );
+                 
 const Complex i{0,1};
 
 class State{
 public:
-    State(int n_qubits)          : v{ComplexArr(1 << n_qubits)}, n_qubits{n_qubits} {}
-    State(const ComplexArr& vec) : v{vec}, n_qubits{ find_power_2(vec.size()) } {}
-    State(ComplexArr&& vec)      : v{vec}, n_qubits{ find_power_2(vec.size()) } {}
+    State(int n_qubits)          : v{ComplexArr(1 << n_qubits)}, n_qubits{n_qubits} {v[0] = 1;}
+    State(std::vector<State> vs){
+        if (!vs.size()==0){
+            (*this) = (vs[0]);
+            for (int i = 1; i< vs.size(); i++){
+                (*this) = statedot((*this), vs[i], IntArr{}, IntArr{}); 
+            }
+        }else{
+            v = ComplexArr(1);
+            n_qubits = 0;
+            v[0] = 1;
+        }
+    }
+    State(const ComplexArr& vec) : v{vec} { n_qubits = find_power_2(vec.size()); }
+    State(ComplexArr&& vec)      : v{vec} { n_qubits = find_power_2(vec.size()); }
     State(const State& s)        : v{s.v}, n_qubits{s.n_qubits} {}
     State(State&& s)             : v{s.v}, n_qubits{s.n_qubits} {}
     State&            operator=(const State& s);
@@ -66,10 +83,7 @@ protected:
     int         n_qubits;
     std::string name="HSMatrix"; 
 };
-tensor::HSMatrix tensordot( const tensor::HSMatrix l, 
-                            const tensor::HSMatrix r, 
-                            const IntArr& axisl,
-                            const IntArr& axisr );
+
 }
 tensor::HSMatrix operator* (const tensor::HSMatrix& l, const tensor::HSMatrix& r);
 std::ostream&    operator<<( std::ostream& os, const tensor::HSMatrix& bt );

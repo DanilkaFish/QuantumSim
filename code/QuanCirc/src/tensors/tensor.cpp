@@ -141,21 +141,26 @@ void HSMatrix::evolve(State& s, const IntArr& qubits){
     s = std::move(ns);
 }
 
-// tensor::HSMatrix HSMatrix::tensordot( const tensor::HSMatrix l, 
-//                             const tensor::HSMatrix r, 
-//                             const IntArr& axisl,
-//                             const IntArr& axisr ){
-//     if (axisl.size() != axisr.size())
-//         custom_error("Diff sizes of axis");
-//     int n = l.get_n_qubits() + r.get_n_qubits() - axisl.size();
-//     ComplexArr new_v(1<<2*this->n_qubits);
-//     for(int i=0; i<new_v.size(); i++){
-//         new_v[i] = v[change_on_pos(i, fin, i)];
-//     }
-//     this->v = new_v;
-//     return *this;
-    
-// }
+tensor::State tensor::statedot(const tensor::State& l, 
+                        const tensor::State& r, 
+                        const IntArr& axisl,
+                        const IntArr& axisr ){
+    if (axisl.size() != axisr.size())
+        custom_error("Diff sizes of axis");
+    int n = l.get_n_qubits() + r.get_n_qubits() - 2*axisl.size();
+    int nl = l.get_n_qubits() - axisl.size(); 
+    int nr = r.get_n_qubits() - axisr.size(); 
+
+    ComplexArr new_v(1 << n, 0);
+    for(int i=0; i < l.size(); i++){
+        for (int j=0; j < r.size(); j++)
+            if (bit_on_pos(i, axisl) == bit_on_pos(j, axisr))
+                new_v[(del_on_pos(i, axisl) << nr) + del_on_pos(j, axisr)] 
+                    += l[i] * r[j];
+    }
+    return State(new_v);
+}
+
 tensor::HSMatrix instr::TOF(){
     static tensor::HSMatrix _TOF({1,0,0,0,0,0,0,0,
                                  0,1,0,0,0,0,0,0,

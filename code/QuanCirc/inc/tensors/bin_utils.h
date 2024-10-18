@@ -9,6 +9,8 @@ int  find_power_2(int l);
 
 int  bit_on_pos(int val, int pos);
 int  bit_on_pos(int val, IntArr positions);
+int  del_on_pos(int val, int pos);
+int  del_on_pos(int val, IntArr posistions);
 
 int  change_on_pos(int value, int pos, int bits);
 int  change_on_pos(int value, IntArr positions, int bits);
