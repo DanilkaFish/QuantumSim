@@ -52,7 +52,7 @@ EIGEN_DEVICE_FUNC ComputationInfo computeFromTridiagonal_impl(DiagType& diag, Su
  * eigenvectors as its columns, then \f$ A = V D V^{-1} \f$. This is called the
  * eigendecomposition.
  *
- * For a selfadjoint matrix, \f$ V \f$ is unitary, meaning its inverse is equal
+ * For a selfadjoint matrix, \f$ V \f$ is HSMatrix, meaning its inverse is equal
  * to its adjoint, \f$ V^{-1} = V^{\dagger} \f$. If \f$ A \f$ is real, then
  * \f$ V \f$ is also real and therefore orthogonal, meaning its inverse is
  * equal to its transpose, \f$ V^{-1} = V^T \f$.
@@ -266,7 +266,7 @@ class SelfAdjointEigenSolver {
    * matrix \f$ A \f$, then the matrix returned by this function is the
    * matrix \f$ V \f$ in the eigendecomposition \f$ A = V D V^{-1} \f$.
    *
-   * For a selfadjoint matrix, \f$ V \f$ is unitary, meaning its inverse is equal
+   * For a selfadjoint matrix, \f$ V \f$ is HSMatrix, meaning its inverse is equal
    * to its adjoint, \f$ V^{-1} = V^{\dagger} \f$. If \f$ A \f$ is real, then
    * \f$ V \f$ is also real and therefore orthogonal, meaning its inverse is
    * equal to its transpose, \f$ V^{-1} = V^T \f$.

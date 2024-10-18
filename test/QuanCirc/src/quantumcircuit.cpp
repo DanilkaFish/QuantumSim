@@ -37,7 +37,7 @@ void Instruction::reverse_qubits(const IntArr& qubits){
     un.move_axis(std::move(axis_to_move));
 }
 
-void QuantumCircuit::add_instruction(const tensor::Unitary un, const IntArr qubits){
+void QuantumCircuit::add_instruction(const tensor::HSMatrix un, const IntArr qubits){
     validate_instruction_qubits(n_qubits, qubits);
     qc_data.push_back(Instruction{un, qubits});
 }
@@ -124,8 +124,8 @@ std::ostream& operator<<(std::ostream& os, const QuantumCircuit& qc){
     return os << "\n";
 }
 
-const tensor::Unitary instr::TOF(){
-    static tensor::Unitary _TOF({1,0,0,0,0,0,0,0,
+const tensor::HSMatrix instr::TOF(){
+    static tensor::HSMatrix _TOF({1,0,0,0,0,0,0,0,
                                  0,1,0,0,0,0,0,0,
                                  0,0,1,0,0,0,0,0,
                                  0,0,0,1,0,0,0,0,
@@ -135,38 +135,38 @@ const tensor::Unitary instr::TOF(){
                                  0,0,0,0,0,0,1,0,});
     return _TOF;
 }
-const tensor::Unitary instr::CX(){
-    static tensor::Unitary _CX({1,0,0,0,
+const tensor::HSMatrix instr::CX(){
+    static tensor::HSMatrix _CX({1,0,0,0,
                                 0,1,0,0,
                                 0,0,0,1,
                                 0,0,1,0});
     return _CX;
 }
 
-const tensor::Unitary instr::X(){
-    static tensor::Unitary _X({0, 1,
+const tensor::HSMatrix instr::X(){
+    static tensor::HSMatrix _X({0, 1,
                                1, 0});
     return _X;
 }
-const tensor::Unitary instr::Y(){
-    static tensor::Unitary _Y({0, -tensor::i, 
+const tensor::HSMatrix instr::Y(){
+    static tensor::HSMatrix _Y({0, -tensor::i, 
                                tensor::i, 0});
     return _Y;
 }
-const tensor::Unitary instr::Z(){
-    static tensor::Unitary _Z({1, 0,
+const tensor::HSMatrix instr::Z(){
+    static tensor::HSMatrix _Z({1, 0,
                                0, 1});
     return _Z;
 }
-const tensor::Unitary instr::I(){
-    static tensor::Unitary _I({1, 0,
+const tensor::HSMatrix instr::I(){
+    static tensor::HSMatrix _I({1, 0,
                                0, 1});
     return _I;
 }
 
 const double A = 1.0/sqrt(2);
-const tensor::Unitary instr::H(){
-    static tensor::Unitary _H({A, A,
+const tensor::HSMatrix instr::H(){
+    static tensor::HSMatrix _H({A, A,
                                A, -A});
     return _H;
 }

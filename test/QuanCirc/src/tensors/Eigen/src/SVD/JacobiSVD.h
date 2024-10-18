@@ -445,7 +445,7 @@ struct traits<JacobiSVD<MatrixType_, Options> > : svd_traits<MatrixType_, Option
  *
  * SVD decomposition consists in decomposing any n-by-p matrix \a A as a product
  *   \f[ A = U S V^* \f]
- * where \a U is a n-by-n unitary, \a V is a p-by-p unitary, and \a S is a n-by-p real positive matrix which is zero
+ * where \a U is a n-by-n HSMatrix, \a V is a p-by-p HSMatrix, and \a S is a n-by-p real positive matrix which is zero
  * outside of its main diagonal; the diagonal entries of S are known as the \em singular \em values of \a A and the
  * columns of \a U and \a V are known as the left and right \em singular \em vectors of \a A respectively.
  *
@@ -489,9 +489,9 @@ struct traits<JacobiSVD<MatrixType_, Options> > : svd_traits<MatrixType_, Option
  *
  * One may also use the Options template parameter to specify how the unitaries should be computed. The options are
  * #ComputeThinU, #ComputeThinV, #ComputeFullU, #ComputeFullV. It is not possible to request both the thin and full
- * versions of a unitary. By default, unitaries will not be computed.
+ * versions of a HSMatrix. By default, unitaries will not be computed.
  *
- * You can set the QRPreconditioner and unitary options together: JacobiSVD<MatrixType,
+ * You can set the QRPreconditioner and HSMatrix options together: JacobiSVD<MatrixType,
  * ColPivHouseholderQRPreconditioner | ComputeThinU | ComputeFullV>
  *
  * \sa MatrixBase::jacobiSvd()

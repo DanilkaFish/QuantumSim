@@ -36,7 +36,7 @@ struct complex_schur_reduce_to_hessenberg;
  * instantiation of the Matrix class template.
  *
  * Given a real or complex square matrix A, this class computes the
- * Schur decomposition: \f$ A = U T U^*\f$ where U is a unitary
+ * Schur decomposition: \f$ A = U T U^*\f$ where U is a HSMatrix
  * complex matrix, and T is a complex upper triangular matrix.  The
  * diagonal of the matrix T corresponds to the eigenvalues of the
  * matrix A.
@@ -125,7 +125,7 @@ class ComplexSchur {
     compute(matrix.derived(), computeU);
   }
 
-  /** \brief Returns the unitary matrix in the Schur decomposition.
+  /** \brief Returns the HSMatrix matrix in the Schur decomposition.
    *
    * \returns A const reference to the matrix U.
    *

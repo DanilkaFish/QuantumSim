@@ -60,7 +60,7 @@ QuantumCircuit grover(int n){
         for (int i=0; i < n; i++){
             qc.add_instruction(instr::H(), IntArr{i});
         }
-        qc.add_instruction(tensor::Unitary(dif), ran);
+        qc.add_instruction(tensor::HSMatrix(dif), ran);
         for (int i=0; i < n; i++){
             qc.add_instruction(instr::H(), IntArr{i});
         }
@@ -85,11 +85,11 @@ int main(){
 //     // tensor::HSMatrix a(ComplexArr{1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0});
 //     // tensor::HSMatrix prod(a*a);
 //     // std::cout << prod;
-//     // Instruction cx{tensor::Unitary(ComplexArr{1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0}), IntArr{0,1}};
-//     Instruction hx{tensor::Unitary(ComplexArr{0,1,0,1,1,0,1,0,0,1,0,-1,1,0,-1,0}), IntArr{0,1}};
+//     // Instruction cx{tensor::HSMatrix(ComplexArr{1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0}), IntArr{0,1}};
+//     Instruction hx{tensor::HSMatrix(ComplexArr{0,1,0,1,1,0,1,0,0,1,0,-1,1,0,-1,0}), IntArr{0,1}};
 //     // tensor::i
 //     using tensor::i;
-//     Instruction hy{tensor::Unitary(ComplexArr{0,-i,0,-i,i,0,i,0,0,-i,0,i,i,0,-i,0}), IntArr{0,1}};
+//     Instruction hy{tensor::HSMatrix(ComplexArr{0,-i,0,-i,i,0,i,0,0,-i,0,i,i,0,-i,0}), IntArr{0,1}};
 //     std::cout << hy.un << std::endl;
 //     hy.inverse();
 //     std::cout << hy.un << std::endl;
@@ -103,7 +103,7 @@ int main(){
 //     // // tensor::State s = toto.s;
 //     // std::cout << "psi = " << s << std::endl;
 //     // std::cout << "norm : " << s.norm()  << std::endl;
-//     // tensor::Hermite H(ComplexArr{0,1,1,0});
-//     // tensor::Unitary U = H.to_unitary();
+//     // tensor::HSMatrix H(ComplexArr{0,1,1,0});
+//     // tensor::HSMatrix U = H.to_unitary();
 
 // }

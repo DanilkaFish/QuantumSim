@@ -5,9 +5,14 @@
 
 
 inline void error(int l);
-
+inline void custom_error(std::string s);
 
 namespace tensor{
+class HSMatrix;
+// TODO
+// void is_unitary(const HSMatrix& hs){};
+// TODO
+// void is_hermite(const HSMatrix& hs){};
 
 const Complex i{0,1};
 
@@ -32,13 +37,14 @@ private:
     ComplexArr v;
     int n_qubits;
 };
-
+class Condition;
 
 class HSMatrix{
 public:
-    HSMatrix(int n_qubits)       : v{ComplexArr(1 << n_qubits*2)}, n_qubits{n_qubits}{}
-    HSMatrix(const HSMatrix& uo) : v{uo.v}, n_qubits{uo.n_qubits} {}
-    HSMatrix(HSMatrix&& uo)      : v{uo.v}, n_qubits{uo.n_qubits}{}
+    HSMatrix()                   : v{}, n_qubits{0} {  }
+    HSMatrix(int n_qubits)       : v{ComplexArr(1 << n_qubits*2)}, n_qubits{n_qubits}{  }
+    HSMatrix(const HSMatrix& uo) : v{uo.v}, n_qubits{uo.n_qubits} {  }
+    HSMatrix(HSMatrix&& uo)      : v{uo.v}, n_qubits{uo.n_qubits}{  }
     HSMatrix(const ComplexArr& vec);
     HSMatrix(ComplexArr&& vec);
 
@@ -47,37 +53,37 @@ public:
     Complex&          operator[]( int i ){ return v[i]; }
     const Complex&    operator[]( int i ) const { return v[i];}
     
-    const HSMatrix&   move_axis( IntArr&& fin );
-
     int               size()         const { return v.size(); }
     int               get_n_qubits() const { return n_qubits; }
-    std::string       get_name()     const { return name; }
-
-    void              set_name( const std::string& new_name ){ name = new_name; }
     const ComplexArr& get_array() const { return v;}
+    std::string       get_name()     const { return name; }
+    void              set_name( const std::string& new_name ){ name = new_name; }
+    HSMatrix          to_unitary() const;
+    const HSMatrix&   move_axis( IntArr&& fin );
+    void              evolve(State&, const IntArr& qubits);
 protected:
     ComplexArr  v;
     int         n_qubits;
-    std::string name="unitary"; 
+    std::string name="HSMatrix"; 
 };
-
-
-class Unitary: public HSMatrix{
-public:
-    using HSMatrix::HSMatrix;
-    using HSMatrix::operator=;
-
-    void evolve(State&, const IntArr& qubits);
-};
-
-class Hermite: public HSMatrix{
-public:
-    using HSMatrix::HSMatrix;
-    Unitary to_unitary() const;
-};
-
+tensor::HSMatrix tensordot( const tensor::HSMatrix l, 
+                            const tensor::HSMatrix r, 
+                            const IntArr& axisl,
+                            const IntArr& axisr );
 }
 tensor::HSMatrix operator* (const tensor::HSMatrix& l, const tensor::HSMatrix& r);
 std::ostream&    operator<<( std::ostream& os, const tensor::HSMatrix& bt );
 std::ostream&    operator<<( std::ostream& os, const tensor::State&    s  );
+
+
+namespace instr{
+    tensor::HSMatrix CX();
+    tensor::HSMatrix TOF();
+    tensor::HSMatrix X();
+    tensor::HSMatrix Y();
+    tensor::HSMatrix Z();
+    tensor::HSMatrix I();
+    tensor::HSMatrix H();
+}
+
 #endif

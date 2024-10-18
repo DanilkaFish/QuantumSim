@@ -49,7 +49,7 @@ struct traits<FullPivHouseholderQRMatrixQReturnType<MatrixType, PermutationIndex
  * \f[
  *  \mathbf{P} \, \mathbf{A} \, \mathbf{P}' = \mathbf{Q} \, \mathbf{R}
  * \f]
- * by using Householder transformations. Here, \b P and \b P' are permutation matrices, \b Q a unitary matrix
+ * by using Householder transformations. Here, \b P and \b P' are permutation matrices, \b Q a HSMatrix matrix
  * and \b R an upper triangular matrix.
  *
  * This decomposition performs a very prudent full pivoting in order to be rank-revealing and achieve optimal

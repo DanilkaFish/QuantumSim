@@ -40,7 +40,7 @@ struct traits<ColPivHouseholderQR<MatrixType_, PermutationIndex_>> : traits<Matr
  * \f[
  *  \mathbf{A} \, \mathbf{P} = \mathbf{Q} \, \mathbf{R}
  * \f]
- * by using Householder transformations. Here, \b P is a permutation matrix, \b Q a unitary matrix and \b R an
+ * by using Householder transformations. Here, \b P is a permutation matrix, \b Q a HSMatrix matrix and \b R an
  * upper triangular matrix.
  *
  * This decomposition performs column pivoting in order to be rank-revealing and improve

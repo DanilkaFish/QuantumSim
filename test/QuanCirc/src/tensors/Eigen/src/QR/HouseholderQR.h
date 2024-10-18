@@ -42,7 +42,7 @@ struct traits<HouseholderQR<MatrixType_>> : traits<MatrixType_> {
  * \f[
  *  \mathbf{A} = \mathbf{Q} \, \mathbf{R}
  * \f]
- * by using Householder transformations. Here, \b Q a unitary matrix and \b R an upper triangular matrix.
+ * by using Householder transformations. Here, \b Q a HSMatrix matrix and \b R an upper triangular matrix.
  * The result is stored in a compact way compatible with LAPACK.
  *
  * Note that no pivoting is performed. This is \b not a rank-revealing decomposition.
@@ -148,7 +148,7 @@ class HouseholderQR : public SolverBase<HouseholderQR<MatrixType_>> {
   inline const Solve<HouseholderQR, Rhs> solve(const MatrixBase<Rhs>& b) const;
 #endif
 
-  /** This method returns an expression of the unitary matrix Q as a sequence of Householder transformations.
+  /** This method returns an expression of the HSMatrix matrix Q as a sequence of Householder transformations.
    *
    * The returned expression can directly be used to perform matrix products. It can also be assigned to a dense Matrix
    * object. Here is an example showing how to recover the full or thin matrix Q, as well as how to perform matrix

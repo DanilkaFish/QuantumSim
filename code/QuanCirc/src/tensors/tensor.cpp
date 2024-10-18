@@ -4,6 +4,10 @@
 inline void error(int l){
     throw std::runtime_error("array " + std::to_string(l) +" size is not power of 2");
 }
+inline void custom_error(std::string s){
+    throw std::runtime_error(s);
+}
+
 using namespace tensor;
 
 Double State::norm() const {
@@ -114,9 +118,7 @@ HSMatrix operator*(const HSMatrix& l, const HSMatrix& r){
 }
 
 
-
-
-void Unitary::evolve(State& s, const IntArr& qubits){
+void HSMatrix::evolve(State& s, const IntArr& qubits){
     if (qubits.size() != n_qubits){
         error(qubits.size());
     }
@@ -139,3 +141,64 @@ void Unitary::evolve(State& s, const IntArr& qubits){
     s = std::move(ns);
 }
 
+// tensor::HSMatrix HSMatrix::tensordot( const tensor::HSMatrix l, 
+//                             const tensor::HSMatrix r, 
+//                             const IntArr& axisl,
+//                             const IntArr& axisr ){
+//     if (axisl.size() != axisr.size())
+//         custom_error("Diff sizes of axis");
+//     int n = l.get_n_qubits() + r.get_n_qubits() - axisl.size();
+//     ComplexArr new_v(1<<2*this->n_qubits);
+//     for(int i=0; i<new_v.size(); i++){
+//         new_v[i] = v[change_on_pos(i, fin, i)];
+//     }
+//     this->v = new_v;
+//     return *this;
+    
+// }
+tensor::HSMatrix instr::TOF(){
+    static tensor::HSMatrix _TOF({1,0,0,0,0,0,0,0,
+                                 0,1,0,0,0,0,0,0,
+                                 0,0,1,0,0,0,0,0,
+                                 0,0,0,1,0,0,0,0,
+                                 0,0,0,0,1,0,0,0,
+                                 0,0,0,0,0,1,0,0,
+                                 0,0,0,0,0,0,0,1,
+                                 0,0,0,0,0,0,1,0,});
+    return _TOF;
+}
+tensor::HSMatrix instr::CX(){
+    static tensor::HSMatrix _CX({1,0,0,0,
+                                0,1,0,0,
+                                0,0,0,1,
+                                0,0,1,0});
+    return _CX;
+}
+
+tensor::HSMatrix instr::X(){
+    static tensor::HSMatrix _X({0, 1,
+                               1, 0});
+    return _X;
+}
+tensor::HSMatrix instr::Y(){
+    static tensor::HSMatrix _Y({0, -tensor::i, 
+                               tensor::i, 0});
+    return _Y;
+}
+tensor::HSMatrix instr::Z(){
+    static tensor::HSMatrix _Z({1, 0,
+                               0, 1});
+    return _Z;
+}
+tensor::HSMatrix instr::I(){
+    static tensor::HSMatrix _I({1, 0,
+                               0, 1});
+    return _I;
+}
+
+const double A = 1.0/sqrt(2);
+tensor::HSMatrix instr::H(){
+    static tensor::HSMatrix _H({A, A,
+                               A, -A});
+    return _H;
+}

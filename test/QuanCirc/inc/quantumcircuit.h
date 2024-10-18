@@ -17,18 +17,18 @@ struct Instruction{
 
     void            evolve(tensor::State& s){ un.evolve(s, qubits); }
     void            reverse_qubits(const IntArr& qubits);
-    tensor::Unitary un;
+    tensor::HSMatrix un;
     IntArr          qubits;
 };
 
-using UnitaryArr = std::list<Instruction>;
+using HSMatrixArr = std::list<Instruction>;
 
 
 class QuantumCircuit{
 public:
     QuantumCircuit(int n_qubits) : n_qubits{n_qubits}, s{n_qubits}{ s[0] = 1; }
-    const UnitaryArr& get_qc_data() const { return qc_data; };
-    void              add_instruction(const tensor::Unitary un, const IntArr qubits);
+    const HSMatrixArr& get_qc_data() const { return qc_data; };
+    void              add_instruction(const tensor::HSMatrix un, const IntArr qubits);
     void              add_instruction(Instruction instr);
     void              compose(QuantumCircuit& circ);
     void              simplifiation();
@@ -36,19 +36,19 @@ public:
     tensor::State     s;
 private:
     int        n_qubits;
-    UnitaryArr qc_data;
+    HSMatrixArr qc_data;
 };
 
 std::ostream& operator<<(std::ostream& os, const QuantumCircuit& qc);
 
 namespace instr{
-    const tensor::Unitary CX();
-    const tensor::Unitary TOF();
-    const tensor::Unitary X();
-    const tensor::Unitary Y();
-    const tensor::Unitary Z();
-    const tensor::Unitary I();
-    const tensor::Unitary H();
+    const tensor::HSMatrix CX();
+    const tensor::HSMatrix TOF();
+    const tensor::HSMatrix X();
+    const tensor::HSMatrix Y();
+    const tensor::HSMatrix Z();
+    const tensor::HSMatrix I();
+    const tensor::HSMatrix H();
 }
 #endif
 

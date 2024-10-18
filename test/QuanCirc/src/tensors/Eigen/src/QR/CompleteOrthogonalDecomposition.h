@@ -42,7 +42,7 @@ struct traits<CompleteOrthogonalDecomposition<MatrixType_, PermutationIndex_>> :
  *                                     \mathbf{0} & \mathbf{0} \end{bmatrix} \, \mathbf{Z}
  * \f]
  * by using Householder transformations. Here, \b P is a permutation matrix,
- * \b Q and \b Z are unitary matrices and \b T an upper triangular matrix of
+ * \b Q and \b Z are HSMatrix matrices and \b T an upper triangular matrix of
  * size rank-by-rank. \b A may be rank deficient.
  *
  * This class supports the \link InplaceDecomposition inplace decomposition \endlink mechanism.

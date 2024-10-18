@@ -42,7 +42,7 @@ EIGEN_DEVICE_FUNC void tridiagonalization_inplace(MatrixType& matA, CoeffVectorT
  * Matrix class template.
  *
  * This class performs a tridiagonal decomposition of a selfadjoint matrix \f$ A \f$ such that:
- * \f$ A = Q T Q^* \f$ where \f$ Q \f$ is unitary and \f$ T \f$ a real symmetric tridiagonal matrix.
+ * \f$ A = Q T Q^* \f$ where \f$ Q \f$ is HSMatrix and \f$ T \f$ a real symmetric tridiagonal matrix.
  *
  * A tridiagonal matrix is a matrix which has nonzero elements only on the
  * main diagonal and the first diagonal below and above it. The Hessenberg
@@ -216,7 +216,7 @@ class Tridiagonalization {
     return m_matrix;
   }
 
-  /** \brief Returns the unitary matrix Q in the decomposition
+  /** \brief Returns the HSMatrix matrix Q in the decomposition
    *
    * \returns object representing the matrix Q
    *
@@ -315,7 +315,7 @@ namespace internal {
  *
  * On output, the tridiagonal selfadjoint matrix T is stored in the diagonal
  * and lower sub-diagonal of the matrix \a matA.
- * The unitary matrix Q is represented in a compact way as a product of
+ * The HSMatrix matrix Q is represented in a compact way as a product of
  * Householder reflectors \f$ H_i \f$ such that:
  *       \f$ Q = H_{N-1} \ldots H_1 H_0 \f$.
  * The Householder reflectors are defined as
@@ -383,7 +383,7 @@ struct tridiagonalization_inplace_selector;
  *    decomposition is computed and stored in \p mat.
  *
  * Computes the tridiagonal decomposition of the selfadjoint matrix \p mat in place
- * such that \f$ mat = Q T Q^* \f$ where \f$ Q \f$ is unitary and \f$ T \f$ a real
+ * such that \f$ mat = Q T Q^* \f$ where \f$ Q \f$ is HSMatrix and \f$ T \f$ a real
  * symmetric tridiagonal matrix.
  *
  * The tridiagonal matrix T is passed to the output parameters \p diag and \p subdiag. If

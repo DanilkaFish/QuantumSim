@@ -225,7 +225,7 @@ MatrixBase<Derived>::lpNorm() const {
   return internal::lpNorm_selector<Derived, p>::run(*this);
 }
 
-//---------- implementation of isOrthogonal / isUnitary ----------
+//---------- implementation of isOrthogonal / isHSMatrix ----------
 
 /** \returns true if *this is approximately orthogonal to \a other,
  *          within the precision given by \a prec.
@@ -241,19 +241,19 @@ bool MatrixBase<Derived>::isOrthogonal(const MatrixBase<OtherDerived>& other, co
   return numext::abs2(nested.dot(otherNested)) <= prec * prec * nested.squaredNorm() * otherNested.squaredNorm();
 }
 
-/** \returns true if *this is approximately an unitary matrix,
+/** \returns true if *this is approximately an HSMatrix matrix,
  *          within the precision given by \a prec. In the case where the \a Scalar
- *          type is real numbers, a unitary matrix is an orthogonal matrix, whence the name.
+ *          type is real numbers, a HSMatrix matrix is an orthogonal matrix, whence the name.
  *
  * \note This can be used to check whether a family of vectors forms an orthonormal basis.
- *       Indeed, \c m.isUnitary() returns true if and only if the columns (equivalently, the rows) of m form an
+ *       Indeed, \c m.isHSMatrix() returns true if and only if the columns (equivalently, the rows) of m form an
  *       orthonormal basis.
  *
- * Example: \include MatrixBase_isUnitary.cpp
- * Output: \verbinclude MatrixBase_isUnitary.out
+ * Example: \include MatrixBase_isHSMatrix.cpp
+ * Output: \verbinclude MatrixBase_isHSMatrix.out
  */
 template <typename Derived>
-bool MatrixBase<Derived>::isUnitary(const RealScalar& prec) const {
+bool MatrixBase<Derived>::isHSMatrix(const RealScalar& prec) const {
   typename internal::nested_eval<Derived, 1>::type self(derived());
   for (Index i = 0; i < cols(); ++i) {
     if (!internal::isApprox(self.col(i).squaredNorm(), static_cast<RealScalar>(1), prec)) return false;

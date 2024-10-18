@@ -12,7 +12,7 @@ public:
     ~QCGenerator();
 
     QuantumCircuit  get_qc(double);
-    tensor::Unitary get_n_unitary(int n);
+    tensor::HSMatrix get_n_HSMatrix(int n);
     IntArr          get_n_qubits(int n);
     
 private:

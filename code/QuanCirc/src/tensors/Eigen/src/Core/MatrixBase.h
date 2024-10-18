@@ -272,7 +272,7 @@ class MatrixBase : public DenseBase<Derived> {
   template <typename OtherDerived>
   bool isOrthogonal(const MatrixBase<OtherDerived>& other,
                     const RealScalar& prec = NumTraits<Scalar>::dummy_precision()) const;
-  bool isUnitary(const RealScalar& prec = NumTraits<Scalar>::dummy_precision()) const;
+  bool isHSMatrix(const RealScalar& prec = NumTraits<Scalar>::dummy_precision()) const;
 
   /** \returns true if each coefficients of \c *this and \a other are all exactly equal.
    * \warning When using floating point scalar values you probably should rather use a

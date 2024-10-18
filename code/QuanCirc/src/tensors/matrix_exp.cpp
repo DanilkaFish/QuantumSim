@@ -47,6 +47,6 @@ void mexp(tensor::HSMatrix& vec, int n){
 //     // vec.num_prod(Complex(0,-1));
 //     mexp(vec, 2);
 //     cout << exp(Complex(0,1));
-//     // cout << Unitary(vec);
+//     // cout << HSMatrix(vec);
 //     // cout << "A least-squares solution of m*x = rhs is:" << endl << svd.solve(rhs) << endl;
 // }

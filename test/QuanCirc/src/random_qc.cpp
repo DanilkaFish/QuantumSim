@@ -16,16 +16,16 @@ QuantumCircuit QCGenerator::get_qc(double p=0.64){
         double n = ng->get_double(0, 1);
         if (n > p){
             auto n_qubits = get_n_qubits(1);
-            qc.add_instruction(get_n_unitary(1), n_qubits);
+            qc.add_instruction(get_n_HSMatrix(1), n_qubits);
         }else{
             auto n_qubits = get_n_qubits(2);
-            qc.add_instruction(get_n_unitary(2), n_qubits);
+            qc.add_instruction(get_n_HSMatrix(2), n_qubits);
         }
     }
     return qc;
 }  
 
-tensor::Unitary QCGenerator::get_n_unitary(int n){
+tensor::HSMatrix QCGenerator::get_n_HSMatrix(int n){
     int size = (1 << n);
     ComplexArr vec(size*size);
     for(int i=0; i < size; i++){
@@ -39,7 +39,7 @@ tensor::Unitary QCGenerator::get_n_unitary(int n){
             }
         }
     }
-    return tensor::Hermite(vec).to_unitary();
+    return tensor::HSMatrix(vec).to_unitary();
 }
 
 IntArr QCGenerator::get_n_qubits(int n){

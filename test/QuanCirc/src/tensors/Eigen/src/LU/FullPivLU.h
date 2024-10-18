@@ -730,7 +730,7 @@ template <typename MatrixType_, typename PermutationIndex_>
 template <bool Conjugate, typename RhsType, typename DstType>
 void FullPivLU<MatrixType_, PermutationIndex_>::_solve_impl_transposed(const RhsType& rhs, DstType& dst) const {
   /* The decomposition PAQ = LU can be rewritten as A = P^{-1} L U Q^{-1},
-   * and since permutations are real and unitary, we can write this
+   * and since permutations are real and HSMatrix, we can write this
    * as   A^T = Q U^T L^T P,
    * So we proceed as follows:
    * Step 1: compute c = Q^T rhs.
