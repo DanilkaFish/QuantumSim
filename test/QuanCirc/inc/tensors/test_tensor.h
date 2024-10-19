@@ -9,8 +9,8 @@
 
 using ::testing::TestWithParam;  // GTest parametric test fixture
 using namespace tensor;
-const char *ERR_PREFIX = ">> ";     // For printed error descriptions
-const char *NOTE_PREFIX = "  $$ ";  // For printed notes/comments
+#include "test/common_test.h"
+
 
 class VSInitTest : public TestWithParam<int>{
 protected:

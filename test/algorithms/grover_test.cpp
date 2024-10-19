@@ -1,71 +1,46 @@
-#include "code/QuanCirc/inc/quantumcircuit.h"
-#include <vector>
+#include "test/algorithms/grover_test.h"
 
-std::vector<int> to_bin(int n, int range){
-    std::vector<int> binv;
-    for(int i = 0; i < range; n = n / 2){
-        binv.push_back(n % 2);
-        i++;
+#include "test/QuanCirc/inc/tensors/test_tensor.h"
+#include <bits/stdc++.h>
+#include <string>
+
+using ::testing::Combine;
+using ::testing::Values;
+
+State get_grover_state(int n, IntArr ia, int k){
+    State s(n + 1);
+    s[0] = Complex{0,0};
+    int N = 1 << (n);
+    int M = ia.size();
+    double theta = 2*acos(sqrt(double(N-M)/N));
+    for (int i = 0; i < s.size()/2; i++){
+        if (std::find(ia.begin(), ia.end(), i) == ia.end()){
+            s[(1 << n) + i] = -1/sqrt(2*N-2*M) * cos(theta * (2*k + 1)/2.);
+            s[i] = 1/sqrt(2*N-2*M) * cos(theta * (2*k + 1)/2.);
+        }else{
+            s[(1 << n) + i] = -1/sqrt(2*M) * sin(theta * (2*k + 1)/2.);
+            s[i] = 1/sqrt(2*M) * sin(theta * (2*k + 1)/2.);
+        }
     }
-    return binv;
+    return s;
 }
 
-QuantumCircuit build_grover_circ(int n, std::vector<int> vs){
-    QuantumCircuit main_qc{2*n - 1};
-    std::vector<int> binv;
-    int len = n;
-    int rev_count =0;
-    for (auto v : vs){
-        QuantumCircuit qc{2*n - 1};
-        binv = to_bin(v, n);
-        for (int i = 0; i < n/2; i++){
-            rev_count = 1;
-            if (!binv[2*i]){
-                qc.add_instruction(instr::X(), IntArr{2*i});
-                rev_count+=2;
-            }
-            if (!binv[2*i + 1]){
-                qc.add_instruction(instr::X(), IntArr{2*i + 1});
-                rev_count+=2;
-            }
-            qc.add_instruction(instr::TOF(), {2*i, 2*i + 1, n + i});
-            if (!binv[2*i])
-                qc.add_instruction(instr::X(), IntArr{2*i});
-            if (!binv[2*i + 1])
-                qc.add_instruction(instr::X(), IntArr{2*i + 1});
-        }
-        int sdv = n;
-        if (n % 2 == 1){
-            rev_count = 1;
-            if (!binv[n-1]){
-                rev_count += 2;
-                qc.add_instruction(instr::X(), IntArr{n-1});
-                qc.add_instruction(instr::TOF(), {n-1, n, n + n/2});
-                qc.add_instruction(instr::X(), IntArr{n-1});
-            }else{
-                qc.add_instruction(instr::TOF(), {n-1, n, n + n/2});
-            }
-            sdv++;
-        }
-
-        len = n / 2;
-        while (len > 1){
-            rev_count = 1;
-            for (int i=0; i < len/2; i++)
-                qc.add_instruction(instr::TOF(), IntArr{sdv + 2*i, sdv + 2*i + 1, len + sdv + i});
-            sdv += len;
-            if (len % 2 == 1){
-                qc.add_instruction(instr::TOF(), IntArr{sdv-1,sdv, sdv + len/2 + 1});
-                sdv++;
-            }
-            len = len/2;
-        }
-        auto it = qc.get_qc_data().rbegin();
-        for (int i=0; i < rev_count; i++){it++;}
-        for (; it != qc.get_qc_data().rend(); it++){
-            qc.add_instruction(*it);
-        }
-        main_qc.compose(qc);
+TEST_P(GroverTest, TestGrover) {
+    State s_exp = get_grover_state(n , true_pos, k);
+    ASSERT_NEAR(s_exp.norm(), 1, 0.0001) << ERR_PREFIX 
+                                << "Differnt state qubits size";
+    for (int i = 0; i < s.size(); i++){
+        ASSERT_NEAR(s_exp[i].real(), s[i].real(), 0.000001) << ERR_PREFIX 
+                                << "Differnt state array values on " << i;
     }
-    return main_qc;
-}
+    
+};
+
+
+INSTANTIATE_TEST_CASE_P(ComboValues, GroverTest,
+                        Combine(Values(3,4,5,6),
+                                Values(IntArr{0,2,5}),
+                                Values(1,2,3)));
+
+
+

@@ -7,10 +7,10 @@
 #include <iostream>
 #include <tuple>
 
-using ::testing::TestWithParam;  // GTest parametric test fixture
+using ::testing::TestWithParam;  
 
-const char *ERR_PREFIX = ">> ";     // For printed error descriptions
-const char *NOTE_PREFIX = "  $$ ";  // For printed notes/comments
+#include "test/common_test.h"
+
 
 class BinTest : public TestWithParam<std::tuple<float, float, float>> {
  protected:

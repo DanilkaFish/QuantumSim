@@ -55,7 +55,7 @@ QuantumCircuit build_grover_circ(int n, std::vector<int> vs){
                 qc.add_instruction(instr::TOF(), IntArr{sdv + 2*i, sdv + 2*i + 1, len + sdv + i});
             sdv += len;
             if (len % 2 == 1){
-                qc.add_instruction(instr::TOF(), IntArr{sdv-1,sdv, sdv + len/2 + 1});
+                qc.add_instruction(instr::TOF(), IntArr{sdv - 1, sdv, sdv + 1});
                 sdv++;
             }
             len = len/2;
@@ -68,4 +68,39 @@ QuantumCircuit build_grover_circ(int n, std::vector<int> vs){
         main_qc.compose(qc);
     }
     return main_qc;
+}
+
+
+QuantumCircuit grover(int n, IntArr ia, int _k=1){
+    int hilb_n = 1 << n;
+    QuantumCircuit qc = build_grover_circ(n, ia);
+    QuantumCircuit prep(2*n - 1);
+    // QuantumCircuit diff_op(2*n - 1);
+    ComplexArr dif(hilb_n*hilb_n, 0);
+    for(int i = 0; i < hilb_n; i++){
+        dif[i*hilb_n + i] = -1;
+    }
+
+    IntArr ran(n, 0);
+    for (int i=0; i < n; i++){
+        prep.add_instruction(instr::H(), IntArr{i});
+        ran[i] = i;
+    }
+    prep.add_instruction(instr::X(), IntArr{2*n - 2});
+    prep.add_instruction(instr::H(), IntArr{2*n - 2});
+
+
+    dif[0] = 1;
+    for (int i=0; i < n; i++){
+        qc.add_instruction(instr::H(), IntArr{i});
+    }
+    qc.add_instruction(tensor::HSMatrix(dif), ran);
+    for (int i=0; i < n; i++){
+        qc.add_instruction(instr::H(), IntArr{i});
+    }
+    for (int i = 0; i < _k; i++){
+        prep.compose(qc);
+
+    }
+    return prep;
 }

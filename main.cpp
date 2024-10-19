@@ -37,43 +37,11 @@ int test(){
     return 1;
 }
 
-QuantumCircuit grover(int n){
-    int hilb_n = 1 << n;
-    QuantumCircuit qc = build_grover_circ(n, IntArr{0});
-    QuantumCircuit prep(2*n - 1);
-    QuantumCircuit diff_op(2*n - 1);
-    ComplexArr dif(hilb_n*hilb_n, 0);
-    IntArr ran(n, 0);
-    for (int i=0; i < n; i++){
-        prep.add_instruction(instr::H(), IntArr{i});
-        ran[i] = i;
-    }
-    prep.add_instruction(instr::X(), IntArr{2*n - 2});
-    prep.add_instruction(instr::H(), IntArr{2*n - 2});
-
-    for(int i = 0; i < hilb_n; i++){
-        dif[i*hilb_n + i] = -1;
-    }
-
-    dif[0] = 1;
-    for(int k=0; k < 5; k++){
-        for (int i=0; i < n; i++){
-            qc.add_instruction(instr::H(), IntArr{i});
-        }
-        qc.add_instruction(tensor::HSMatrix(dif), ran);
-        for (int i=0; i < n; i++){
-            qc.add_instruction(instr::H(), IntArr{i});
-        }
-    }
-    // prep.add_instruction(instr::H(), IntArr(2*n - 2));
-    prep.compose(qc);
-    return prep;
-}
 
 int main(){
-    int n = 5;
-    QuantumCircuit prep = grover(n);
-    std::cout << prep;
+    int n = 6;
+    QuantumCircuit prep = grover(n, IntArr{0});
+    std::cerr << prep;
     tensor::State st = prep.execute();
     IntArr ia(n - 2);
     IntArr ia2(n - 2);
@@ -82,17 +50,14 @@ int main(){
         ia[i] = i;
         ia2[i] = n + i;
     }
-    std::cout << st;
     tensor::State st1(n - 2);
-    // st1[0] = 0;
-    // st1[2] = 1;
-    std::cout << st1;
     // std::cout << tensor::State(n - 2);
     tensor::State s = tensor::statedot(st1, st, ia, ia2);
     std::cout << s.get_n_qubits() << std::endl;
     std::cout << s.get_array().size() << std::endl;
     std::cout << s;
-    int n_qubits = 5;
+    std::cout << s.norm();
+    // int n_qubits = 5;
     // std::vector<tensor::State> vs;
     // for (int i=0; i< n_qubits; i++){
     //     vs.push_back(tensor::State(1));

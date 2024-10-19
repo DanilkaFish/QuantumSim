@@ -11,6 +11,7 @@ link_libraries(${GTEST_LIBRARIES} gtest_main pthread)
 add_executable(qc)
 add_executable(utils_test)
 add_executable(tensor_test)
+add_executable(grover_test)
 
 add_library(tensors STATIC)
 target_sources(tensors PUBLIC
@@ -21,6 +22,7 @@ target_sources(tensors PUBLIC
 
 target_link_libraries(qc tensors)
 target_link_libraries(tensor_test PUBLIC tensors)
+target_link_libraries(grover_test PUBLIC tensors)
 
 # target_sources(main PRIVATE main.cpp)
 target_sources(qc PRIVATE 
@@ -36,4 +38,8 @@ target_sources(utils_test PRIVATE
 
 target_sources(tensor_test PRIVATE
                 test/QuanCirc/src/tensors/test_tensor.cpp
+                )       
+target_sources(grover_test PRIVATE
+                test/algorithms/grover_test.cpp
+                code/QuanCirc/src/quantumcircuit.cpp 
                 )       

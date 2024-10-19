@@ -23,7 +23,8 @@ const Complex i{0,1};
 
 class State{
 public:
-    State(int n_qubits)          : v{ComplexArr(1 << n_qubits)}, n_qubits{n_qubits} {v[0] = 1;}
+    State() : v{ComplexArr{1}}, n_qubits{0}{}
+    State(int n_qubits)          : v{ComplexArr(1 << n_qubits, 0)}, n_qubits{n_qubits} {v[0] = 1;}
     State(std::vector<State> vs){
         if (!vs.size()==0){
             (*this) = (vs[0]);
@@ -31,9 +32,8 @@ public:
                 (*this) = statedot((*this), vs[i], IntArr{}, IntArr{}); 
             }
         }else{
-            v = ComplexArr(1);
+            v = ComplexArr{1};
             n_qubits = 0;
-            v[0] = 1;
         }
     }
     State(const ComplexArr& vec) : v{vec} { n_qubits = find_power_2(vec.size()); }
@@ -58,8 +58,8 @@ class Condition;
 
 class HSMatrix{
 public:
-    HSMatrix()                   : v{}, n_qubits{0} {  }
-    HSMatrix(int n_qubits)       : v{ComplexArr(1 << n_qubits*2)}, n_qubits{n_qubits}{  }
+    HSMatrix()                   : v{ComplexArr{1}}, n_qubits{0} {  }
+    HSMatrix(int n_qubits)       : v{ComplexArr(1 << n_qubits*2, 0)}, n_qubits{n_qubits}{  }
     HSMatrix(const HSMatrix& uo) : v{uo.v}, n_qubits{uo.n_qubits} {  }
     HSMatrix(HSMatrix&& uo)      : v{uo.v}, n_qubits{uo.n_qubits}{  }
     HSMatrix(const ComplexArr& vec);

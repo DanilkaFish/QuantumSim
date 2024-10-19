@@ -1,36 +1,40 @@
-#ifndef _TEST_BIN_UTILS
-#define _TEST_BIN_UTILS
+#ifndef _TEST_GROVER
+#define _TEST_GROVER
 
 #include <gtest/gtest.h>
-#include "code/QuanCirc/inc/tensors/tensor.h"
-
+#include "code/QuanCirc/inc/quantumcircuit.h"
+#include "code/algorithms/grover.cpp"
+#include <algorithm>
 #include <iostream>
 #include <tuple>
 
 using ::testing::TestWithParam;  // GTest parametric test fixture
 using namespace tensor;
-const char *ERR_PREFIX = ">> ";     // For printed error descriptions
-const char *NOTE_PREFIX = "  $$ ";  // For printed notes/comments
 
-class VSInitTest : public TestWithParam<int>{
+#include "test/common_test.h"
+
+
+class GroverTest : public TestWithParam<std::tuple<int, IntArr, int>>{
 protected:
-    int n_qubits;
+    int n;
+    IntArr true_pos;
+    int k;
+    State s;
 
     void SetUp() override {
-    // `GetParam()` fetches the parameter, then we unpack the tuple
-        n_qubits = GetParam();
+        n = std::get<0>(GetParam());
+        k = std::get<2>(GetParam());
+        true_pos = std::get<1>(GetParam());
+        QuantumCircuit qc = grover(n,  true_pos, k); 
+        s = qc.execute();
+        IntArr ia(n - 2);
+        IntArr ia2(n - 2);
+        for (int i = 0; i < n - 2; i++){
+            ia[i] = i;
+            ia2[i] = n + i;
+        }
+        s = tensor::statedot(State(n - 2), s, ia, ia2);
     }
 };
-
-// class StateDotTest : public Test{
-// protected:
-//     int n_qubits;
-
-//     void SetUp() override {
-//     // `GetParam()` fetches the parameter, then we unpack the tuple
-//         n_qubits = GetParam();
-//     }
-// };
-
 
 #endif
