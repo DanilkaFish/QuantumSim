@@ -1,4 +1,4 @@
-#include "code/QuanCirc/inc/random_qc.h"
+#include "code/QuanCirc/inc/quantumcirc/random_qc.h"
 
 QCGenerator::QCGenerator(int _depth, int _n_qubits, GeneratorKind type, int seed){
     ng = RandGeneratorFactory::CreateRandGenerator(seed, type);

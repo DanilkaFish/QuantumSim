@@ -1,4 +1,5 @@
-#include "code/QuanCirc/inc/quantumcircuit.h"
+#include "code/QuanCirc/inc/quantumcirc/quantumcircuit.h"
+#include "code/QuanCirc/inc/quantumcirc/unitary.h"
 #include <vector>
 
 std::vector<int> to_bin(int n, int range){
@@ -75,7 +76,6 @@ QuantumCircuit grover(int n, IntArr ia, int _k=1){
     int hilb_n = 1 << n;
     QuantumCircuit qc = build_grover_circ(n, ia);
     QuantumCircuit prep(2*n - 1);
-    // QuantumCircuit diff_op(2*n - 1);
     ComplexArr dif(hilb_n*hilb_n, 0);
     for(int i = 0; i < hilb_n; i++){
         dif[i*hilb_n + i] = -1;

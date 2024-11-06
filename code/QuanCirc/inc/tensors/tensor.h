@@ -2,10 +2,7 @@
 #define _TENSOR
 
 #include "bin_utils.h"
-
-
-inline void error(int l);
-inline void custom_error(std::string s);
+#include "code/QuanCirc/inc/error.h"
 
 namespace tensor{
 class HSMatrix;
@@ -15,10 +12,14 @@ class State;
 // TODO
 // void is_hermite(const HSMatrix& hs){};
 State statedot( const tensor::State& l, 
-                 const tensor::State& r, 
-                 const IntArr& axisl,
-                 const IntArr& axisr );
-                 
+                const tensor::State& r, 
+                const IntArr& axisl,
+                const IntArr& axisr );
+
+HSMatrix hsmatrixdot( const tensor::HSMatrix& l, 
+                      const tensor::HSMatrix& r, 
+                      IntArr axisl,
+                      IntArr axisr );    
 const Complex i{0,1};
 
 class State{
@@ -76,7 +77,8 @@ public:
     std::string       get_name()     const { return name; }
     void              set_name( const std::string& new_name ){ name = new_name; }
     HSMatrix          to_unitary() const;
-    const HSMatrix&   move_axis( IntArr&& fin );
+    const HSMatrix&   move_axis(const IntArr& fin );
+    const HSMatrix&   move_axis(const IntArr& in, const IntArr& fin);
     void              evolve(State&, const IntArr& qubits);
 protected:
     ComplexArr  v;
@@ -86,18 +88,11 @@ protected:
 
 }
 tensor::HSMatrix operator* (const tensor::HSMatrix& l, const tensor::HSMatrix& r);
+tensor::HSMatrix operator+(const  tensor::HSMatrix& l, const tensor::HSMatrix& r );
+tensor::HSMatrix operator*(Complex d, const tensor::HSMatrix& r );
+
 std::ostream&    operator<<( std::ostream& os, const tensor::HSMatrix& bt );
 std::ostream&    operator<<( std::ostream& os, const tensor::State&    s  );
 
-
-namespace instr{
-    tensor::HSMatrix CX();
-    tensor::HSMatrix TOF();
-    tensor::HSMatrix X();
-    tensor::HSMatrix Y();
-    tensor::HSMatrix Z();
-    tensor::HSMatrix I();
-    tensor::HSMatrix H();
-}
 
 #endif

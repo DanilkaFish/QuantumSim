@@ -12,7 +12,7 @@ Complex cumm_sum(const tensor::State& s){
 
 int test(){
     QuantumCircuit to(4);
-    to.add_instruction(instr::CX(), std::vector<int>{2,0});
+    to.add_instruction(instr::CX(), IntArr{2,0});
     for (int i=0; i < 1<<4; i++){
         to.s[i] = i + 1;
     }

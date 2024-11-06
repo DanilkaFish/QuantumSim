@@ -2,7 +2,7 @@
 #define _TEST_GROVER
 
 #include <gtest/gtest.h>
-#include "code/QuanCirc/inc/quantumcircuit.h"
+#include "code/QuanCirc/inc/quantumcirc/quantumcircuit.h"
 #include "code/algorithms/grover.cpp"
 #include <algorithm>
 #include <iostream>

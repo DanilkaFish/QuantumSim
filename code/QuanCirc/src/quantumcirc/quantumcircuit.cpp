@@ -1,19 +1,7 @@
-#include "code/QuanCirc/inc/quantumcircuit.h"
-
-
-inline void error_qubits_range(IntArr qubits, int n_qubits){
-    std::string s = "qubits [" ;
-    for(auto q: qubits) s += std::to_string(q) + ",";
-    s += "] is not in range (0, " + std::to_string(n_qubits - 1) + ')';
-    throw std::runtime_error(s);
-}
-
-inline void error_qubits_coinc(IntArr qubits){
-    std::string s = "qubits [" ;
-    for(auto q: qubits) s += std::to_string(q) + ",";
-    s += "] have the coincidence;";
-    throw std::runtime_error(s);
-}
+#include "code/QuanCirc/inc/quantumcirc/quantumcircuit.h"
+#include "algorithm"
+#include <map>
+#include <algorithm>
 
 void validate_instruction_qubits(int n_qubits, const IntArr& qubits){
     for (int qubit: qubits){
@@ -46,6 +34,13 @@ void QuantumCircuit::add_instruction(const tensor::HSMatrix un, const IntArr qub
 void QuantumCircuit::add_instruction(Instruction instr){
     qc_data.push_back(instr);
 }
+
+void QuantumCircuit::add_instruction(const std::vector<std::pair<tensor::HSMatrix, IntArr>> u_qub){
+    for(auto& x: u_qub){
+        this->add_instruction(x.first, x.second);
+    }
+}
+
     
 void QuantumCircuit::compose(QuantumCircuit& circ){
     if (n_qubits == circ.n_qubits){
@@ -63,6 +58,7 @@ tensor::State QuantumCircuit::execute(){
     }
     return s_test;
 }
+
 void QuantumCircuit::simplification(){
     std::vector<Instruction*> pred(n_qubits);
     int size=0;
@@ -113,6 +109,7 @@ void QuantumCircuit::simplification(){
     }
 };
 
+
 std::ostream& operator<<(std::ostream& os, const QuantumCircuit& qc){
     for (auto x: qc.get_qc_data()){
         os << x.un.get_name() << " [";
@@ -123,4 +120,75 @@ std::ostream& operator<<(std::ostream& os, const QuantumCircuit& qc){
     }
     return os << "\n";
 }
+// TODO нужно разобраться с перестановкой осей и новыми кубитами
+Instruction instruction_prod(const Instruction& l, const Instruction& r){
+    IntArr new_qubits;
+    IntArr pl;
+    IntArr pr;
+    IntArr axis_transp;
+    std::map<int, int> ndl;
+    std::map<int, int> ndr;
+    std::map<int, std::pair<int,int>> qubits_map;
 
+    int nl = l.qubits.size();
+    int nr = r.qubits.size();
+
+    for (int i=0; i<nl; i++){
+        qubits_map[l.qubits[i]] = std::make_pair(i, -1);
+        ndl[l.qubits[i]] = i;
+    }
+    for (int i=0; i<nr; i++){
+        if (qubits_map.find(r.qubits[i]) == qubits_map.end()){
+            qubits_map[r.qubits[i]] = std::make_pair(-1, i);
+
+        }else{
+            qubits_map[r.qubits[i]].second = i;
+            pl.push_back(qubits_map[r.qubits[i]].first);
+            pr.push_back(i);
+        }
+        ndr[r.qubits[i]] = i;
+    }
+
+    for (auto it: qubits_map){
+        new_qubits.push_back(it.first);
+        if (it.second.first == -1){
+            for(auto it2: qubits_map)
+                if ((it.second.second > it2.second.second) & (it2.second.first != -1) & (it2.second.second != -1)) ndr[it.first]--;
+        }else if (it.second.second == -1){
+            for(auto it2: qubits_map)
+                if ((it.second.first > it2.second.first) & (it2.second.first != -1) & (it2.second.second != -1)) ndl[it.first]--;
+        }
+    }
+
+    for (auto it: qubits_map){
+        if (it.second.first != -1) axis_transp.push_back(it.second.first);
+        else axis_transp.push_back(ndr[it.first] + 2*nl - pl.size());
+    }
+
+    for (auto it: qubits_map){
+        if (it.second.second == -1) axis_transp.push_back(ndl[it.first] + nl );
+        else axis_transp.push_back(2*nl - 2*pl.size()  + nr + it.second.second);
+    }
+
+    for(auto x: l.qubits){
+        std::cout<< x << " ";
+    }
+
+    tensor::HSMatrix res = tensor::hsmatrixdot(l.un, r.un, pl, pr);
+
+    res.move_axis(std::move(axis_transp));
+    return Instruction{res, new_qubits};
+}
+
+Instruction QuantumCircuit::to_instruction(){
+    if (qc_data.size() == 0)
+        return Instruction{tensor::HSMatrix{0}, IntArr{}};
+    auto it = qc_data.begin();
+    Instruction In = (*it);
+    it++;
+    for (; it != qc_data.end(); it++){
+        In = instruction_prod(In, *it);
+    }
+
+    return In;
+}

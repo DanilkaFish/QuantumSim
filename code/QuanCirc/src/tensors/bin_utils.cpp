@@ -1,4 +1,5 @@
 #include <code/QuanCirc/inc/tensors/bin_utils.h>
+#include <algorithm>
 // ----------------------------------BIN TOOLS------------------------------
 
 bool is_power_2(int l){
@@ -30,6 +31,7 @@ int del_on_pos(int val, IntArr pos){
     int i = 0;
     int j = 0;
     int j10 = 2;
+    std::sort(pos.begin(), pos.end());
     while(i < pos.size()){
         if (pos[i] == j){
             val = ((val / j10) << (j - i)) + val % (j10/2);

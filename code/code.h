@@ -16,6 +16,7 @@ using ComplexArr =  std::vector<Complex>;
 // }
 #endif 
 
-#include "QuanCirc/inc/quantumcircuit.h"
-#include "QuanCirc/inc/random_qc.h"
+#include "QuanCirc/inc/quantumcirc/quantumcircuit.h"
+#include "QuanCirc/inc/quantumcirc/random_qc.h"
 #include "QuanCirc/inc/random/genfactory.h"
+#include "QuanCirc/inc/quantumcirc/unitary.h"
