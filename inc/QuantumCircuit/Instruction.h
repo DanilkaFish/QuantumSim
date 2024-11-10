@@ -1,7 +1,7 @@
 #ifndef _INST
 #define _INST
 #include <memory>
-#include "qubits.h"
+#include "inc/qubits.h"
 
 
 class InstructionSet;
@@ -21,6 +21,7 @@ protected:
     std::string name = "U";
 };
 
+std::string instruction_repr(Instruction in);
 
 typedef std::shared_ptr<Instruction> InstructionPtr;
 

@@ -27,11 +27,15 @@ InstructionSet MagicInstruction::decompose(){
     return this->ins;
 }
 
+std::string instruction_repr(const InstructionPtr& inptr){
+    return inptr->get_name() + ":" +  inptr->get_qubits().to_str() + ";";
+}
+
 QC_representation QuantumCircuit::get_qcr() const {
     QC_representation toto;
     toto.qubits = qubits;
     for(const auto ops: ins){
-        toto.s = toto.s + ops->get_name() + ":" +  ops->get_qubits().to_str() + ";";
+        toto.s = toto.s + instruction_repr(ops);
     }
     return toto;
 }

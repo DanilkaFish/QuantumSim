@@ -1,6 +1,8 @@
 #ifndef _DRAWER
 #define _DRAWER
-#include "qubits.h"
+
+#include "inc/qubits.h"
+
 struct QC_representation{
     Qubits qubits;
     std::string s;
