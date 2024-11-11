@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0" version="24.8.4">
   <diagram name="Page-1" id="x-qG1IfEhME5JwyJ-67E">
-    <mxGraphModel dx="3858" dy="1957" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3858" dy="1988" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -334,7 +334,7 @@
         <mxCell id="AVQiZJWYkhFmVisHGV7y-1" value="&lt;div&gt;Tensors&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-2090" y="-520" width="970" height="582" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-2" value="&lt;div&gt;&lt;i&gt;&amp;lt;&amp;lt;&lt;/i&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;i&gt;Pure Interface&lt;/i&gt;&lt;/span&gt;&lt;i&gt;&amp;gt;&amp;gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Tensor&amp;lt;itemID&amp;gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-1">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-2" value="&lt;div&gt;&lt;i&gt;&amp;lt;&amp;lt;&lt;/i&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;i&gt;Pure Interface&lt;/i&gt;&lt;/span&gt;&lt;i&gt;&amp;gt;&amp;gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Tensor&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-1">
           <mxGeometry x="470" y="340" width="470" height="210" as="geometry" />
         </mxCell>
         <mxCell id="AVQiZJWYkhFmVisHGV7y-3" value="-shape: Shape" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-2">
@@ -346,10 +346,10 @@
         <mxCell id="AVQiZJWYkhFmVisHGV7y-5" value="+set_shape(Shape): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-2">
           <mxGeometry y="74" width="470" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-6" value="(virtual) +get_item(ItemID): DataType " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-2">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-6" value="(virtual) +get_item(int): Complex " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-2">
           <mxGeometry y="100" width="470" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-7" value="(virtual) +set_item(ItemID, DataType): void  " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-2">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-7" value="(virtual) +set_item(int, Complex): void  " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-2">
           <mxGeometry y="126" width="470" height="26" as="geometry" />
         </mxCell>
         <mxCell id="AVQiZJWYkhFmVisHGV7y-8" value="(virtual) +get_items(TensorImpl::indexes): Generator (via static objects?)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-2">
@@ -376,7 +376,7 @@
         <mxCell id="AVQiZJWYkhFmVisHGV7y-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;" edge="1" parent="AVQiZJWYkhFmVisHGV7y-1" source="AVQiZJWYkhFmVisHGV7y-15" target="AVQiZJWYkhFmVisHGV7y-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-15" value="&lt;div&gt;&lt;i&gt;&amp;lt;&amp;lt;&lt;/i&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;i&gt;Pure Interface&lt;/i&gt;&lt;/span&gt;&lt;i&gt;&amp;gt;&amp;gt;&lt;br&gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;TensorProd&amp;lt;itemID&amp;gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-1">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-15" value="&lt;div&gt;TensorProd&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-1">
           <mxGeometry x="535" y="40" width="340" height="262" as="geometry" />
         </mxCell>
         <mxCell id="AVQiZJWYkhFmVisHGV7y-16" value="-Tensor1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
@@ -391,25 +391,25 @@
         <mxCell id="AVQiZJWYkhFmVisHGV7y-19" value="+TensorProd(Tensor&amp;amp;, Tensor&amp;amp;)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
           <mxGeometry y="100" width="340" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-20" value=" +get_item(ItemID): DataType " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-20" value=" +get_item(int): Complex " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
           <mxGeometry y="126" width="340" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-21" value="+set_item(ItemID, DataType): void  " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-21" value="+set_item(int, Complex): void  " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
           <mxGeometry y="152" width="340" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-22" value="+get_items(TensorImpl::indexes): Generator&amp;lt;ItemID&amp;gt; (via static objects?)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-22" value="+get_items(TensorImpl::indexes): Generator&amp;lt;int&amp;gt; (via static objects?)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
           <mxGeometry y="178" width="340" height="40" as="geometry" />
         </mxCell>
         <mxCell id="AVQiZJWYkhFmVisHGV7y-23" value="+convolution(Tensor&amp;amp;, Qubit) " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-15">
           <mxGeometry y="218" width="340" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-32" value="&lt;div&gt;&lt;i&gt;&amp;lt;&amp;lt;&lt;/i&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;i&gt;Interface&lt;/i&gt;&lt;/span&gt;&lt;i&gt;&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Transform&amp;lt;ItemID&amp;gt;&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-1">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-32" value="&lt;div&gt;&lt;i&gt;&amp;lt;&amp;lt;&lt;/i&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&lt;i&gt;Interface&lt;/i&gt;&lt;/span&gt;&lt;i&gt;&amp;gt;&amp;gt;&lt;/i&gt;&lt;/div&gt;&lt;div&gt;Transform&lt;br&gt;&lt;/div&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-1">
           <mxGeometry x="90" y="412" width="350" height="78" as="geometry" />
         </mxCell>
         <mxCell id="AVQiZJWYkhFmVisHGV7y-33" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-32">
           <mxGeometry y="40" width="350" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="AVQiZJWYkhFmVisHGV7y-34" value="(virtual) +change_shape(ItemID, Shape. Shape): ItemID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-32">
+        <mxCell id="AVQiZJWYkhFmVisHGV7y-34" value="(virtual) +change_shape(int, Shape. Shape): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-32">
           <mxGeometry y="48" width="350" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AVQiZJWYkhFmVisHGV7y-40" value="Indexes" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="AVQiZJWYkhFmVisHGV7y-1">
