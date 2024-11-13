@@ -7,21 +7,7 @@ InstructionPtr makeInsPtr(Instruction *in){
     return std::shared_ptr<Instruction>(in);
 }
 
-std::ostream& operator<<(std::ostream& os, const Qubits& qubs){
-    os << '(';
-    for(auto x: qubs.qubs){
-            os << x <<  ',' ;
-    }
-    return os << ") ";
-}
 
-std::ostream& operator<<(std::ostream& os, const Qubit& qub){
-    return os << qub.num;
-}
-
-bool operator<(Qubit l, Qubit r){
-    return l.num < r.num;
-}
 
 InstructionPtr InstructionSet::compose(){
     return makeInsPtr(new MagicInstruction(*this));

@@ -26,10 +26,11 @@ target_sources(qubits PRIVATE
 
 add_executable(test_qc_interface)
 add_executable(test_tensor_crtp)
+add_executable(test_tensor_data)
 
 target_link_libraries(test_qc_interface PUBLIC quantumcirc qubits)
 target_link_libraries(test_tensor_crtp PUBLIC qubits)
-
+target_link_libraries(test_tensor_data PUBLIC qubits)
 
 
 
@@ -41,4 +42,9 @@ target_sources(test_tensor_crtp PRIVATE
                 ${TEST_TENSOR_DIR}/test_crtp.cpp
                 ${CODE_TENSOR_DIR}/tensors.cpp
                 )      
+
+target_sources(test_tensor_data PRIVATE
+                ${TEST_TENSOR_DIR}/test_datatensor.cpp
+                ${CODE_TENSOR_DIR}/tensors.cpp
+                )    
 

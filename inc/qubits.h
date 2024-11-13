@@ -11,13 +11,13 @@ struct Qubit{
 
 struct Qubits{
     using container=std::vector<Qubit>; 
-    using iterator=typename container::iterator;
-    using const_iterator=typename container::const_iterator;
+    using iterator=typename container::reverse_iterator;
+    using const_iterator=typename container::const_reverse_iterator;
 
-    iterator begin() { return qubs.begin(); }
-    iterator end() { return qubs.end(); }
-    const_iterator begin() const { return qubs.begin(); }
-    const_iterator end() const { return qubs.end(); }
+    iterator begin() { return qubs.rbegin(); }
+    iterator end() { return qubs.rend(); }
+    const_iterator begin() const { return qubs.rbegin(); }
+    const_iterator end() const { return qubs.rend(); }
 
 
     Qubits(): qubs{} {}

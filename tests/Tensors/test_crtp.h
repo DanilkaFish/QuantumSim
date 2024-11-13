@@ -45,6 +45,7 @@ class OpSequanTest : public TestWithParam<std::tuple<std::vector<Shape>, Shape, 
   }
 };
 
+
 class Op4Test : public TestWithParam<std::tuple<std::vector<Shape>, Shape, Shape>> {
  protected:
   std::vector<Shape> ls;
@@ -58,6 +59,7 @@ class Op4Test : public TestWithParam<std::tuple<std::vector<Shape>, Shape, Shape
   }
 };
 
+
 class ProdResTest : public TestWithParam<std::tuple<std::vector<Shape>, int>> {
  protected:
   std::vector<Shape> ls;
@@ -68,6 +70,7 @@ class ProdResTest : public TestWithParam<std::tuple<std::vector<Shape>, int>> {
     num_op = std::get<1>(GetParam());
   }
 };
+
 
 class ConjTest : public TestWithParam<std::tuple<Shape, Shape>> {
  protected:
