@@ -1,11 +1,15 @@
 #ifndef _STDDATA
-#define _STDATA
-#include "complex"
-#include <vector>
+#define _STDDATA
 
-typedef std::complex<double> Complex;
-typedef std::vector<Complex> Container;
+#include <complex>
+#include <vector>
+#include <map>
+#include "inc/qubits.h"
+
+typedef std::complex<double> DataType;
+// typedef std::vector<DataType> Container;
 typedef int Int;
-typedef std::vector<int> Positions;
+typedef std::vector<DataType> Data;
+// typedef std::vector<Int> Positions;
 
 #endif

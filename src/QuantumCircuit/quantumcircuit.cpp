@@ -15,6 +15,14 @@ std::ostream& operator<<(std::ostream& os, const Qubits& qubs){
     return os << ") ";
 }
 
+std::ostream& operator<<(std::ostream& os, const Qubit& qub){
+    return os << qub.num;
+}
+
+bool operator<(Qubit l, Qubit r){
+    return l.num < r.num;
+}
+
 InstructionPtr InstructionSet::compose(){
     return makeInsPtr(new MagicInstruction(*this));
 }
