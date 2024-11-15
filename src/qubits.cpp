@@ -17,11 +17,11 @@ std::ostream& operator<<(std::ostream& os, const Qubit& qub){
 }
 
 bool operator<(Qubit l, Qubit r){
-    return l.num > r.num;
+    return l.num < r.num;
 }
 
 bool operator>(Qubit l, Qubit r){
-    return l.num < r.num;
+    return l.num > r.num;
 }
 bool operator==(Qubit l, Qubit r){
     return l.num == r.num;

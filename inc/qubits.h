@@ -1,8 +1,8 @@
 #ifndef _QUBITS
 #define _QUBITS
 #include <string>
-#include <vector>
 #include <iostream>
+#include <set>
 
 struct Qubit{
     Qubit(int num): num{num} {}
@@ -10,7 +10,7 @@ struct Qubit{
 };
 
 struct Qubits{
-    using container=std::vector<Qubit>; 
+    using container=std::set<Qubit>; 
     using iterator=typename container::reverse_iterator;
     using const_iterator=typename container::const_reverse_iterator;
 
@@ -22,7 +22,7 @@ struct Qubits{
 
     Qubits(): qubs{} {}
     Qubits(std::initializer_list<Qubit> tot): qubs{tot} {}
-
+    void push_back(const Qubit& qub) { qubs.insert(qub); }
     container qubs;
     std::string to_str(){ std::string s; for (auto x: qubs) s += std::to_string(x.num); return s;}
 };

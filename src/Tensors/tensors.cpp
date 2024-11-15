@@ -25,13 +25,13 @@ Qubits Shape::get_qtype_qubits(QType qt) const{
     Qubits qubs;
     auto m = get_qtype(qt);
     for(auto x: m){
-        qubs.qubs.push_back(x.first);
+        qubs.push_back(x.first);
     }
     return qubs;
 }
 
 
-std::map<Qubit, Int>& Shape::get_qtype(QType qt){
+PosMap& Shape::get_qtype(QType qt){
     switch (qt){
         case QType::up:
             return pos_up;
@@ -40,7 +40,7 @@ std::map<Qubit, Int>& Shape::get_qtype(QType qt){
     }
 }
 
-const std::map<Qubit, Int>& Shape::get_qtype(QType qt) const{
+const PosMap& Shape::get_qtype(QType qt) const{
     switch (qt){
         case QType::up:
             return pos_up;
@@ -71,7 +71,7 @@ bool operator==(const Shape& sl, const Shape& sr){
 // -------------------------------Transform-------------------------------------
 
 
-std::array<Shape, 4> Transform::prod_shape_div(const Shape& _s1, const Shape& _s2){
+std::vector<Shape> Transform::prod_shape_div(const Shape& _s1, const Shape& _s2){
     Shape s1{_s1};
     Shape s2{_s2};
     Shape s1c{};
@@ -89,7 +89,7 @@ std::array<Shape, 4> Transform::prod_shape_div(const Shape& _s1, const Shape& _s
             it1++;
         }
     }
-    return std::array<Shape, 4>{s1,s1c,s2,s2c};
+    return std::vector<Shape>{s1,s1c,s2,s2c};
 }
 
 Shape Transform::prod_shape_res(const Shape& s1, const Shape& s2){
@@ -186,6 +186,19 @@ bool operator==(const Tensor& Tl, const Tensor& Tr){
     return true;
 }
 
+
+bool compare(const Tensor& Tl, const Tensor& Tr, double pres){
+    if (!(Tl.get_shape() == Tr.get_shape())){
+        return false;
+    }
+    for (int i = 0; i < Tl.size(); i++ ){
+        DataType d = Tl[i] - Tr[Transform::index_shape_change(i, Tl.get_shape(), Tr.get_shape())];
+        if (std::abs(d) > pres){
+            return false;
+        }
+    }
+    return true;
+}
 std::ostream& operator<<(std::ostream& os, const Tensor& T){
     os << "[ ";
     for(int i = 0; i < T.size(); i++ ){

@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 #include "drawer.h"
-#include "Instruction.h"
+#include "instruction.h"
 
 
 void validate_in_range(Qubits all, Qubits in);
@@ -24,6 +24,12 @@ public:
 
     InstructionSet() {}
     InstructionSet(std::initializer_list<InstructionPtr> in): ins{in} {}
+    template<class container>
+    InstructionSet(container& vec) {
+        for(auto& x: vec){
+            ins.push_back(x);
+        }
+    }
     InstructionPtr compose();
     void push_back( InstructionPtr in) { ins.push_back(in); }
     std::size_t size() const { return ins.size(); }
@@ -49,8 +55,14 @@ private:
 class QuantumCircuit{
 public:
     QuantumCircuit(Qubits qubs): qubits{qubs} {}
-    QuantumCircuit(InstructionSet, Qubits qubs) : ins{ins}, qubits{qubs} {} 
-
+    QuantumCircuit(const InstructionSet& ins, Qubits qubs) : ins{ins}, qubits{qubs} {} 
+    QuantumCircuit(const InstructionSet& ins) : ins{ins} {
+        for (auto x: ins){
+            for (auto qub: x->get_qubits())
+                qubits.push_back(qub);
+        }
+    } 
+    // QuantumCircuit(const QuantumCircuit& qc) = default;
     void draw() const;
     const InstructionSet& get_instr() const { return ins;} 
     Qubits get_qubits() const { return qubits; };
@@ -65,10 +77,9 @@ private:
     InstructionSet ins;
 };
 
-
 class Executor{
 public:
-    Executor(QuantumCircuit& qc): qc{qc} {}
+    Executor(const QuantumCircuit& qc): qc{qc} {}
     void run(){ 
         this->SetUp();
         for(auto ops: qc.get_instr()){
@@ -77,6 +88,6 @@ public:
     };
 protected:
     virtual void SetUp() = 0;
-    QuantumCircuit& qc;
+    QuantumCircuit qc;
 };
 #endif

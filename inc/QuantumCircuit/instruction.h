@@ -1,8 +1,9 @@
 #ifndef _INST
 #define _INST
+
 #include <memory>
 #include "inc/qubits.h"
-
+#include "metadata.h"
 
 class InstructionSet;
 
@@ -15,13 +16,14 @@ public:
     std::string get_name() const { return name; }
     Qubits get_qubits() const { return qubits; }
     virtual void apply() {};
+    virtual void attach_meta(const MetaDataPtr& ) {};
     virtual InstructionSet decompose();
 protected:
     Qubits qubits;
     std::string name = "U";
 };
 
-std::string instruction_repr(Instruction in);
+// std::string instruction_repr(Instruction in);
 
 typedef std::shared_ptr<Instruction> InstructionPtr;
 

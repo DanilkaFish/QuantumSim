@@ -60,4 +60,29 @@ class PauliProdTest : public TestWithParam<std::tuple<Tensor,Tensor, Tensor>> {
 };
 
 
+class CXTest : public TestWithParam<std::tuple<Tensor, Tensor, Tensor, Tensor>> {
+ protected:
+  Tensor T1;
+  Tensor T2;
+  Tensor T3;
+  Tensor T4;
+
+  void SetUp() override {
+    T1 = std::get<0>(GetParam());
+    T2 = std::get<1>(GetParam());
+    T3 = std::get<2>(GetParam());
+    T4 = std::get<3>(GetParam());
+  }
+};
+
+class BraketTest : public TestWithParam<Qubits> {
+ protected:
+  Qubits qubs;
+
+  void SetUp() override {
+    qubs = GetParam();
+  }
+};
+
+
 #endif

@@ -61,7 +61,7 @@ public:
     Shape get_shape() const noexcept { return Transform::prod_shape_res(exprl->get_shape(), exprr->get_shape()); }
     DataType operator[](int i) const{
         DataType val=0;
-        auto s1_s1c_s2_s2c = Transform::prod_shape_div(exprl->get_shape(), exprr->get_shape());
+        std::vector<Shape> s1_s1c_s2_s2c = Transform::prod_shape_div(exprl->get_shape(), exprr->get_shape());
         Int idl = Transform::index_shape_change(i, get_shape(), s1_s1c_s2_s2c[0]);
         Int idr = Transform::index_shape_change(i, get_shape(), s1_s1c_s2_s2c[2]);
         for (int j=0; j < (1 << s1_s1c_s2_s2c[1].size()); j++){
@@ -82,17 +82,9 @@ public:
     Shape get_shape() const noexcept { return Transform::sum_shape_res(exprl->get_shape(), exprr->get_shape()); }
 
     DataType operator[](int i) const{
-        DataType val=0;
         Shape sh = this->get_shape();
-        Int idl = Transform::index_shape_change(i, sh, exprl->get_shape());
-        Int idr = Transform::index_shape_change(i, sh, exprr->get_shape());
-        if (Transform::index_sum(i) - Transform::index_sum(idl) == sh.size() - exprl->get_shape().size()) {
-            val += (*exprl)[idl];
-        }
-        if (Transform::index_sum(i) - Transform::index_sum(idr) == sh.size() - exprr->get_shape().size()) {
-            val += (*exprr)[idr];
-        }
-        return val;
+        return (*exprl)[Transform::index_shape_change(i, sh, exprl->get_shape())] 
+             + (*exprr)[Transform::index_shape_change(i, sh, exprr->get_shape())];
     }
 private:
     const Tl *exprl;
@@ -106,17 +98,9 @@ public:
     Shape get_shape() const noexcept { return Transform::sum_shape_res(exprl->get_shape(), exprr->get_shape()); }
 
     DataType operator[](int i) const{
-        DataType val=0;
         Shape sh = this->get_shape();
-        Int idl = Transform::index_shape_change(i, sh, exprl->get_shape());
-        Int idr = Transform::index_shape_change(i, sh, exprr->get_shape());
-        if (Transform::index_sum(i) - Transform::index_sum(idl) == sh.size() - exprl->get_shape().size()) {
-            val += (*exprl)[idl];
-        }
-        if (Transform::index_sum(i) - Transform::index_sum(idr) == sh.size() - exprr->get_shape().size()) {
-            val -= (*exprr)[idr];
-        }
-        return val;
+        return (*exprl)[Transform::index_shape_change(i, sh, exprl->get_shape())] 
+             - (*exprr)[Transform::index_shape_change(i, sh, exprr->get_shape())];
     }
 private:
     const Tl *exprl;
