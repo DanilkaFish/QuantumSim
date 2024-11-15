@@ -7,6 +7,7 @@
 
 
 enum class QType{ up=0, down=1};
+
 struct Shape{
 public:
     Shape()=default;

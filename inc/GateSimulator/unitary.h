@@ -9,6 +9,7 @@
 
 class BaseUnitary: public Instruction{
 public:
+    using Instruction::Instruction;
     virtual void attach_meta(const MetaDataPtr& md) override { sdptr = SimDataPtr{md, static_cast<SimData *>(md.get())}; }
     virtual void apply() = 0;
 protected:
@@ -18,7 +19,7 @@ protected:
 
 class FixedUnitary: public BaseUnitary{
 public:
-    FixedUnitary(const Operator& op): op{op} {}
+    FixedUnitary(const Operator& op): op{op}, BaseUnitary{op.get_qubits()} {}
     virtual void apply() override { sdptr->state = op * sdptr->state; }
 private:
     Operator op;

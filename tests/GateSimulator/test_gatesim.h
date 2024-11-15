@@ -4,7 +4,7 @@
 #include <iostream>
 #include <tuple>
 #include <string>
-
+#include <random>
 
 #include "tests/common_test.h"
 

@@ -7,12 +7,12 @@
 
 class PureSim: public Executor{
 public:
-    PureSim(const QuantumCircuit& qc): Executor{qc}, sdptr{new SimData{qc.get_qubits()}} {
+    PureSim(QuantumCircuit& qc): Executor{qc}, sdptr{new SimData{State{qc.get_qubits()}}} {
         for(auto x: qc.get_instr()){
             x->attach_meta(static_cast<MetaDataPtr>(sdptr));
         }
     } 
-    PureSim(const QuantumCircuit& qc, State& st): Executor{qc}, sdptr{new SimData(st)} {
+    PureSim(QuantumCircuit& qc, State& st): Executor{qc}, sdptr{new SimData(st)} {
         for(auto x: qc.get_instr()){
             x->attach_meta(static_cast<MetaDataPtr>(sdptr));
         }

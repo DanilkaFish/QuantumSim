@@ -62,12 +62,12 @@ public:
                 qubits.push_back(qub);
         }
     } 
-    // QuantumCircuit(const QuantumCircuit& qc) = default;
+    QuantumCircuit(QuantumCircuit& qc) = default;
     void draw() const;
     const InstructionSet& get_instr() const { return ins;} 
     Qubits get_qubits() const { return qubits; };
-    void add_instuction(InstructionPtr in) { validate_in_range(qubits, in->get_qubits()); ins.push_back(in);};
-    void compose(QuantumCircuit& qc) {this->add_instuction(qc.ins.compose()); };
+    void add_instruction(InstructionPtr in) { validate_in_range(qubits, in->get_qubits()); ins.push_back(in);};
+    void compose(QuantumCircuit& qc) {this->add_instruction(qc.ins.compose()); };
     QC_representation get_qcr() const;
     void decompose();
 
@@ -79,7 +79,7 @@ private:
 
 class Executor{
 public:
-    Executor(const QuantumCircuit& qc): qc{qc} {}
+    Executor(QuantumCircuit& qc): qc{qc} {}
     void run(){ 
         this->SetUp();
         for(auto ops: qc.get_instr()){
@@ -88,6 +88,6 @@ public:
     };
 protected:
     virtual void SetUp() = 0;
-    QuantumCircuit qc;
+    QuantumCircuit& qc;
 };
 #endif

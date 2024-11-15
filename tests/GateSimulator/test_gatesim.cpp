@@ -20,7 +20,7 @@ TEST_P(SimpleSetUp, TestIdentityCictuits) {
     QuantumCircuit qc{qubs};
     for(int j=0; j<i; j++){
       for (auto& x: un_set){
-        qc.add_instuction(x); 
+        qc.add_instruction(x); 
       }
     }
     int len_exp = i * un_set.size();

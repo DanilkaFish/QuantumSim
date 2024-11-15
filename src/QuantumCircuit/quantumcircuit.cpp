@@ -7,8 +7,6 @@ InstructionPtr makeInsPtr(Instruction *in){
     return std::shared_ptr<Instruction>(in);
 }
 
-
-
 InstructionPtr InstructionSet::compose(){
     return makeInsPtr(new MagicInstruction(*this));
 }

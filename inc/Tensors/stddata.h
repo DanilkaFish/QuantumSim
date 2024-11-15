@@ -14,5 +14,8 @@ typedef std::vector<DataType> Data;
 typedef std::shared_ptr<std::vector<DataType>> DataPtr;
 typedef std::map<Qubit, Int, std::greater<Qubit>> PosMap;
 // typedef std::vector<Int> Positions;
+namespace i{
+    constexpr DataType i = {0,1};
+}
 
 #endif

@@ -108,19 +108,19 @@ private:
 };
 
 template<typename T1, typename T2>
-TensorProd<T1, T2> operator*(const T1 &e1, const T2 &e2)
+TensorProd<Expression<T1>,Expression<T2>> operator*(const Expression<T1> &e1, const Expression<T2> &e2)
 {
-	return TensorProd<T1,T2>(e1, e2);
+	return TensorProd<Expression<T1>, Expression<T2>>(e1, e2);
 }
 
 template<typename T1, typename T2>
-TensorSum<T1, T2> operator+(const T1 &e1, const T2 &e2)
+TensorSum<Expression<T1>,Expression<T2>> operator+(const Expression<T1> &e1, const Expression<T2> &e2)
 {
-	return TensorSum<T1,T2>(e1, e2);
+	return TensorSum<Expression<T1>, Expression<T2>>(e1, e2);
 }
 
 template<typename T1, typename T2>
-TensorDiv<T1, T2> operator-(const T1 &e1, const T2 &e2)
+TensorDiv<Expression<T1>, Expression<T2>> operator-(const Expression<T1> &e1, const Expression<T2> &e2)
 {
-	return TensorDiv<T1,T2>(e1, e2);
+	return TensorDiv<Expression<T1>, Expression<T2>>(e1, e2);
 }

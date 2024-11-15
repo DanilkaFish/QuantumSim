@@ -13,7 +13,7 @@ TEST_P(InstuctionSetUp, TestAddInstuction) {
   int exp = l.size();
   BufferPtr bf{new Buffer()};
   for (auto x: l){
-    qc.add_instuction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
   }
   int res = qc.get_instr().size();
   std::cout << res << '\n';
@@ -28,7 +28,7 @@ TEST_P(InstuctionSetUp, TestExecuteCircuit) {
   BufferPtr bf{new Buffer()};
   MockExecutor exec(qc, bf);
   for (auto x: l){
-    qc.add_instuction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
   }
   // std::string exp = bf->s;
   std::string exp = qc.get_qcr().s;
@@ -36,7 +36,7 @@ TEST_P(InstuctionSetUp, TestExecuteCircuit) {
   std::string res = bf->s;
   
   EXPECT_TRUE(exp == res) << ERR_PREFIX 
-                                    << res << std::endl << exp;
+                                    << res << std::endl << exp << "hello";
 }
 
 TEST_P(InstuctionSetUp, TestComposeCircuit) {
@@ -48,7 +48,7 @@ TEST_P(InstuctionSetUp, TestComposeCircuit) {
   MockExecutor cexec(cqc, bf);
 
   for (auto x: l){
-    qc.add_instuction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
   }
   cqc.compose(qc);
 
@@ -72,7 +72,7 @@ TEST_P(InstuctionSetUp, TestDeComposeCircuit) {
   MockExecutor cexec(cqc, bf);
 
   for (auto x: l){
-    qc.add_instuction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
   }
   cqc.compose(qc);
   cqc.decompose();
