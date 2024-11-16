@@ -13,4 +13,8 @@ public:
     virtual void draw(const QC_representation& qcr){};
 };
 
+typedef std::shared_ptr<Drawer> DrawerPtr;
+
+
+
 #endif 

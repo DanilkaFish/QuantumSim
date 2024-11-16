@@ -9,13 +9,13 @@ using ::testing::Values;
 
 TEST_P(InstuctionSetUp, TestAddInstuction) {
   
-  QuantumCircuit qc{Qubits{0,1,2,3,4,5,6}};
+  QuantumCircuit qc;
   int exp = l.size();
   BufferPtr bf{new Buffer()};
   for (auto x: l){
-    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(InstructionPtr(new MockInstuction(bf, x)));
   }
-  int res = qc.get_instr().size();
+  int res = qc.size();
   std::cout << res << '\n';
 
   EXPECT_FLOAT_EQ(exp, res) << ERR_PREFIX
@@ -24,11 +24,11 @@ TEST_P(InstuctionSetUp, TestAddInstuction) {
 
 TEST_P(InstuctionSetUp, TestExecuteCircuit) {
   
-  QuantumCircuit qc{Qubits{0,1,2,3,4,5,6}};
+  QuantumCircuit qc;
   BufferPtr bf{new Buffer()};
-  MockExecutor exec(qc, bf);
+  MockProvider exec(qc, bf);
   for (auto x: l){
-    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(InstructionPtr(new MockInstuction(bf, x)));
   }
   // std::string exp = bf->s;
   std::string exp = qc.get_qcr().s;
@@ -41,14 +41,14 @@ TEST_P(InstuctionSetUp, TestExecuteCircuit) {
 
 TEST_P(InstuctionSetUp, TestComposeCircuit) {
   
-  QuantumCircuit qc{Qubits{0,1,2,3,4,5,6}};
-  QuantumCircuit cqc{Qubits{0,1,2,3,4,5,6}};
+  QuantumCircuit qc;
+  QuantumCircuit cqc;
   BufferPtr bf{new Buffer()};
-  MockExecutor exec(qc, bf);
-  MockExecutor cexec(cqc, bf);
+  MockProvider exec(qc, bf);
+  MockProvider cexec(cqc, bf);
 
   for (auto x: l){
-    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(InstructionPtr(new MockInstuction(bf, x)));
   }
   cqc.compose(qc);
 
@@ -57,36 +57,40 @@ TEST_P(InstuctionSetUp, TestComposeCircuit) {
   cexec.run();
   std::string res = bf->s;
 
-  EXPECT_TRUE(cqc.get_instr().size() == 1) << ERR_PREFIX 
+  EXPECT_TRUE(cqc.size() == 1) << ERR_PREFIX 
                                     << "diff sizes";
+
   EXPECT_TRUE(exp == res) << ERR_PREFIX 
                                     << res << std::endl << exp;
+  cqc.compose(qc);
+  cqc.compose(cqc);
+
 }
 
 TEST_P(InstuctionSetUp, TestDeComposeCircuit) {
   
-  QuantumCircuit qc{Qubits{0,1,2,3,4,5,6}};
-  QuantumCircuit cqc{Qubits{0,1,2,3,4,5,6}};
+  QuantumCircuit qc;
+  QuantumCircuit cqc;
   BufferPtr bf{new Buffer()};
-  MockExecutor exec(qc, bf);
-  MockExecutor cexec(cqc, bf);
+  MockProvider exec(qc, bf);
+  MockProvider cexec(cqc, bf);
 
   for (auto x: l){
-    qc.add_instruction(makeInsPtr(new MockInstuction(bf, x)));
+    qc.add_instruction(InstructionPtr(new MockInstuction(bf, x)));
   }
   cqc.compose(qc);
-  cqc.decompose();
-
+  cqc = cqc.decompose();
+  EXPECT_TRUE(cqc.size() == qc.size()) << ERR_PREFIX 
+                                  << "diff sizes" << cqc.size() << std::endl << qc.size();
   exec.run();
   std::string exp = bf->s;
   cexec.run();
   std::string res = bf->s;
 
-  EXPECT_TRUE(cqc.get_instr().size() == l.size()) << ERR_PREFIX 
-                                    << "diff sizes";
 
   EXPECT_TRUE(exp == res) << ERR_PREFIX 
                                     << res << std::endl << exp;
+  // cqc.compose(cqc.decompose());
 }
 
 std::vector<Qubits> qc = std::vector<Qubits>{Qubits({1})};

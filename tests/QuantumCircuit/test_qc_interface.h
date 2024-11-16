@@ -15,6 +15,7 @@ using ::testing::TestWithParam;
 
 
 #include <string>
+
 struct Buffer{
 public:
   std::string s;
@@ -22,24 +23,28 @@ public:
 
 typedef std::shared_ptr<Buffer> BufferPtr;
 
+
+class MockProvider: public MetaProvider{
+public:
+  // using Executor::Executor;
+  BufferPtr bfptr;
+  MockProvider(const QuantumCircuit& qc, BufferPtr bfptr): MetaProvider{qc}, bfptr{bfptr} {} 
+  void SetUp() override {bfptr->s = "";}
+};
+
+
 class MockInstuction: public Instruction{
 public:  
   MockInstuction(BufferPtr _bfptr, Qubits qubs) : bfptr{_bfptr}, Instruction{qubs} { }
+  virtual void apply(MetaProvider& mp) override {
+    MockProvider& mock = static_cast<MockProvider&>(mp);
+    mock.bfptr->s = mock.bfptr->s + this->name + ":" + this->qubits.to_str() + ";";
+  }
 private:
   BufferPtr bfptr;
-  void apply() override{
-    bfptr->s = bfptr->s + this->name + ":" + this->qubits.to_str() + ";";
-  }
+
 };
 
-class MockExecutor: public Executor{
-public:
-  // using Executor::Executor;
-
-  BufferPtr bfptr;
-  MockExecutor(QuantumCircuit& qc, BufferPtr bfptr): Executor{qc}, bfptr{bfptr} {} 
-  void SetUp() override {bfptr->s = "";}
-};
 
 class InstuctionSetUp : public TestWithParam<std::tuple<std::vector<Qubits>>> {
  protected:

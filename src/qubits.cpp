@@ -6,7 +6,7 @@
 
 std::ostream& operator<<(std::ostream& os, const Qubits& qubs){
     os << '(';
-    for(auto x: qubs.qubs){
+    for(auto x: qubs){
             os << x <<  ',' ;
     }
     return os << ") ";

@@ -31,7 +31,7 @@ QuantumCircuit QCGenerator::get_qc(double p=0.64){
 }  
 
 Operator QCGenerator::gen_op(Qubits qubs){
-    int size = (1 << qubs.qubs.size());
+    int size = (1 << qubs.size());
     DataPtr dptr{ new Data(size*size)};
     for(int i=0; i < size; i++){
         for(int j=i; j < size; j++){

@@ -58,7 +58,7 @@ TEST(SimpleTests, CX_acting) {
 
 TEST_P(BraketTest, ProdTest) {
   Data data;
-  for (int i=0; i<(1 << qubs.qubs.size()); i++)
+  for (int i=0; i<(1 << qubs.size()); i++)
     data.push_back({std::rand(), std::rand()}); // undefined behaviour but doesnt matter
   DataType exp=0;
   for (auto x: data){

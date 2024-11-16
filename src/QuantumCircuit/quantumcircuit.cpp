@@ -1,5 +1,5 @@
-#include "inc/QuantumCircuit/__init__.h"
-
+#include "inc/QuantumCircuit/quantumcircuit.h"
+// #include "metaprovider.h"
 // TODO
 void validate_in_range(Qubits all, Qubits in){}
 
@@ -7,16 +7,24 @@ InstructionPtr makeInsPtr(Instruction *in){
     return std::shared_ptr<Instruction>(in);
 }
 
-InstructionPtr InstructionSet::compose(){
+InstructionPtr QuantumCircuit::to_instruction(){
     return makeInsPtr(new MagicInstruction(*this));
 }
 
-InstructionSet Instruction::decompose(){
-    return InstructionSet({makeInsPtr(this)});
+QuantumCircuit Instruction::decompose() {
+    std::cerr << "here" << std::endl;
+    return QuantumCircuit({InstructionPtr(this)});
 }
 
-InstructionSet MagicInstruction::decompose(){
-    return this->ins;
+QuantumCircuit MagicInstruction::decompose()  {
+    return this->qc;
+}
+
+void MetaProvider::run() {
+    SetUp();
+    for(auto ins: qc){
+        ins->apply(*this);
+    }
 }
 
 std::string instruction_repr(const InstructionPtr& inptr){
@@ -25,24 +33,49 @@ std::string instruction_repr(const InstructionPtr& inptr){
 
 QC_representation QuantumCircuit::get_qcr() const {
     QC_representation toto;
-    toto.qubits = qubits;
+    toto.qubits = qubs;
     for(const auto ops: ins){
         toto.s = toto.s + instruction_repr(ops);
     }
     return toto;
 }
 
-void QuantumCircuit::draw() const {
-    drawer->draw(get_qcr());
+void QuantumCircuit::add_instruction( InstructionPtr in) { 
+    ins.push_back(in); 
+    for (Qubit x: in->get_qubits()){
+        qubs.insert(x);
+    }
 }
+// std::size_t QuantumCircuit::size() const { return ins.size(); }
 
+void QuantumCircuit::compose(QuantumCircuit& qc){
+    this->add_instruction(InstructionPtr( new MagicInstruction(qc)));
+}
+// void QuantumCircuit::compose(QuantumCircuit&& qc){
+    // this->add_instruction(InstructionPtr( new MagicInstruction(std::move(qc))));
+// }
 
-void QuantumCircuit::decompose(){
-    InstructionSet new_ins;
-    for(auto x: ins){
+QuantumCircuit QuantumCircuit::decompose() {
+    QuantumCircuit qc;
+    for(auto x: (*this)){
         for (auto y: x->decompose()){
-            new_ins.push_back(y);
+            qc.add_instruction(y);
         }
     }
-    this->ins = new_ins;
-}
+    return qc;
+};
+
+// void QuantumCircuit::draw() const {
+//     drawer->draw(get_qcr());
+// }
+
+
+// void QuantumCircuit::decompose(){
+//     QuantumCircuit new_ins;
+//     for(auto x: ins){
+//         for (auto y: x->decompose()){
+//             new_ins.push_back(y);
+//         }
+//     }
+//     this->ins = new_ins;
+// }

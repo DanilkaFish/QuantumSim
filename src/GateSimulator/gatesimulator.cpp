@@ -1,57 +1,59 @@
 #include "inc/GateSimulator/unitary.h"
+#include "inc/GateSimulator/simdata.h"
 
-InstructionPtr Gate::I(Qubit qub){
+void NumSimProvider::I(const Qubits& qubs){
     static DataPtr dptr(new Data{0,1,
                                  1,0});
-    return makeInsPtr( new FixedUnitary{Operator{Qubits{qub}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
-InstructionPtr Gate::X(Qubit qub){
+void NumSimProvider::X(const Qubits& qubs){
     static DataPtr dptr{new Data{0,1,
                                  1,0}};
-    return makeInsPtr( new FixedUnitary{Operator{Qubits{qub}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
-InstructionPtr Gate::Y(Qubit qub){
+void NumSimProvider::Y(const Qubits& qubs){
     static DataPtr dptr{new Data{0,{0,-1},
                                 {0,1},0}};
-    return makeInsPtr( new FixedUnitary{Operator{Qubits{qub}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
-InstructionPtr Gate::Z(Qubit qub){
+void NumSimProvider::Z(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,
                                  0,-1}};
-    return makeInsPtr( new FixedUnitary{Operator{Qubits{qub}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
-InstructionPtr Gate::S(Qubit qub){
+void NumSimProvider::S(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,
                                  0,{0,1}}};
-    return makeInsPtr( new FixedUnitary{Operator{Qubits{qub}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
-InstructionPtr Gate::Sdag(Qubit qub){
+void NumSimProvider::Sdag(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,
                                  0,{0,-1}}};
-    return makeInsPtr( new FixedUnitary{Operator{Qubits{qub}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
-InstructionPtr Gate::CX(Qubit ctrl, Qubit tar){
+void NumSimProvider::CX(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,0,0,
                                  0,1,0,0,
                                  0,0,0,1,
                                  0,0,1,0}};
-    return makeInsPtr( new FixedUnitary{Operator{{ctrl, tar}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
 const double A = 1.0/sqrt(2);
-InstructionPtr Gate::H(Qubit qub){
+
+void NumSimProvider::H(const Qubits& qubs){
     static DataPtr dptr{new Data{A, A,
                                  A,-A}};
-    return makeInsPtr( new FixedUnitary{Operator{Qubits{qub}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }
 
-InstructionPtr Gate::TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar){
+void NumSimProvider::TOF(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,0,0,0,0,0,0,
                                  0,1,0,0,0,0,0,0,
                                  0,0,1,0,0,0,0,0,
@@ -60,5 +62,5 @@ InstructionPtr Gate::TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar){
                                  0,0,0,0,0,1,0,0,
                                  0,0,0,0,0,0,0,1,
                                  0,0,0,0,0,0,1,0}};
-    return makeInsPtr( new FixedUnitary{Operator{{ctrl1, ctrl2, tar}, dptr}});
+    state = Operator{qubs, dptr}*state;
 }

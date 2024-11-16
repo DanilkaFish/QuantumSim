@@ -10,30 +10,31 @@
 
 
 #include "inc/GateSimulator/__init__.h"
+#include "inc/QuantumCircuit/__init__.h"
 
 #include <gtest/gtest.h>
 using ::testing::TestWithParam;  
 
 State zeros(Qubits qubs){
-  Data data(1 << qubs.qubs.size(), 0);
+  Data data(1 << qubs.size(), 0);
   data[0] = 1;
   return State(qubs, data);
 }
 
 State ones(Qubits qubs){
-  Data data(1 << qubs.qubs.size(), 0);
+  Data data(1 << qubs.size(), 0);
   data[data.size() - 1] = 1;
   return State(qubs, data);
 }
 
 State Hzeros(Qubits qubs){
-  Data data(1 << qubs.qubs.size(), 1./sqrt(1 << qubs.qubs.size()));
+  Data data(1 << qubs.size(), 1./sqrt(1 << qubs.size()));
   return State(qubs, data);
 }
 
 State Hones(Qubits qubs){
-  Data data(1 << qubs.qubs.size());
-  DataType d = 1./sqrt(1 << qubs.qubs.size());
+  Data data(1 << qubs.size());
+  DataType d = 1./sqrt(1 << qubs.size());
   for (int i=0; i<data.size(); i++){
     if (Transform::index_sum(i) % 2){
       data[i] = d * (-1.);

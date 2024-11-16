@@ -23,23 +23,25 @@ public:
     const_iterator begin() const { return qubs.rbegin(); }
     const_iterator end() const { return qubs.rend(); }
 
-
     Qubits(): qubs{} {}
     explicit Qubits(int n) {
         for (int i=0; i<n; i++){
-            // qubs[i] = Qubit(i);
-            this->push_back(i);
+            this->insert(i);
         }
     }
     Qubits(std::initializer_list<Qubit> tot): qubs{tot} {}
-
-    void push_back(const Qubit& qub) {
+    std::size_t size() const { return qubs.size(); }
+    void insert(const Qubit& qub) {
         if (std::find(qubs.begin(), qubs.end(), qub) == qubs.end()){
-            this->qubs.push_back(std::move(qub)); 
+            this->qubs.push_back(qub); 
         }
     }
-    container qubs;
+    void push_back(const Qubit& qub) {
+        this->qubs.push_back(qub); 
+    }
     std::string to_str(){ std::string s; for (auto x: qubs) s += std::to_string(x.num) + ','; return s;}
+private:
+    container qubs;
 };
 
 std::ostream& operator<<(std::ostream& os, const Qubits& qubs);
