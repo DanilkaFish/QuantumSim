@@ -37,7 +37,7 @@ namespace BaseInstr{
 
     class _TOF: public Instruction{
     public:
-        _TOF(const Qubits& qubs): Instruction{qubs,"TOF"} {}
+        _TOF(const Qubits& qubs): Instruction{qubs,"TOF"} { }
         void apply(MetaProvider& md) override { md.TOF(qubits);}
     };
 

@@ -30,8 +30,15 @@ public:
     const_reverse_iterator rend() const { return ins.rend(); }
     
     QuantumCircuit(): ins{}, qubs{} {}
-    QuantumCircuit(std::initializer_list<InstructionPtr> in) : ins{in} { }
-    QuantumCircuit(const QuantumCircuit& qc): ins{qc.ins} {} 
+    ~QuantumCircuit() {  }
+    QuantumCircuit(std::initializer_list<InstructionPtr> in) : ins{in} {
+        for (auto x: ins){
+            for(Qubit qub: x->get_qubits()){
+                qubs.insert(qub);
+            }
+        }
+    }
+    QuantumCircuit(const QuantumCircuit& qc): ins{qc.ins}, qubs{qc.qubs} { } 
     Qubits get_qubits() const { return qubs; } 
     std::size_t size() const { return ins.size(); }
     
@@ -60,7 +67,7 @@ public:
             i->apply(md);
         }
     }
-    QuantumCircuit decompose() override;
+    QuantumCircuit decompose(const InstructionPtr& that) override;
 private:
     QuantumCircuit qc{};
 };

@@ -15,12 +15,12 @@ DataType conv(const State& st){
 
 
 TEST(SimpleTest, TestRandomQC){
-    QCGenerator qg(62, 5, GeneratorKind::LCG);
+    QCGenerator qg(100, 20, GeneratorKind::LCG);
     QuantumCircuit qc = qg.get_qc(0.64);
-    std::cout << qc.get_qcr().s;
+    // std::cout << qc.get_qcr().s;
     TensorProvider exec(qc);
-    std::cout << exec.state;
     exec.run();
+    // std::cout << exec.state;
     Tensor tot = exec.state.conj()*exec.state;
     DataType res = conv(exec.state);
     DataType exp = {0.798328, -0.599588};

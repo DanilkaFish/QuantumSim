@@ -83,3 +83,18 @@ void TensorProvider::U2(const Qubits& qubs, DataPtr dptr){
 void TensorProvider::U(const Qubits& qubs, DataPtr dptr){
     state = Operator{qubs, dptr}*state;
 } 
+
+std::ostream& operator<<(std::ostream& os, const State& s){
+    for(int i=0; i<s.size(); i++){
+        if (s[i].imag() != 0 || s[i].real() != 0){
+            os << '+' << s[i] << "|";
+            int j = i;
+            for(int pos=0; pos<s.get_shape().size(); pos++){
+                os << (j & 1);
+                j = j >> 1;
+            }   
+            os << "> ";
+        }
+    }
+    return os << "\n";
+}

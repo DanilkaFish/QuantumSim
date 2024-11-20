@@ -12,11 +12,11 @@ InstructionPtr QuantumCircuit::to_instruction(){
     return makeInsPtr(new MagicInstruction(*this));
 }
 
-QuantumCircuit Instruction::decompose() {
-    return QuantumCircuit({InstructionPtr(this)});
+QuantumCircuit Instruction::decompose(const InstructionPtr& that) {
+    return QuantumCircuit({that});
 }
 
-QuantumCircuit MagicInstruction::decompose()  {
+QuantumCircuit MagicInstruction::decompose(const InstructionPtr& that)  {
     return this->qc;
 }
 
@@ -40,7 +40,8 @@ QC_representation QuantumCircuit::get_qcr() const {
     return toto;
 }
 
-void QuantumCircuit::add_instruction(InstructionPtr in) { 
+void QuantumCircuit::
+add_instruction(InstructionPtr in) { 
     ins.push_back(in); 
     for (Qubit x: in->get_qubits()){
         qubs.insert(x);
@@ -49,16 +50,19 @@ void QuantumCircuit::add_instruction(InstructionPtr in) {
 
 void QuantumCircuit::compose(const QuantumCircuit& qc){
     add_instruction(InstructionPtr{new MagicInstruction(qc)});
-
+    for (Qubit x: qc.get_qubits()){
+        qubs.insert(x);
+    }
 }
+
 // void QuantumCircuit::compose(QuantumCircuit&& qc){
 //     this->add_instruction(InstructionPtr( new MagicInstruction(std::move(qc))));
 // }
 
 QuantumCircuit QuantumCircuit::decompose() {
     QuantumCircuit qc;
-    for(auto x: (*this)){
-        for (auto y: x->decompose()){
+    for(auto& x: (*this)){
+        for (auto& y: x->decompose(x)){
             qc.add_instruction(y);
         }
     }

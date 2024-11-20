@@ -15,8 +15,8 @@ std::tuple<QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int> one_val
     std::vector<int> binv;
     int len = n;
     int rev_count =0;
-    QuantumCircuit qc;
     for (auto v : one_values){
+        QuantumCircuit qc;
         binv = to_bin(v, n);
         for (int i = 0; i < n/2; i++){
             rev_count = 1;
@@ -67,16 +67,22 @@ std::tuple<QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int> one_val
             cqc.add_instruction(*it);
         }
         qc.compose(cqc);
+        // qc = qc.decompose();
         main_qc.compose(qc);
     }
-
-    return std::tuple<QuantumCircuit, Qubits, Qubit>(QuantumCircuit{}, Qubits(n), Qubit(2*n-2));
+    return std::tuple<QuantumCircuit, Qubits, Qubit>(main_qc, Qubits(n), Qubit(2*n-2));
 }
 
 // QuantumCircuit Grover(QuantumCircuit& oracle, int n, int _k);
 QuantumCircuit Grover(QuantumCircuit& oracle, Qubits main_qubits, Qubit trg,  int num_layers){
     const int n = main_qubits.size();
     int hilb_n = 1 << n;
+    DataPtr difptr(new Data(hilb_n*hilb_n, 0));
+    for(int i = 1; i < hilb_n; i++){
+        (*difptr)[i*hilb_n + i] = -1;
+    }
+    (*difptr)[0] = 1;
+
     QuantumCircuit qc;
     for (auto x: main_qubits){
         qc.add_instruction(BaseInstr::H(x));
@@ -91,12 +97,6 @@ QuantumCircuit Grover(QuantumCircuit& oracle, Qubits main_qubits, Qubit trg,  in
     for (auto x: main_qubits){
         _qc.add_instruction(BaseInstr::H(x));
     }
-
-    DataPtr difptr(new Data(hilb_n*hilb_n, 0));
-    for(int i = 1; i < hilb_n; i++){
-        (*difptr)[i*hilb_n + i] = -1;
-    }
-    (*difptr)[0] = 1;
 
     _qc.add_instruction(BaseInstr::U(main_qubits, difptr));
 

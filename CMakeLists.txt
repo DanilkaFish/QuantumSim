@@ -7,8 +7,8 @@ project(tot LANGUAGES CXX)
 option(TENSOR_TEST "Tensor" ON)
 option(QC_INTER_TEST "QC" ON)
 option(GATESIM_TEST "Gate simulator" ON)
-option(RANDOMQC_TEST "random_qc" OFF)
-option(GROVER_TEST "grover" OFF)
+option(RANDOMQC_TEST "random_qc" ON)
+option(GROVER_TEST "grover" ON)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR True)
@@ -100,7 +100,7 @@ if(GROVER_TEST)
         src/QuantumCircuit/algorithms/grover.cpp
         ${TEST_QC_DIR}/algorithms/grover_test.cpp 
         )
-    target_link_libraries(test_grover PUBLIC quantumcirc qubits  )
+    target_link_libraries(test_grover PUBLIC quantumcirc qubits tensor gatesim )
     # add_executable(a)
     # target_sources(a PRIVATE 
     #     test.cpp

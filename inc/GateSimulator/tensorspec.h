@@ -10,7 +10,7 @@ public:
     State(const Qubits& qubs): Tensor{{qubs, Qubits()}}, qubs{qubs} {(*dptr)[0] = 1;}
     State(const Qubits& qubs, DataPtr dptr): Tensor{{qubs, Qubits()}, dptr}, qubs{qubs} { }
     State(const Qubits& qubs, const Data& data): Tensor{qubs, Qubits(), data}, qubs{qubs} { }
-    Qubits get_qubits() const { return qubs;}
+    const Qubits& get_qubits() const { return qubs;}
 private:
     Qubits qubs;
 };
@@ -26,5 +26,8 @@ public:
 private:
     Qubits qubs;
 };
+
+
+std::ostream& operator<<(std::ostream& os, const State& s);
 
 #endif

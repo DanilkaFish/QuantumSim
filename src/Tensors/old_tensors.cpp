@@ -20,6 +20,9 @@
 //     }
 
 // };
+// Int Transform::index_shape_change_forward(Int id, const Shape& sh){
+//     return Transform::index_shape_change(id, Shape{sh.get_qtype_qubits(QType::up), sh.get_qtype_qubits(QType::down)}, sh);
+// }
 
 // Qubits Shape::get_qtype_qubits(QType qt) const{
 //     Qubits qubs;
@@ -138,9 +141,7 @@
 //     return new_id;
 // }
 
-// Int Transform::index_shape_change_forward(Int id, const Shape& sh){
-//     return Transform::index_shape_change(id, Shape{sh.get_qtype_qubits(QType::up), sh.get_qtype_qubits(QType::down)}, sh);
-// }
+
 
 // Int Transform::index_shape_change_back(Int id, const Shape& sh){
 //     return Transform::index_shape_change(id, sh, Shape{sh.get_qtype_qubits(QType::up), sh.get_qtype_qubits(QType::down)});
