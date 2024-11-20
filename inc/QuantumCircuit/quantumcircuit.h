@@ -16,17 +16,22 @@ public:
     using container=std::vector<InstructionPtr>; 
     using iterator=typename container::iterator;
     using const_iterator=typename container::const_iterator;
-
+    using reverse_iterator=typename container::reverse_iterator;
+    using const_reverse_iterator=typename container::const_reverse_iterator;
+    
     iterator begin() { return ins.begin(); }
     iterator end() { return ins.end(); }
     const_iterator begin() const { return ins.begin(); }
     const_iterator end() const { return ins.end(); }
 
-    QuantumCircuit() {}
-    // QuantumCircuit(const QuantumCircuit& )=default;
-    // QuantumCircuit(QuantumCircuit&& )=default;
-    QuantumCircuit(std::initializer_list<InstructionPtr> in): ins{in} {std::cerr << "here2"; }
+    reverse_iterator rbegin() { return ins.rbegin(); }
+    reverse_iterator rend() { return ins.rend(); }
+    const_reverse_iterator rbegin() const { return ins.rbegin(); }
+    const_reverse_iterator rend() const { return ins.rend(); }
     
+    QuantumCircuit(): ins{}, qubs{} {}
+    QuantumCircuit(std::initializer_list<InstructionPtr> in) : ins{in} { }
+    QuantumCircuit(const QuantumCircuit& qc): ins{qc.ins} {} 
     Qubits get_qubits() const { return qubs; } 
     std::size_t size() const { return ins.size(); }
     
@@ -35,9 +40,9 @@ public:
 
     InstructionPtr to_instruction();
 
-    void add_instruction( InstructionPtr in);
+    void add_instruction(InstructionPtr in);
     QC_representation get_qcr() const;
-    void compose(QuantumCircuit& qc);
+    void compose(const QuantumCircuit& qc);
     QuantumCircuit decompose();
 private:
     container ins;
@@ -49,8 +54,7 @@ typedef std::shared_ptr<const QuantumCircuit> QuantumCircuitPtr;
 
 class MagicInstruction: public Instruction{
 public:
-    MagicInstruction(const QuantumCircuit& tot): Instruction{tot.get_qubits(), "composed"}, qc{tot} { }
-    MagicInstruction(QuantumCircuit&& tot): Instruction{tot.get_qubits(), "composed"}, qc{tot} { }
+    MagicInstruction(QuantumCircuit tot): Instruction{tot.get_qubits(), "composed"} , qc{tot}{ }
     void apply(MetaProvider& md) override {
         for(auto i: qc){
             i->apply(md);
@@ -58,47 +62,7 @@ public:
     }
     QuantumCircuit decompose() override;
 private:
-    QuantumCircuit qc;
+    QuantumCircuit qc{};
 };
-
-
-
-
-
-// class QuantumCircuit{
-// public:
-//     // QuantumCircuit(Qubits qubs): qubs{qubs} {}
-//     QuantumCircuit(const QuantumCircuit& ins) : ins{ins} {} 
-//     // QuantumCircuit(const QuantumCircuit& ins) : ins{ins} {} 
-//     QuantumCircuit(QuantumCircuit& qc) = default;
-//     void draw() const;
-//     const QuantumCircuit& get_instr() const { return ins;} 
-//     Qubits get_qubits() const { return ins.get_qubits(); };
-//     void add_instruction(InstructionPtr in) { 
-//         ins.push_back(in);
-
-//     };
-//     void compose(QuantumCircuit& qc) {this->add_instruction(qc.ins.compose()); };
-//     QC_representation get_qcr() const;
-//     void decompose();
-
-// private:
-//     DrawerPtr drawer;
-//     QuantumCircuit ins;
-// };
-
-// class Executor{
-// public:
-//     Executor(QuantumCircuit& qc): qc{qc} {}
-//     void run(){ 
-//         this->SetUp();
-//         for(auto ops: qc.get_instr()){
-//             ops->apply(md);
-//         }
-//     };
-// protected:
-//     virtual void SetUp() = 0;
-//     QuantumCircuit& qc;
-// };
 
 #endif

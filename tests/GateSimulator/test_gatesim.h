@@ -36,7 +36,7 @@ State Hones(Qubits qubs){
   Data data(1 << qubs.size());
   DataType d = 1./sqrt(1 << qubs.size());
   for (int i=0; i<data.size(); i++){
-    if (Transform::index_sum(i) % 2){
+    if (index_sum(i) % 2){
       data[i] = d * (-1.);
     }else{
       data[i] = d;

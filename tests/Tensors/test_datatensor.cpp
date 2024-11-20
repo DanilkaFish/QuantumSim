@@ -51,22 +51,25 @@ TEST(SimpleTests, CX_acting) {
 
   // Tensor T = Tensor(0.5)*(T1 + T2 + T3 - T4);
   Tensor _CX = CX();
-  Tensor res = _CX*Tensor{{{0,1}, {}}, DataPtr{ new Data{0,0,1,0}}};
-  Tensor exp = Tensor{{{0,1}, {}}, DataPtr{ new Data{0,0,0,1}}};
+  Tensor res = _CX*Tensor{{0,1}, {},  Data{0,0,1,0}};
+  Tensor exp = Tensor{{0,1}, {},  Data{0,0,0,1}};
   EXPECT_TRUE(exp == res) << ERR_PREFIX << "expected:\n" << exp << "result: \n" << res<< "\n";
 }
 
 TEST_P(BraketTest, ProdTest) {
   Data data;
   for (int i=0; i<(1 << qubs.size()); i++)
-    data.push_back({std::rand(), std::rand()}); // undefined behaviour but doesnt matter
+    data.push_back({double(std::rand())/(1<<30), double(std::rand())/(1<<30)}); // undefined behaviour but doesnt matter
   DataType exp=0;
   for (auto x: data){
     exp += std::conj(x)*x;
   }
-  Tensor T{Shape{qubs,{}}, data};
+  std::cerr << "\n";
+  Tensor T{qubs, Qubits{}, data};
   Tensor res = T.conj()*T;
-  EXPECT_TRUE(res == Tensor{exp}) << ERR_PREFIX << "expected:\n" << res << "result: \n" << exp<< "\n";
+  Tensor Tc = T.conj();
+
+  EXPECT_TRUE(res == Tensor{exp}) << ERR_PREFIX << "expected:\n" << exp << "result: \n" << res << "\n";
 }
 
 
@@ -98,6 +101,6 @@ INSTANTIATE_TEST_CASE_P(ComboValues, CXTest,
                           );
 
 INSTANTIATE_TEST_CASE_P(SelectValues, BraketTest,
-                          Values(Qubits{0}, Qubits{0,1}, Qubits{0,1,2}, Qubits{0,1,2,3}, Qubits{3,2,1,0}, Qubits{123,432,5,1})
+                          Values(Qubits{0}, Qubits{0,1}, Qubits{0,1,2}, Qubits{0,1,2,3}, Qubits{3,2,1,0}, Qubits{6,8,5,1})
                           );
 

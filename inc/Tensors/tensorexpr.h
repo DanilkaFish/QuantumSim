@@ -1,4 +1,5 @@
-#include "stddata.h"
+#include "../stddata.h"
+
 #include "shape.h"
 
 template<typename E> class Conjugate; ///< Forward declaration of `Trasnpose` class
@@ -15,9 +16,9 @@ public:
     Conjugate<T> conj() const noexcept {
         return Conjugate<T>(*this);
     }
-    Convulate<T> conv(const Qubits& qubs) const noexcept {
-        return Convulate<T>(*this, qubs);
-    }
+    // Convulate<T> conv(const Qubits& qubs) const noexcept {
+    //     return Convulate<T>(*this, qubs);
+    // }
 };
 
 
@@ -25,8 +26,12 @@ template<typename T>
 class Conjugate: public Expression<Conjugate<T>>{
 public:
     Conjugate(const Expression<T>& expr): expr{&expr} { }
-    Shape get_shape() const noexcept { return Transform::transpose(expr->get_shape()); }
-    DataType operator[](int i) const noexcept {  return std::conj((*expr)[i]); }
+    Shape get_shape() const noexcept { return Shape(expr->get_shape().pos_down, expr->get_shape().pos_up); }
+    DataType operator[](int i) const noexcept {  
+        int nd =expr->get_shape().nu;
+        int id = i & ((1<<nd) - 1); 
+        // ((i-id) >> nd) + (id << nd)
+        return std::conj((*expr)[i]); }
     const Expression<T>& conj() const noexcept { return (*expr); }
 private:
     const Expression<T> *expr;
@@ -57,34 +62,72 @@ private:
 template<typename Tl, typename Tr>
 class TensorProd: public Expression<TensorProd<Tl, Tr>>{
 public:
-    TensorProd(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} { }
-    Shape get_shape() const noexcept { return Transform::prod_shape_res(exprl->get_shape(), exprr->get_shape()); }
+    TensorProd(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr}, shape{prod(exprl.get_shape(), exprr.get_shape())} { init(); }
+    Shape get_shape() const noexcept { return shape; }
     DataType operator[](int i) const{
+        int id = i & ( (1 << shape.nd) - 1);
+        int iu = (i - id) >> shape.nd;
+        int ir = (meru.expand(mciru.compress(iu)) << nrd)  + mcird.compress(id);
+        int il = (mcilu.compress(iu) << nld) + meld.expand(mcild.compress(id));
         DataType val=0;
-        std::vector<Shape> s1_s1c_s2_s2c = Transform::prod_shape_div(exprl->get_shape(), exprr->get_shape());
-        Int idl = Transform::index_shape_change(i, get_shape(), s1_s1c_s2_s2c[0]);
-        Int idr = Transform::index_shape_change(i, get_shape(), s1_s1c_s2_s2c[2]);
-        for (int j=0; j < (1 << s1_s1c_s2_s2c[1].size()); j++){
-            val += (*exprl)[idl + Transform::index_shape_change_forward(j, s1_s1c_s2_s2c[1])] * 
-                   (*exprr)[idr + Transform::index_shape_change_forward(j, s1_s1c_s2_s2c[3])];
+        for (int j=0; j < (dif); j++){
+            val += (*exprl)[il + mejld.expand(j)] * 
+                   (*exprr)[ir + (mejru.expand(j)<<nrd)];
         }
         return val;
     }
+    void init(){
+        nld = exprl->get_shape().nd;
+        nrd = exprr->get_shape().nd;
+        nlu = exprl->get_shape().nu;
+        nru = exprr->get_shape().nu;
+        mask mlu(exprl->get_shape().pos_up);
+        mask mrd(exprr->get_shape().pos_down);
+        mask mld(exprl->get_shape().pos_down);
+        mask mru(exprr->get_shape().pos_up);
+        int anti_intersect = ~(mld.m&mru.m);
+
+        mcilu = mask(shape.pos_up.compress(mlu.m));
+        mcird = mask(shape.pos_down.compress(mrd.m));
+        mcild = mask(shape.pos_down.compress(mld.m &anti_intersect));
+        mciru = mask(shape.pos_up.compress(mru.m&anti_intersect));
+        meld = mask(mld.compress(mld.m & anti_intersect));
+        meru = mask(mru.compress(mru.m & anti_intersect));
+
+        mejld = mask(meld.m ^ ( (1 << nld) - 1));
+        mejru = mask(meru.m ^ ( (1 << nru) - 1));
+        dif = 1<<(nlu + nru - shape.nu);
+    }
+
 private:
+    Shape shape;
     const Tl *exprl;
     const Tr *exprr;
+    int dif;
+    int nld;
+    int nrd;
+    int nlu;
+    int nru;
+    mask mcilu;
+    mask mcird;
+    mask mcild;
+    mask mciru;
+    mask meld;
+    mask meru;
+    mask mejld;
+    mask mejru;
 };
 
 template<typename Tl, typename Tr>
 class TensorSum: public Expression<TensorSum<Tl, Tr>>{
 public:
     TensorSum(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} { }
-    Shape get_shape() const noexcept { return Transform::sum_shape_res(exprl->get_shape(), exprr->get_shape()); }
+    Shape get_shape() const noexcept { return exprl->get_shape(); }
 
     DataType operator[](int i) const{
         Shape sh = this->get_shape();
-        return (*exprl)[Transform::index_shape_change(i, sh, exprl->get_shape())] 
-             + (*exprr)[Transform::index_shape_change(i, sh, exprr->get_shape())];
+        return (*exprl)[i] 
+             + (*exprr)[i];
     }
 private:
     const Tl *exprl;
@@ -95,12 +138,12 @@ template<typename Tl, typename Tr>
 class TensorDiv: public Expression<TensorDiv<Tl, Tr>>{
 public:
     TensorDiv(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} { }
-    Shape get_shape() const noexcept { return Transform::sum_shape_res(exprl->get_shape(), exprr->get_shape()); }
+    Shape get_shape() const noexcept { return exprl->get_shape(); }
 
     DataType operator[](int i) const{
         Shape sh = this->get_shape();
-        return (*exprl)[Transform::index_shape_change(i, sh, exprl->get_shape())] 
-             - (*exprr)[Transform::index_shape_change(i, sh, exprr->get_shape())];
+        return (*exprl)[i] 
+             - (*exprr)[i];
     }
 private:
     const Tl *exprl;
@@ -112,6 +155,7 @@ TensorProd<Expression<T1>,Expression<T2>> operator*(const Expression<T1> &e1, co
 {
 	return TensorProd<Expression<T1>, Expression<T2>>(e1, e2);
 }
+
 
 template<typename T1, typename T2>
 TensorSum<Expression<T1>,Expression<T2>> operator+(const Expression<T1> &e1, const Expression<T2> &e2)

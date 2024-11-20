@@ -4,16 +4,16 @@
 // #include "tensorspec.h"
 // #include "inc/QuantumCircuit/instruction.h"
 // #include "inc/parameter.h"
-// #include "simdata.h"
+// #include "tensorprovider.h"
 
 
 // // class BaseUnitary: public Instruction{
 // // public:
 // //     using Instruction::Instruction;
-// //     virtual void attach_meta(const MetaDataPtr& md) override { sdptr = SimDataPtr{md, static_cast<SimData *>(md.get())}; }
+// //     virtual void attach_meta(const MetaDataPtr& md) override { sdptr = tensorproviderPtr{md, static_cast<tensorprovider *>(md.get())}; }
 // //     virtual void apply() = 0;
 // // protected:
-// //     SimDataPtr sdptr;
+// //     tensorproviderPtr sdptr;
 // // };
 
 

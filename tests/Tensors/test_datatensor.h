@@ -12,24 +12,24 @@ using ::testing::TestWithParam;
 
 #include <string>
 
-Tensor X(Int qub=0){
-  return Tensor({{qub}, {qub}}, {0,1,1,0});
+Tensor X(int qub=0){
+  return Tensor(Qubits{qub}, Qubits{qub}, {0,1,1,0});
 }
 
-Tensor Y(Int qub=0){
-  return Tensor({{qub}, {qub}}, {0, {0,-1}, {0, 1}, 0});
+Tensor Y(int qub=0){
+  return Tensor(Qubits{qub}, Qubits{qub}, {0, {0,-1}, {0, 1}, 0});
 }
 
-Tensor I(Int qub=0){
-  return Tensor{{{qub}, {qub}}, {1,0,0,1}};
+Tensor I(int qub=0){
+  return Tensor{Qubits{qub}, Qubits{qub}, {1,0,0,1}};
 }
 
-Tensor Z(Int qub=0){
-  return Tensor{{{qub}, {qub}}, {1,0,0,-1}};
+Tensor Z(int qub=0){
+  return Tensor{Qubits{qub}, Qubits{qub}, {1,0,0,-1}};
 }
 
 Tensor CX(){
-  return Tensor({{0,1},{0,1}}, {
+  return Tensor({0,1},{0,1}, {
     1,0,0,0,
     0,1,0,0,
     0,0,0,1,

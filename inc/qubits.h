@@ -6,7 +6,9 @@
 // #include <set>
 #include <vector>
 
-struct Qubit{
+class Qubit{
+public:
+    Qubit(): num{0} { }
     Qubit(int num): num{num} {}
     // Qubit(const Qubit& q)=default;
     int num;
@@ -24,13 +26,16 @@ public:
     const_iterator end() const { return qubs.rend(); }
 
     Qubits(): qubs{} {}
+    Qubits(const Qubits& qubs): qubs{qubs.qubs} {}
     explicit Qubits(int n) {
         for (int i=0; i<n; i++){
             this->insert(i);
         }
     }
     Qubits(std::initializer_list<Qubit> tot): qubs{tot} {}
-    std::size_t size() const { return qubs.size(); }
+    const Qubit& operator[](int i) const { return qubs[i]; }
+    Qubit& operator[](int i) { return qubs[i]; }
+    int size() const noexcept {  return qubs.size(); }
     void insert(const Qubit& qub) {
         if (std::find(qubs.begin(), qubs.end(), qub) == qubs.end()){
             this->qubs.push_back(qub); 
@@ -39,6 +44,7 @@ public:
     void push_back(const Qubit& qub) {
         this->qubs.push_back(qub); 
     }
+
     std::string to_str(){ std::string s; for (auto x: qubs) s += std::to_string(x.num) + ','; return s;}
 private:
     container qubs;

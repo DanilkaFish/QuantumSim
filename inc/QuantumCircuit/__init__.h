@@ -1,5 +1,7 @@
+#ifndef _QCINIT
+#define _QCINIT
+
 #include "quantumcircuit.h"
-// #include "metaprovider.h"
 
 namespace BaseInstr{
 
@@ -12,7 +14,7 @@ namespace BaseInstr{
     class _Y: public Instruction{
     public:
         _Y(const Qubits& qubs): Instruction{qubs,"Y"} {}
-        void apply(MetaProvider& md) override { md.Y(qubits);}
+        virtual void apply(MetaProvider& md) override { md.Y(qubits);}
     };
 
     class _Z: public Instruction{
@@ -63,15 +65,43 @@ namespace BaseInstr{
         // void apply(MetaProvider& md) override { this->apply(md); }
     };
 
+    class _U1: public Instruction{
+    public:
+        _U1(const Qubits& qubs, DataPtr dptr): Instruction{qubs, "U1"}, dptr{dptr} {}
+        void apply(MetaProvider& md) override { md.U1(qubits, dptr); }
+    private:
+        DataPtr dptr;
+    };
 
-    InstructionPtr X(Qubit qub) { return InstructionPtr{ new _X{{qub}}}; }
-    InstructionPtr Y(Qubit qub) { return InstructionPtr{ new _Y{{qub}}}; }
-    InstructionPtr Z(Qubit qub) { return InstructionPtr{ new _Z{{qub}}}; }
-    InstructionPtr I(Qubit qub) { return InstructionPtr{ new _I{{qub}}}; }
-    InstructionPtr S(Qubit qub) { return InstructionPtr{ new _S{{qub}}}; }
-    InstructionPtr H(Qubit qub) { return InstructionPtr{ new _H{{qub}}}; }
-    InstructionPtr Sdag(Qubit qub) { return InstructionPtr{ new _Sdag{{qub}}}; }
-    InstructionPtr CX(Qubit ctrl, Qubit tar) { return InstructionPtr{ new _CX{{ctrl, tar}}}; }
-    InstructionPtr TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar) { return InstructionPtr{ new _TOF{{ctrl1, ctrl2, tar}}}; }
-    // InstructionPtr Custom(const Instruction& in) { return InstructionPtr{ new _Custom{in}}; }
+    class _U2: public Instruction{
+    public:
+        _U2(const Qubits& qubs, DataPtr dptr): Instruction{qubs, "U2"}, dptr{dptr} {}
+        void apply(MetaProvider& md) override { md.U2(qubits, dptr); }
+    private:
+        DataPtr dptr;
+    };
+
+    class _U: public Instruction{
+    public:
+        _U(const Qubits& qubs, DataPtr dptr): Instruction{qubs, "U"}, dptr{dptr} {}
+        void apply(MetaProvider& md) override { md.U(qubits, dptr); }
+    private:
+        DataPtr dptr;
+    };
+
+    InstructionPtr X(Qubit qub);
+    InstructionPtr Y(Qubit qub);
+    InstructionPtr Z(Qubit qub);
+    InstructionPtr I(Qubit qub);
+    InstructionPtr S(Qubit qub);
+    InstructionPtr H(Qubit qub);
+    InstructionPtr Sdag(Qubit qub);
+    InstructionPtr CX(Qubit ctrl, Qubit tar);
+    InstructionPtr TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar);
+    InstructionPtr U1(Qubit qub, DataPtr dptr);
+    InstructionPtr U2(Qubit qub1, Qubit qub2, DataPtr dptr);
+    InstructionPtr U(Qubits qubs, DataPtr dptr);
 }
+
+
+#endif

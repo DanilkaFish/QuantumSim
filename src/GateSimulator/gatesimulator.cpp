@@ -1,66 +1,85 @@
 #include "inc/GateSimulator/unitary.h"
-#include "inc/GateSimulator/simdata.h"
+#include "inc/GateSimulator/tensorprovider.h"
 
-void NumSimProvider::I(const Qubits& qubs){
+void TensorProvider::I(const Qubits& qubs){
     static DataPtr dptr(new Data{0,1,
                                  1,0});
     state = Operator{qubs, dptr}*state;
 }
 
-void NumSimProvider::X(const Qubits& qubs){
+void TensorProvider::X(const Qubits& qubs){
     static DataPtr dptr{new Data{0,1,
                                  1,0}};
     state = Operator{qubs, dptr}*state;
 }
 
-void NumSimProvider::Y(const Qubits& qubs){
+void TensorProvider::Y(const Qubits& qubs){
     static DataPtr dptr{new Data{0,{0,-1},
                                 {0,1},0}};
     state = Operator{qubs, dptr}*state;
 }
 
-void NumSimProvider::Z(const Qubits& qubs){
+void TensorProvider::Z(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,
                                  0,-1}};
     state = Operator{qubs, dptr}*state;
 }
 
-void NumSimProvider::S(const Qubits& qubs){
+void TensorProvider::S(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,
                                  0,{0,1}}};
     state = Operator{qubs, dptr}*state;
 }
 
-void NumSimProvider::Sdag(const Qubits& qubs){
+void TensorProvider::Sdag(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,
                                  0,{0,-1}}};
     state = Operator{qubs, dptr}*state;
 }
 
-void NumSimProvider::CX(const Qubits& qubs){
+void TensorProvider::CX(const Qubits& qubs){
     static DataPtr dptr{new Data{1,0,0,0,
                                  0,1,0,0,
                                  0,0,0,1,
                                  0,0,1,0}};
-    state = Operator{qubs, dptr}*state;
+    static DataPtr dptrinv{new Data{1,0,0,0,
+                                 0,0,0,1,
+                                 0,0,1,0,
+                                 0,1,0,0}};
+    if (qubs[0] > qubs[1]){
+        state = Operator{qubs, dptr}*state;
+    }else{
+        state = Operator{qubs, dptrinv}*state;
+    }
+
 }
 
 const double A = 1.0/sqrt(2);
 
-void NumSimProvider::H(const Qubits& qubs){
+void TensorProvider::H(const Qubits& qubs){
     static DataPtr dptr{new Data{A, A,
                                  A,-A}};
     state = Operator{qubs, dptr}*state;
 }
 
-void NumSimProvider::TOF(const Qubits& qubs){
-    static DataPtr dptr{new Data{1,0,0,0,0,0,0,0,
-                                 0,1,0,0,0,0,0,0,
-                                 0,0,1,0,0,0,0,0,
-                                 0,0,0,1,0,0,0,0,
-                                 0,0,0,0,1,0,0,0,
-                                 0,0,0,0,0,1,0,0,
-                                 0,0,0,0,0,0,0,1,
-                                 0,0,0,0,0,0,1,0}};
+void TensorProvider::TOF(const Qubits& qubs){
+    static Data data{1,0,0,0,0,0,0,0,
+                    0,1,0,0,0,0,0,0,
+                    0,0,1,0,0,0,0,0,
+                    0,0,0,1,0,0,0,0,
+                    0,0,0,0,1,0,0,0,
+                    0,0,0,0,0,1,0,0,
+                    0,0,0,0,0,0,0,1,
+                    0,0,0,0,0,0,1,0};
+    state = Operator{qubs, data}*state;
+}
+
+void TensorProvider::U1(const Qubits& qubs, DataPtr dptr){
     state = Operator{qubs, dptr}*state;
 }
+void TensorProvider::U2(const Qubits& qubs, DataPtr dptr){
+    state = Operator{qubs, dptr}*state;
+}  
+void TensorProvider::U(const Qubits& qubs, DataPtr dptr){
+    state = Operator{qubs, dptr}*state;
+} 

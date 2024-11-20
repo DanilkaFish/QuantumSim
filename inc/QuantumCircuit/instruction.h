@@ -11,13 +11,12 @@ class MetaProvider;
 class Instruction{
 public:
     Instruction(const Qubits& qubs, const std::string& name="U"): qubits{qubs}, name{name} { }
-    Instruction(const Instruction& in)=default;
     virtual                 ~Instruction(){};
 
     virtual void            apply(MetaProvider& ) { std::cerr << "HelloBase"; };
     virtual QuantumCircuit  decompose()  ;
     std::string             get_name()   const { return name; }
-    Qubits                  get_qubits() const { return qubits; }
+    Qubits                  get_qubits() const {  return qubits; }
 protected:
     Qubits qubits;
     std::string name;

@@ -31,7 +31,7 @@ void QuantumCircuit::add_instruction(const tensor::HSMatrix un, const IntArr qub
 }
 
 
-void QuantumCircuit::add_instruction(Instruction instr){
+void QuantumCircuit::add_instruction(const Instruction& instr){
     qc_data.push_back(instr);
 }
 
@@ -42,7 +42,7 @@ void QuantumCircuit::add_instruction(const std::vector<std::pair<tensor::HSMatri
 }
 
     
-void QuantumCircuit::compose(QuantumCircuit& circ){
+void QuantumCircuit::compose(const QuantumCircuit& circ){
     if (n_qubits == circ.n_qubits){
         for (auto inst : circ.qc_data)
             add_instruction(inst);

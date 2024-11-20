@@ -1,4 +1,5 @@
-#include "inc/QuantumCircuit/quantumcircuit.h"
+#include "inc/QuantumCircuit/__init__.h"
+#include <utility>
 // #include "metaprovider.h"
 // TODO
 void validate_in_range(Qubits all, Qubits in){}
@@ -12,7 +13,6 @@ InstructionPtr QuantumCircuit::to_instruction(){
 }
 
 QuantumCircuit Instruction::decompose() {
-    std::cerr << "here" << std::endl;
     return QuantumCircuit({InstructionPtr(this)});
 }
 
@@ -40,19 +40,19 @@ QC_representation QuantumCircuit::get_qcr() const {
     return toto;
 }
 
-void QuantumCircuit::add_instruction( InstructionPtr in) { 
+void QuantumCircuit::add_instruction(InstructionPtr in) { 
     ins.push_back(in); 
     for (Qubit x: in->get_qubits()){
         qubs.insert(x);
     }
 }
-// std::size_t QuantumCircuit::size() const { return ins.size(); }
 
-void QuantumCircuit::compose(QuantumCircuit& qc){
-    this->add_instruction(InstructionPtr( new MagicInstruction(qc)));
+void QuantumCircuit::compose(const QuantumCircuit& qc){
+    add_instruction(InstructionPtr{new MagicInstruction(qc)});
+
 }
 // void QuantumCircuit::compose(QuantumCircuit&& qc){
-    // this->add_instruction(InstructionPtr( new MagicInstruction(std::move(qc))));
+//     this->add_instruction(InstructionPtr( new MagicInstruction(std::move(qc))));
 // }
 
 QuantumCircuit QuantumCircuit::decompose() {
@@ -65,6 +65,19 @@ QuantumCircuit QuantumCircuit::decompose() {
     return qc;
 };
 
+
+InstructionPtr BaseInstr::X(Qubit qub) { return InstructionPtr{ new _X{{qub}}}; }
+InstructionPtr BaseInstr::Y(Qubit qub) { return InstructionPtr{ new _Y{{qub}}}; }
+InstructionPtr BaseInstr::Z(Qubit qub) { return InstructionPtr{ new _Z{{qub}}}; }
+InstructionPtr BaseInstr::I(Qubit qub) { return InstructionPtr{ new _I{{qub}}}; }
+InstructionPtr BaseInstr::S(Qubit qub) { return InstructionPtr{ new _S{{qub}}}; }
+InstructionPtr BaseInstr::H(Qubit qub) { return InstructionPtr{ new _H{{qub}}}; }
+InstructionPtr BaseInstr::Sdag(Qubit qub) { return InstructionPtr{ new _Sdag{{qub}}}; }
+InstructionPtr BaseInstr::CX(Qubit ctrl, Qubit tar) { return InstructionPtr{ new _CX{{ctrl, tar}}}; }
+InstructionPtr BaseInstr::TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar) { return InstructionPtr{ new _TOF{{ctrl1, ctrl2, tar}}}; }
+InstructionPtr BaseInstr::U1(Qubit qub, DataPtr dptr) { return InstructionPtr{ new _U1{{qub}, dptr}}; }
+InstructionPtr BaseInstr::U2(Qubit qub1, Qubit qub2, DataPtr dptr) { return InstructionPtr{ new _U2{{qub1, qub2}, dptr}}; }
+InstructionPtr BaseInstr::U(Qubits qubs, DataPtr dptr) { return InstructionPtr{ new _U{qubs, dptr}}; }
 // void QuantumCircuit::draw() const {
 //     drawer->draw(get_qcr());
 // }
