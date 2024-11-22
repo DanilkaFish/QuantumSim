@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-# set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
-project(tot LANGUAGES CXX)
+project(tot VERSION 0.1.0 LANGUAGES CXX)
 
 
 option(TENSOR_TEST "Tensor" ON)
@@ -9,17 +8,23 @@ option(QC_INTER_TEST "QC" ON)
 option(GATESIM_TEST "Gate simulator" ON)
 option(RANDOMQC_TEST "random_qc" ON)
 option(GROVER_TEST "grover" ON)
+option(MAIN "grover" ON)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR True)
+
 set(CODE_QC_DIR "src/QuantumCircuit")
-set(TEST_QC_DIR "tests/QuantumCircuit")
-
 set(CODE_TENSOR_DIR "src/Tensors")
-set(TEST_TENSOR_DIR "tests/Tensors")
-
 set(CODE_SIM_DIR "src/GateSimulator")
-set(TEST_SIM_DIR "tests/GateSimulator")
+set(CODE_ALG_DIR "src/QuantumCircuit/algorithms")
+set(CODE_RAND_DIR "src/random")
+
+add_library(qubits STATIC src/qubits.cpp)
+add_library(quantumcirc STATIC ${CODE_QC_DIR}/quantumcircuit.cpp )
+add_library(algo STATIC ${CODE_ALG_DIR}/random_qc.cpp ${CODE_ALG_DIR}/grover.cpp)
+add_library(random STATIC ${CODE_RAND_DIR}/genfactory.cpp)
+add_library(gatesim STATIC ${CODE_SIM_DIR}/gatesimulator.cpp)
+add_library(tensor STATIC ${CODE_TENSOR_DIR}/tensors.cpp)
 
 
 # set(CMAKE_PREFIX_PATH "~/python_venvs/model/bin/python3")
@@ -48,16 +53,14 @@ set(TEST_SIM_DIR "tests/GateSimulator")
 # message(STATUS "Found Python3_Development_FOUND: ${Python3_Development_FOUND}")
 # message(STATUS "Found Python3_NumPy_FOUND: ${Python3_NumPy_FOUND} ${Python3_NumPy_INCLUDE_DIRS}")
 
-
+include_directories(${PROJECT_SOURCE_DIR})
 find_package(GTest REQUIRED)
 link_libraries(${GTEST_LIBRARIES} gtest_main pthread)
 
 
-add_library(qubits STATIC src/qubits.cpp)
-add_library(quantumcirc STATIC ${CODE_QC_DIR}/quantumcircuit.cpp )
-add_library(random STATIC src/random/genfactory.cpp)
-add_library(gatesim STATIC ${CODE_SIM_DIR}/gatesimulator.cpp)
-add_library(tensor STATIC ${CODE_TENSOR_DIR}/tensors.cpp)
+set(TEST_QC_DIR "tests/QuantumCircuit")
+set(TEST_TENSOR_DIR "tests/Tensors")
+set(TEST_SIM_DIR "tests/GateSimulator")
 
 if(QC_INTER_TEST)
     add_executable(test_qc_interface)
@@ -86,10 +89,9 @@ endif()
 
 if(RANDOMQC_TEST)
     add_executable(test_randomqc)
-    target_link_libraries(test_randomqc PRIVATE quantumcirc tensor qubits gatesim random)
+    target_link_libraries(test_randomqc PRIVATE quantumcirc tensor qubits gatesim algo random) 
     target_sources(test_randomqc PRIVATE 
         ${TEST_QC_DIR}/algorithms/random_qc_test.cpp 
-        src/QuantumCircuit/algorithms/random_qc.cpp
         )
 else()
 endif()
@@ -97,10 +99,9 @@ endif()
 if(GROVER_TEST)
     add_executable(test_grover)
     target_sources(test_grover PRIVATE 
-        src/QuantumCircuit/algorithms/grover.cpp
         ${TEST_QC_DIR}/algorithms/grover_test.cpp 
         )
-    target_link_libraries(test_grover PUBLIC quantumcirc qubits tensor gatesim )
+    target_link_libraries(test_grover PRIVATE quantumcirc qubits tensor gatesim algo)
     # add_executable(a)
     # target_sources(a PRIVATE 
     #     test.cpp
@@ -113,4 +114,16 @@ endif()
 
 
 
+# add_subdirectory(src)
+# add_subdirectory(tests)
+
+if(MAIN)
+    add_executable(main)
+    target_sources(main PRIVATE 
+        main.cpp
+        )
+    target_link_libraries(main PUBLIC quantumcirc qubits tensor gatesim )
+
+else()
+endif()
 

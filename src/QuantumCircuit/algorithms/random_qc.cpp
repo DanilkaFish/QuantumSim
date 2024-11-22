@@ -83,9 +83,11 @@ DataPtr herm_to_un(const DataPtr& op, int n){
     DataPtr u{ new Data(n*n) };
 
     m = eigensolver.eigenvectors() * m * eigensolver.eigenvectors().adjoint();
-
+    std::cerr << m;
     for (int i=0; i<n*n; i++){
         (*u)[i] = m(i / n, i % n);
+        // std::cerr << (*u)[i];
     }
+    // std::cerr << std::ednl
     return u;
 }
