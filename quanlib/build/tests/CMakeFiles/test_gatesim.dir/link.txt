@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file,CMakeFiles/test_gatesim.dir/link.d CMakeFiles/test_gatesim.dir/GateSimulator/test_gatesim.cpp.o -o bin/test_gatesim  /usr/lib/libgtest.so.1.15.2 -lgtest_main -lpthread ../src/QuantumCircuit/libquantum.a ../src/Qubits/libqubits.a ../src/Tensors/libtensor.a ../src/GateSimulator/libgatesim.a

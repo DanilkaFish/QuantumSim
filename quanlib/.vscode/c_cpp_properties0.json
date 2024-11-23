@@ -1,0 +1,17 @@
+// {
+//     "configurations": [
+//         {
+//             "name": "Linux",
+//             "includePath": [
+//                 "${workspaceFolder}/inc",
+//                 "/usr/include",
+//                 "/usr/include/python3.12"
+//             ],
+//             "intelliSenseMode": "linux-gcc-x64",
+//             "compilerPath": "/usr/bin/clang",
+//             "cStandard": "c17",
+//             "cppStandard": "c++17"
+//         }
+//     ],
+//     "version": 4
+// }

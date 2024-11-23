@@ -1,0 +1,63 @@
+#ifndef _QCINIT
+#define _QCINIT
+
+#include "common.h"
+
+class MetaProvider;
+class QC_representation;
+
+
+
+class QuantumCircuit{
+public:
+    using container=std::vector<InstructionPtr>; 
+    using iterator=typename container::iterator;
+    using const_iterator=typename container::const_iterator;
+    using reverse_iterator=typename container::reverse_iterator;
+    using const_reverse_iterator=typename container::const_reverse_iterator;
+    iterator               begin() { return ins.begin(); }
+    iterator               end() { return ins.end(); }
+    const_iterator         begin() const { return ins.begin(); }
+    const_iterator         end() const { return ins.end(); }
+    reverse_iterator       rbegin() { return ins.rbegin(); }
+    reverse_iterator       rend() { return ins.rend(); }
+    const_reverse_iterator rbegin() const { return ins.rbegin(); }
+    const_reverse_iterator rend() const { return ins.rend(); }
+    
+    QuantumCircuit(): ins{}, qubs{} {}
+    ~QuantumCircuit() {  }
+    QuantumCircuit(std::initializer_list<InstructionPtr> in);
+    QuantumCircuit(const QuantumCircuit& qc): ins{qc.ins}, qubs{qc.qubs} { } 
+    Qubits get_qubits() const { return qubs; } 
+    std::size_t size() const { return ins.size(); }
+    
+    template<class cont>
+    QuantumCircuit(const cont& vec): ins{vec} { }
+
+    InstructionPtr    to_instruction();
+    QC_representation get_qcr() const;
+    QuantumCircuit    decompose();
+
+    void add_instruction(InstructionPtr in);
+    void compose(const QuantumCircuit& qc);
+
+private:
+    container ins;
+    Qubits qubs;
+};
+
+namespace BaseInstr{
+    InstructionPtr X(Qubit qub);
+    InstructionPtr Y(Qubit qub);
+    InstructionPtr Z(Qubit qub);
+    InstructionPtr I(Qubit qub);
+    InstructionPtr S(Qubit qub);
+    InstructionPtr H(Qubit qub);
+    InstructionPtr Sdag(Qubit qub);
+    InstructionPtr CX(Qubit ctrl, Qubit tar);
+    InstructionPtr TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar);
+    InstructionPtr U1(Qubit qub, DataPtr dptr);
+    InstructionPtr U2(Qubit qub1, Qubit qub2, DataPtr dptr);
+    InstructionPtr U(Qubits qubs, DataPtr dptr);
+}
+#endif
