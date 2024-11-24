@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named main
+
+# Build rule for target.
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
+
+# fast build rule for target.
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
+
+#=============================================================================
 # Target rules for targets named random
 
 # Build rule for target.
@@ -194,70 +207,29 @@ grover/fast:
 	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/grover.dir/build.make src/algorithms/CMakeFiles/grover.dir/build
 .PHONY : grover/fast
 
-#=============================================================================
-# Target rules for targets named test_qci
+main.o: main.cpp.o
+.PHONY : main.o
 
-# Build rule for target.
-test_qci: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_qci
-.PHONY : test_qci
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-# fast build rule for target.
-test_qci/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/build
-.PHONY : test_qci/fast
+main.i: main.cpp.i
+.PHONY : main.i
 
-#=============================================================================
-# Target rules for targets named test_tensor_crtp
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-# Build rule for target.
-test_tensor_crtp: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_tensor_crtp
-.PHONY : test_tensor_crtp
+main.s: main.cpp.s
+.PHONY : main.s
 
-# fast build rule for target.
-test_tensor_crtp/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/build
-.PHONY : test_tensor_crtp/fast
-
-#=============================================================================
-# Target rules for targets named test_tensor_data
-
-# Build rule for target.
-test_tensor_data: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_tensor_data
-.PHONY : test_tensor_data
-
-# fast build rule for target.
-test_tensor_data/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/build
-.PHONY : test_tensor_data/fast
-
-#=============================================================================
-# Target rules for targets named test_gatesim
-
-# Build rule for target.
-test_gatesim: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_gatesim
-.PHONY : test_gatesim
-
-# fast build rule for target.
-test_gatesim/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/build
-.PHONY : test_gatesim/fast
-
-#=============================================================================
-# Target rules for targets named test_grover
-
-# Build rule for target.
-test_grover: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_grover
-.PHONY : test_grover
-
-# fast build rule for target.
-test_grover/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/build
-.PHONY : test_grover/fast
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -269,15 +241,14 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... gatesim"
 	@echo "... grover"
+	@echo "... main"
 	@echo "... quantum"
 	@echo "... qubits"
 	@echo "... random"
 	@echo "... tensor"
-	@echo "... test_gatesim"
-	@echo "... test_grover"
-	@echo "... test_qci"
-	@echo "... test_tensor_crtp"
-	@echo "... test_tensor_data"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

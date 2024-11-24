@@ -1,5 +1,6 @@
 
 #include "shape.h"
+#include "thread"
 
 template<typename E> class Conjugate; ///< Forward declaration of `Trasnpose` class
 template<typename E> class Convulate; ///< Forward declaration of `Trasnpose` class
@@ -15,6 +16,15 @@ public:
     Conjugate<T> conj() const noexcept {
         return Conjugate<T>(*this);
     }
+
+    // DataPtr reshaped_data() const noexcept {
+    //     int l = 1 << get_shape().size();
+    //     DataPtr dptr(new Data(l));
+    //     for (int i=0; i<l; i++){
+    //         (*dptr)[i] = (*this)(i);
+    //     }
+    //     return dptr;
+    // }
     // Convulate<T> conv(const Qubits& qubs) const noexcept {
     //     return Convulate<T>(*this, qubs);
     // }
@@ -61,7 +71,10 @@ private:
 template<typename Tl, typename Tr>
 class TensorProd: public Expression<TensorProd<Tl, Tr>>{
 public:
-    TensorProd(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr}, shape{prod(exprl.get_shape(), exprr.get_shape())} { init(); }
+    TensorProd(const Tl& exprl, const Tr& exprr): exprl{&exprl}, 
+                                                  exprr{&exprr}, 
+                                                  shape{prod(exprl.get_shape(), exprr.get_shape())}
+                                                { init(); }
     Shape get_shape() const noexcept { return shape; }
     DataType operator[](int i) const{
         int id = i & ( (1 << shape.nd) - 1);
@@ -98,10 +111,13 @@ public:
         dif = 1<<(nlu + nru - shape.nu);
     }
 
-private:
+// private:
     Shape shape;
+    DataPtr dumpdptr;
     const Tl *exprl;
     const Tr *exprr;
+    // const std::vector<int> dptrr;
+    // const std::vector<int> dptrl;
     int dif;
     int nld;
     int nrd;

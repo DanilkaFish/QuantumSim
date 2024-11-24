@@ -1,1 +1,1 @@
-/usr/bin/c++ -Wl,--dependency-file,CMakeFiles/test_tensor_data.dir/link.d CMakeFiles/test_tensor_data.dir/Tensors/test_datatensor.cpp.o -o bin/test_tensor_data  /usr/lib/libgtest.so.1.15.2 -lgtest_main -lpthread ../src/Tensors/libtensor.a ../src/Qubits/libqubits.a
+/usr/bin/c++ -O3 -Wl,--dependency-file,CMakeFiles/test_tensor_data.dir/link.d CMakeFiles/test_tensor_data.dir/Tensors/test_datatensor.cpp.o -o bin/test_tensor_data  /usr/lib/libgtest.so.1.15.2 -lgtest_main -lpthread ../src/Tensors/libtensor.a ../src/Qubits/libqubits.a

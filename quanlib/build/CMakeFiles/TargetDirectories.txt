@@ -1,3 +1,4 @@
+/home/yadanilka/Projects/quansim/quanlib/build/CMakeFiles/main.dir
 /home/yadanilka/Projects/quansim/quanlib/build/CMakeFiles/edit_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/build/CMakeFiles/rebuild_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/build/src/random/CMakeFiles/random.dir
@@ -18,10 +19,3 @@
 /home/yadanilka/Projects/quansim/quanlib/build/src/algorithms/CMakeFiles/grover.dir
 /home/yadanilka/Projects/quansim/quanlib/build/src/algorithms/CMakeFiles/edit_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/build/src/algorithms/CMakeFiles/rebuild_cache.dir
-/home/yadanilka/Projects/quansim/quanlib/build/tests/CMakeFiles/test_qci.dir
-/home/yadanilka/Projects/quansim/quanlib/build/tests/CMakeFiles/test_tensor_crtp.dir
-/home/yadanilka/Projects/quansim/quanlib/build/tests/CMakeFiles/test_tensor_data.dir
-/home/yadanilka/Projects/quansim/quanlib/build/tests/CMakeFiles/test_gatesim.dir
-/home/yadanilka/Projects/quansim/quanlib/build/tests/CMakeFiles/test_grover.dir
-/home/yadanilka/Projects/quansim/quanlib/build/tests/CMakeFiles/edit_cache.dir
-/home/yadanilka/Projects/quansim/quanlib/build/tests/CMakeFiles/rebuild_cache.dir

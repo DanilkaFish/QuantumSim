@@ -1,7 +1,19 @@
 #include "tensorexpr.h"
+#include "thread"
+#include "iostream"
+
+    
+
+constexpr int num_threads=8;
 
 int index_shape_change(int id, const std::map<Qubit, int>& up, const std::map<Qubit, int>& down);
 
+template<typename E>
+void fill(int init, int finit, Data& data, const Expression<E> &e){
+    for (int i=init; i<finit; i++){
+        data[i] = e[i];
+    }
+}; 
 
 class Tensor : public Expression<Tensor>{
 public:
@@ -26,18 +38,21 @@ public:
     }
     Tensor(const Shape& shape, DataPtr dptr): shape{shape}, dptr{dptr} { }
     Tensor(const Tensor& T): dptr{T.dptr}, shape{T.shape} {} 
+    // Tensor(Tensor&& T): dptr{T.dptr}, shape{T.shape} {} 
     
     template<typename E>
-	Tensor(const Expression<E> &e): dptr{new Data{}}, shape{e.get_shape()}
+	Tensor(const Expression<E> &e): dptr{new Data(1<<e.get_shape().size(),0)}, shape{e.get_shape()}
 	{
-		for (int i=0; i<(1<<shape.size()); i++){
-            dptr->push_back(e[i]);
+        for(int i=0; i < (1<<shape.size()); i++){
+            (*dptr)[i] = e[i];
         }
 	}
+
     
     DataType operator[](int i) const { return (*dptr)[i]; }
 
     const DataPtr& get_dptr() const { return dptr; }
+    DataPtr& get_dptr() { return dptr; }
     const Shape& get_shape() const { return shape; } 
     size_t size() const { return dptr->size(); } 
 protected:

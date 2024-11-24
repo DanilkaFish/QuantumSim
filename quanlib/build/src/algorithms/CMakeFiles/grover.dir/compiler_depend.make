@@ -38,7 +38,9 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -354,10 +356,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/cctype:
 
-/usr/include/c++/14.2.1/cstddef:
-
-/usr/include/c++/14.2.1/bits/vector.tcc:
-
 /usr/include/c++/14.2.1/bits/utility.h:
 
 /usr/include/c++/14.2.1/bits/uses_allocator.h:
@@ -396,13 +394,7 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/bits/shared_ptr_atomic.h:
 
-/usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h:
-
-/usr/include/bits/types/locale_t.h:
-
-/usr/include/c++/14.2.1/bits/stl_construct.h:
-
-/usr/include/c++/14.2.1/bits/cxxabi_forced.h:
+/usr/include/c++/14.2.1/bits/shared_ptr.h:
 
 /usr/include/c++/14.2.1/bits/stl_uninitialized.h:
 
@@ -432,14 +424,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/bits/types.h:
 
-/usr/include/c++/14.2.1/new:
-
-/usr/include/bits/types/error_t.h:
-
-/usr/include/c++/14.2.1/exception:
-
-/usr/include/bits/stdint-intn.h:
-
 /usr/include/c++/14.2.1/concepts:
 
 /usr/include/bits/endian.h:
@@ -456,9 +440,23 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/bits/types/time_t.h:
 
+/usr/include/c++/14.2.1/cstddef:
+
+/usr/include/c++/14.2.1/bits/vector.tcc:
+
+/usr/include/bits/stdlib-bsearch.h:
+
 /usr/include/c++/14.2.1/pstl/glue_algorithm_defs.h:
 
 /usr/include/bits/types/struct_timeval.h:
+
+/usr/include/c++/14.2.1/exception:
+
+/usr/include/bits/stdint-intn.h:
+
+/usr/include/c++/14.2.1/new:
+
+/usr/include/bits/types/error_t.h:
 
 /usr/include/bits/setjmp.h:
 
@@ -517,8 +515,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 /usr/include/c++/14.2.1/bits/localefwd.h:
 
 /usr/include/alloca.h:
-
-/usr/include/c++/14.2.1/bits/shared_ptr.h:
 
 /usr/include/c++/14.2.1/bits/string_view.tcc:
 
@@ -609,6 +605,16 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 /usr/include/c++/14.2.1/ext/aligned_buffer.h:
 
 /usr/include/bits/libc-header-start.h:
+
+/usr/include/bits/stdio.h:
+
+/usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h:
+
+/usr/include/bits/types/locale_t.h:
+
+/usr/include/c++/14.2.1/bits/stl_construct.h:
+
+/usr/include/c++/14.2.1/bits/cxxabi_forced.h:
 
 /usr/include/c++/14.2.1/tr1/gamma.tcc:
 
@@ -726,6 +732,14 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/bits/locale_facets.tcc:
 
+/usr/include/math.h:
+
+/usr/include/c++/14.2.1/bits/requires_hosted.h:
+
+/usr/include/c++/14.2.1/bit:
+
+/usr/include/c++/14.2.1/bits/memoryfwd.h:
+
 /usr/include/linux/errno.h:
 
 /usr/include/c++/14.2.1/string:
@@ -741,11 +755,3 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 /usr/include/c++/14.2.1/system_error:
 
 /usr/include/c++/14.2.1/bits/ptr_traits.h:
-
-/usr/include/math.h:
-
-/usr/include/c++/14.2.1/bit:
-
-/usr/include/c++/14.2.1/bits/memoryfwd.h:
-
-/usr/include/c++/14.2.1/bits/requires_hosted.h:

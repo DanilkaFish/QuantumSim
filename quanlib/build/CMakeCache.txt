@@ -22,7 +22,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+CMAKE_BUILD_TYPE:STRING=RELEASE
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -48,7 +48,7 @@ CMAKE_CXX_FLAGS_DEBUG:STRING=-g
 CMAKE_CXX_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
 
 //Flags used by the CXX compiler during RELEASE builds.
-CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+CMAKE_CXX_FLAGS_RELEASE:STRING=-O3
 
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
@@ -148,7 +148,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=tot
+CMAKE_PROJECT_NAME:STATIC=quanlib
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=0.1.0
@@ -240,7 +240,7 @@ GROVER_TEST:BOOL=ON
 GTest_DIR:PATH=/usr/lib/cmake/GTest
 
 //grover
-MAIN:BOOL=OFF
+MAIN:BOOL=ON
 
 //QC
 QC_INTER_TEST:BOOL=ON
@@ -252,7 +252,7 @@ RANDOMQC_TEST:BOOL=ON
 TENSOR_TEST:BOOL=ON
 
 //enable tests
-TESTS:BOOL=ON
+TESTS:BOOL=OFF
 
 //Value Computed by CMake
 gatesim_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/build/src/GateSimulator
@@ -271,6 +271,15 @@ grover_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 grover_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/algorithms
+
+//Value Computed by CMake
+quanlib_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/build
+
+//Value Computed by CMake
+quanlib_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+quanlib_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib
 
 //Value Computed by CMake
 quantum_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/build/src/QuantumCircuit
@@ -453,7 +462,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

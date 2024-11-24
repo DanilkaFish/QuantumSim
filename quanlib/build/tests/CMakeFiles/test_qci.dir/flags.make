@@ -6,5 +6,5 @@ CXX_DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
 
 CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/build/tests -I/home/yadanilka/Projects/quansim/quanlib/tests -I/include -I/home/yadanilka/Projects/quansim/quanlib/tests/include/algorithms -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/include -I/home/yadanilka/Projects/quansim/quanlib/include/quantumcircuit
 
-CXX_FLAGS = 
+CXX_FLAGS = -O3
 

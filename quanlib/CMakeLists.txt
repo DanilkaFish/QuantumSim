@@ -1,15 +1,19 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.14)
 
-project(tot VERSION 0.1.0 )
+project(quanlib VERSION 0.1.0 )
 
 
 option(TESTS "enable tests" ON)
-option(MAIN "grover" OFF)
+option(MAIN "grover" ON)
 
 set(TENSOR_PATH ${PROJECT_SOURCE_DIR}/src/Tensors/include)
 set(QC_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/QuantumCircuit/include)
 set(GS_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/GateSimulator/include)
 set(MYPUBLIC_PATH ${PROJECT_SOURCE_DIR}/include)
+
+# set(CMAKE_CXX_FLAGS "-Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 # set(CMAKE_INCLUDE_CURRENT_DIR True)
 
 
@@ -70,8 +74,10 @@ if(MAIN)
     target_sources(main PRIVATE 
         main.cpp
         )
-    target_link_libraries(main PRIVATE everything )
-
+    target_link_libraries(main PRIVATE sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random )
+    target_include_directories(main PUBLIC ${TENSOR_PATH} ${MYPUBLIC_PATH})
+    target_compile_options(main PRIVATE -pthread)
+    # target_link_options(main PRIVATE -pthread -sPTHREAD_POOL_SIZE=16)
 else()
 endif()
 
