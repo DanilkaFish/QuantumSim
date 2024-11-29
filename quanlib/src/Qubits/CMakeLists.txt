@@ -1,6 +1,6 @@
 project(qubits)
 
-add_library(${PROJECT_NAME} qubits.cpp)
+add_library(${PROJECT_NAME} OBJECT qubits.cpp)
 add_library(sub::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 

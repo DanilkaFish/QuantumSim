@@ -1,0 +1,3 @@
+[submodule "ext_sources/qulacs"]
+	path = ext_sources/qulacs
+	url = https://github.com/qulacs/qulacs.git

@@ -14,7 +14,7 @@ std::tuple<QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int> one_val
     QuantumCircuit main_qc;
     std::vector<int> binv;
     int len = n;
-    int rev_count =0;
+    int rev_count = 0;
     for (auto v : one_values){
         QuantumCircuit qc;
         binv = to_bin(v, n);

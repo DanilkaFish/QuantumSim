@@ -1,4 +1,5 @@
-build/*
-release
+*build*
+*release*
 *Fisher*
+quanlib/include*
 # ext_sources*

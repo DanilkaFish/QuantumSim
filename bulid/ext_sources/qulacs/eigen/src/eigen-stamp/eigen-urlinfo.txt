@@ -1,0 +1,12 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The download step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+method=url
+command=/usr/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/home/yadanilka/Projects/quansim/bulid/ext_sources/qulacs/eigen/src/eigen-stamp/download-eigen.cmake;COMMAND;/usr/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/home/yadanilka/Projects/quansim/bulid/ext_sources/qulacs/eigen/src/eigen-stamp/verify-eigen.cmake;COMMAND;/usr/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/home/yadanilka/Projects/quansim/bulid/ext_sources/qulacs/eigen/src/eigen-stamp/extract-eigen.cmake
+source_dir=/home/yadanilka/Projects/quansim/bulid/ext_sources/qulacs/eigen/src/eigen
+work_dir=/home/yadanilka/Projects/quansim/bulid/ext_sources/qulacs/eigen/src
+url(s)=https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz
+hash=
+      no_extract=
+

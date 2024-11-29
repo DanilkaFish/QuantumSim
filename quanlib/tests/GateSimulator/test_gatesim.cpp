@@ -45,7 +45,7 @@ TEST_P(SimpleCircsTest, TestCirc) {
     TensorProvider exec(qc);
     exec.state = init_state;
     exec.run();
-    EXPECT_TRUE(compare(exp_state, exec.state)) << ERR_PREFIX << "expected:\n" << exp_state << "result: \n" << exec.state << "\n";
+    EXPECT_TRUE(compare(exp_state, exec.state)) << ERR_PREFIX << "expected:\n" << exp_state << "result: \n" << exec.state << "\n" ;
     
   // }
 }

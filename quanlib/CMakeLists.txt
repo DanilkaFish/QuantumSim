@@ -6,14 +6,24 @@ project(quanlib VERSION 0.1.0 )
 option(TESTS "enable tests" ON)
 option(MAIN "grover" ON)
 
-set(TENSOR_PATH ${PROJECT_SOURCE_DIR}/src/Tensors/include)
-set(QC_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/QuantumCircuit/include)
-set(GS_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/GateSimulator/include)
-set(MYPUBLIC_PATH ${PROJECT_SOURCE_DIR}/include)
+set(TENSOR_PATH ${PROJECT_SOURCE_DIR}/src/Tensors)
+set(QC_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/QuantumCircuit)
+set(GS_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/GateSimulator)
+# set(MYPUBLIC_PATH ${PROJECT_SOURCE_DIR}/)
 
 # set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
+
+file(GLOB_RECURSE header_files ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
+foreach(path IN LISTS header_files)
+	string(REPLACE ${CMAKE_CURRENT_SOURCE_DIR}/src/ ${CMAKE_CURRENT_SOURCE_DIR}/include/ path_dst ${path})
+	configure_file(${path} ${path_dst} COPYONLY)
+endforeach()
+# include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+
 # set(CMAKE_INCLUDE_CURRENT_DIR True)
 
 
@@ -50,6 +60,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 # include_directories(${PROJECT_SOURCE_DIR}/include/Tensors)
 # include_directories(${PROJECT_SOURCE_DIR}/include)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../lib)
 
 
 add_subdirectory(src/random)
@@ -58,6 +69,10 @@ add_subdirectory(src/QuantumCircuit)
 add_subdirectory(src/GateSimulator)
 add_subdirectory(src/Tensors)
 add_subdirectory(src/algorithms)
+
+add_library(quan)
+# target_link_libraries(quan PUBLIC sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random )
+target_link_libraries(quan PUBLIC quantum tensor qubits gatesim grover random)
 
 # add_library(everything)
 # target_link_libraries(everything PUBLIC sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random)
@@ -69,15 +84,15 @@ else()
 endif()
 
 
-if(MAIN)
-    add_executable(main)
-    target_sources(main PRIVATE 
-        main.cpp
-        )
-    target_link_libraries(main PRIVATE sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random )
-    target_include_directories(main PUBLIC ${TENSOR_PATH} ${MYPUBLIC_PATH})
-    target_compile_options(main PRIVATE -pthread)
-    # target_link_options(main PRIVATE -pthread -sPTHREAD_POOL_SIZE=16)
-else()
-endif()
+# if(MAIN)
+#     add_executable(main)
+#     target_sources(main PRIVATE 
+#         main.cpp
+#         )
+#     target_link_libraries(main PRIVATE sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random )
+#     target_include_directories(main PUBLIC ${TENSOR_PATH} ${MYPUBLIC_PATH})
+#     target_compile_options(main PRIVATE -pthread)
+#     # target_link_options(main PRIVATE -pthread -sPTHREAD_POOL_SIZE=16)
+# else()
+# endif()
 

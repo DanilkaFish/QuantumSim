@@ -12,7 +12,7 @@ option(GATESIM_TEST "Gate simulator" OFF)
 option(RANDOMQC_TEST "random_qc" OFF)
 option(GROVER_TEST "grover" ON)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 if(QC_INTER_TEST)
     include(QuantumCircuit/CMakeLists.txt)
 else()

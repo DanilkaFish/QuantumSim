@@ -1,0 +1,2 @@
+/usr/bin/ar qc /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a src/QuantumCircuit/CMakeFiles/quantum.dir/quantumcircuit.cpp.o src/Tensors/CMakeFiles/tensor.dir/tensors.cpp.o src/Qubits/CMakeFiles/qubits.dir/qubits.cpp.o src/GateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o src/algorithms/CMakeFiles/grover.dir/grover.cpp.o src/random/CMakeFiles/random.dir/genfactory.cpp.o
+/usr/bin/ranlib /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/CMakeFiles/pybind11_fetch-populate"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/CMakeFiles/pybind11_fetch-populate.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/CMakeFiles/pybind11_fetch-populate-complete.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-build.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-configure.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-download.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-install.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-patch.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-test.rule"
+		},
+		{
+			"file" : "/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/pybind11_fetch-populate-prefix/src/pybind11_fetch-populate-stamp/pybind11_fetch-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"pybind11_fetch-populate"
+		],
+		"name" : "pybind11_fetch-populate"
+	}
+}

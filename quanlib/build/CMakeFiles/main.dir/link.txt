@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -Wl,--dependency-file,CMakeFiles/main.dir/link.d CMakeFiles/main.dir/main.cpp.o -o main  src/QuantumCircuit/libquantum.a src/Tensors/libtensor.a src/Qubits/libqubits.a src/GateSimulator/libgatesim.a src/algorithms/libgrover.a src/random/librandom.a
