@@ -1,6 +1,0 @@
-
-# include(QuantumCircuit/CMakeLists.txt)
-# include(Qubits/CMakeLists.txt)
-# include(Tensors/CMakeLists.txt)
-# include(random/CMakeLists.txt)
-# include(algorithms/CMakeLists.txt)

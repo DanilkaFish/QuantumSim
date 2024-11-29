@@ -46,7 +46,6 @@ public:
 
 
 
-
 std::ostream& operator<<(std::ostream& os, const State& s);
 
 template<typename Operator, typename State>

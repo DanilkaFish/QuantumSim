@@ -83,21 +83,7 @@ Operator bm::TOF(Qubit ctrl1, Qubit ctrl2, Qubit trg ){
     return Operator({ctrl1, ctrl2, trg}, data);
 }
 
-PauliString::PauliString(const std::string& s, const Qubits& qubs): s{s}, qubs{qubs}{
-    if (s.size() != qubs.size()){
-        std::cerr << "Wrong sizes in paulistring!!!";
-        return;
-    }
 
-    for (int i=0; i<s.size(); i++){
-        ps.push_back(std::make_pair(s[i], qubs[i]));
-    }
-    // if (sorted){
-    //     std::sort(ps.begin(), ps.end(), [](pairci& l, pairci& r){
-    //                                         return l.second > r.second;   
-    //                                     });
-    // }
-}
 
 Operator bm::PR(const PauliString& pauli, double theta){
     Operator T;
@@ -151,12 +137,12 @@ void TensorProvider::TOF(const Qubits& qubs){
     inplace_evolve(bm::TOF(qubs[0], qubs[1], qubs[2]));
 }
 
-void TensorProvider::U1(const Qubits& qubs, DataPtr dptr){
-    inplace_evolve(Operator{qubs, dptr});
-}
-void TensorProvider::U2(const Qubits& qubs, DataPtr dptr){
-    inplace_evolve(Operator{qubs, dptr});
-}
+// void TensorProvider::U1(const Qubits& qubs, DataPtr dptr){
+//     inplace_evolve(Operator{qubs, dptr});
+// }
+// void TensorProvider::U2(const Qubits& qubs, DataPtr dptr){
+//     inplace_evolve(Operator{qubs, dptr});
+// }
 void TensorProvider::U(const Qubits& qubs, DataPtr dptr){
     inplace_evolve(Operator{qubs, dptr});
 }

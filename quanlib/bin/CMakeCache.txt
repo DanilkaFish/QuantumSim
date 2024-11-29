@@ -22,7 +22,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+CMAKE_BUILD_TYPE:STRING=RELEASE
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -231,7 +231,7 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Gate simulator
-GATESIM_TEST:BOOL=ON
+GATESIM_TEST:BOOL=OFF
 
 //grover
 GROVER_TEST:BOOL=ON
@@ -316,15 +316,6 @@ tensor_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 tensor_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/Tensors
-
-//Value Computed by CMake
-test_gatesim_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/tests
-
-//Value Computed by CMake
-test_gatesim_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-test_gatesim_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/tests
 
 
 ########################

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DGTEST_LINKED_AS_SHARED_LIBRARY=1
 
-CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/bin/tests -I/home/yadanilka/Projects/quansim/quanlib/tests -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/tests/include/algorithms -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit -I/home/yadanilka/Projects/quansim/quanlib/src/GateSimulator -I/quantumcircuit -I/home/yadanilka/Projects/quansim/quanlib/src/Tensors
+CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/bin/tests -I/home/yadanilka/Projects/quansim/quanlib/tests -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/include/algorithms -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit -I/home/yadanilka/Projects/quansim/quanlib/src/GateSimulator -I/quantumcircuit -I/home/yadanilka/Projects/quansim/quanlib/src/Tensors
 
-CXX_FLAGS = 
+CXX_FLAGS = -O3
 

@@ -1,2 +1,0 @@
-/usr/bin/ar qc /home/yadanilka/Projects/quansim/quanlib/lib/librandom.a CMakeFiles/random.dir/genfactory.cpp.o
-/usr/bin/ranlib /home/yadanilka/Projects/quansim/quanlib/lib/librandom.a

@@ -36,7 +36,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/yadanilka/Projects/quansim/quanlib/src/random/genfactory.h"
   "/home/yadanilka/Projects/quansim/quanlib/src/random/numgenerator/basegen.h"
   "/home/yadanilka/Projects/quansim/quanlib/tests/CMakeLists.txt"
-  "/home/yadanilka/Projects/quansim/quanlib/tests/GateSimulator/CMakeLists.txt"
   "/home/yadanilka/Projects/quansim/quanlib/tests/algorithms/CMakeLists.txt"
   "/usr/lib/cmake/GTest/GTestConfig.cmake"
   "/usr/lib/cmake/GTest/GTestConfigVersion.cmake"
@@ -127,6 +126,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/GateSimulator/CMakeFiles/gatesim.dir/DependInfo.cmake"
   "src/Tensors/CMakeFiles/tensor.dir/DependInfo.cmake"
   "src/algorithms/CMakeFiles/grover.dir/DependInfo.cmake"
-  "tests/CMakeFiles/test_gatesim.dir/DependInfo.cmake"
   "tests/CMakeFiles/test_grover.dir/DependInfo.cmake"
   )

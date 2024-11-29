@@ -223,12 +223,10 @@ src/random/clean: src/random/CMakeFiles/random.dir/clean
 # Directory level rules for directory tests
 
 # Recursive "all" directory target.
-tests/all: tests/CMakeFiles/test_gatesim.dir/all
 tests/all: tests/CMakeFiles/test_grover.dir/all
 .PHONY : tests/all
 
 # Recursive "codegen" directory target.
-tests/codegen: tests/CMakeFiles/test_gatesim.dir/codegen
 tests/codegen: tests/CMakeFiles/test_grover.dir/codegen
 .PHONY : tests/codegen
 
@@ -237,7 +235,6 @@ tests/preinstall:
 .PHONY : tests/preinstall
 
 # Recursive "clean" directory target.
-tests/clean: tests/CMakeFiles/test_gatesim.dir/clean
 tests/clean: tests/CMakeFiles/test_grover.dir/clean
 .PHONY : tests/clean
 
@@ -464,40 +461,6 @@ src/algorithms/CMakeFiles/grover.dir/clean:
 .PHONY : src/algorithms/CMakeFiles/grover.dir/clean
 
 #=============================================================================
-# Target rules for target tests/CMakeFiles/test_gatesim.dir
-
-# All Build rule for target.
-tests/CMakeFiles/test_gatesim.dir/all: src/Qubits/CMakeFiles/qubits.dir/all
-tests/CMakeFiles/test_gatesim.dir/all: src/QuantumCircuit/CMakeFiles/quantum.dir/all
-tests/CMakeFiles/test_gatesim.dir/all: src/GateSimulator/CMakeFiles/gatesim.dir/all
-tests/CMakeFiles/test_gatesim.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/depend
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=8,9 "Built target test_gatesim"
-.PHONY : tests/CMakeFiles/test_gatesim.dir/all
-
-# Build rule for subdir invocation for target.
-tests/CMakeFiles/test_gatesim.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_gatesim.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
-.PHONY : tests/CMakeFiles/test_gatesim.dir/rule
-
-# Convenience name for target.
-test_gatesim: tests/CMakeFiles/test_gatesim.dir/rule
-.PHONY : test_gatesim
-
-# codegen rule for target.
-tests/CMakeFiles/test_gatesim.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/codegen
-.PHONY : tests/CMakeFiles/test_gatesim.dir/codegen
-
-# clean rule for target.
-tests/CMakeFiles/test_gatesim.dir/clean:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/clean
-.PHONY : tests/CMakeFiles/test_gatesim.dir/clean
-
-#=============================================================================
 # Target rules for target tests/CMakeFiles/test_grover.dir
 
 # All Build rule for target.
@@ -508,7 +471,7 @@ tests/CMakeFiles/test_grover.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_grover.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=10,11 "Built target test_grover"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=8,9 "Built target test_grover"
 .PHONY : tests/CMakeFiles/test_grover.dir/all
 
 # Build rule for subdir invocation for target.

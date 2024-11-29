@@ -208,19 +208,6 @@ grover/fast:
 .PHONY : grover/fast
 
 #=============================================================================
-# Target rules for targets named test_gatesim
-
-# Build rule for target.
-test_gatesim: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_gatesim
-.PHONY : test_gatesim
-
-# fast build rule for target.
-test_gatesim/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/build
-.PHONY : test_gatesim/fast
-
-#=============================================================================
 # Target rules for targets named test_grover
 
 # Build rule for target.
@@ -248,7 +235,6 @@ help:
 	@echo "... qubits"
 	@echo "... random"
 	@echo "... tensor"
-	@echo "... test_gatesim"
 	@echo "... test_grover"
 .PHONY : help
 

@@ -56,8 +56,15 @@ namespace BaseInstr{
     InstructionPtr Sdag(Qubit qub);
     InstructionPtr CX(Qubit ctrl, Qubit tar);
     InstructionPtr TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar);
-    InstructionPtr U1(Qubit qub, DataPtr dptr);
-    InstructionPtr U2(Qubit qub1, Qubit qub2, DataPtr dptr);
-    InstructionPtr U(Qubits qubs, DataPtr dptr);
+    InstructionPtr Rx(Qubit qub, double angle);
+    InstructionPtr Ry(Qubit qub, double angle);
+    InstructionPtr Rz(Qubit qub, double angle);
+    InstructionPtr Rx(Qubit qub, ParameterPtr angle);
+    InstructionPtr Ry(Qubit qub, ParameterPtr angle);
+    InstructionPtr Rz(Qubit qub, ParameterPtr angle);
+    // InstructionPtr PR()
+    // InstructionPtr U1(Qubit qub, DataPtr dptr);
+    // InstructionPtr U2(Qubit qub1, Qubit qub2, DataPtr dptr);
+    // InstructionPtr U(Qubits qubs, DataPtr dptr);
 }
 #endif

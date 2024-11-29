@@ -1,3 +1,0 @@
-/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/CMakeFiles/pybind11_fetch-populate.dir
-/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/CMakeFiles/edit_cache.dir
-/home/yadanilka/Projects/quansim/bulid/_deps/pybind11_fetch-subbuild/CMakeFiles/rebuild_cache.dir

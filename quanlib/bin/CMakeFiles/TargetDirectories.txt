@@ -19,7 +19,6 @@
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/grover.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/edit_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/rebuild_cache.dir
-/home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_gatesim.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_grover.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/edit_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/rebuild_cache.dir

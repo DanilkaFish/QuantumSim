@@ -65,5 +65,18 @@ class SimpleCircsTest : public TestWithParam<std::tuple<State, std::vector<Instr
   }
 };
 
+class PauliRotationTest : public TestWithParam<std::tuple<State, double, PauliString, State>> {
+  protected:
+  State init_state;
+  double angle;
+  PauliString ps;
+  State exp_state;
+  void SetUp() override {
+    init_state = std::get<0>(GetParam());
+    angle = std::get<1>(GetParam());
+    ps = std::get<2>(GetParam());
+    exp_state = std::get<3>(GetParam());
+  }
+};
 
 #endif

@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/src/Tensors -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit
 
-CXX_FLAGS = 
+CXX_FLAGS = -O3
 

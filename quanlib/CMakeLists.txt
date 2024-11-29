@@ -8,7 +8,8 @@ option(MAIN "grover" ON)
 
 set(TENSOR_PATH ${PROJECT_SOURCE_DIR}/src/Tensors)
 set(QC_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/QuantumCircuit)
-set(GS_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/GateSimulator)
+set(GS_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/StateSimulator)
+set(QULACS_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/../ext_sources/qulacs/include)
 # set(MYPUBLIC_PATH ${PROJECT_SOURCE_DIR}/)
 
 # set(CMAKE_CXX_FLAGS "-Wall -Wextra")
@@ -22,7 +23,7 @@ foreach(path IN LISTS header_files)
 	configure_file(${path} ${path_dst} COPYONLY)
 endforeach()
 # include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 # set(CMAKE_INCLUDE_CURRENT_DIR True)
 

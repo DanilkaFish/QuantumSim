@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgrover.a CMakeFiles/grover.dir/grover.cpp.o
-/usr/bin/ranlib libgrover.a

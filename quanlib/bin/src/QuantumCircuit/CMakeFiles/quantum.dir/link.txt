@@ -1,2 +1,0 @@
-/usr/bin/ar qc libquantum.a CMakeFiles/quantum.dir/quantumcircuit.cpp.o
-/usr/bin/ranlib libquantum.a

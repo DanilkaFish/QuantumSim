@@ -23,8 +23,8 @@ public:
     virtual void H(const Qubits& qubs) override ;
     virtual void S(const Qubits& qubs) override ;
     virtual void Sdag(const Qubits& qubs) override ;
-    virtual void U1(const Qubits& qubs, DataPtr dptr) override ;
-    virtual void U2(const Qubits& qubs, DataPtr dptr) override ;
+    // virtual void U1(const Qubits& qubs, DataPtr dptr) override ;
+    // virtual void U2(const Qubits& qubs, DataPtr dptr) override ;
     virtual void U(const Qubits& qubs, DataPtr dptr) override ;
     State state;
     DataPtr dptr;
@@ -35,19 +35,7 @@ private:
 class Operator;
 class State;
 
-class PauliString{
-public:
-    PauliString(const std::string& s, const Qubits& qubs);
-    Qubit get_qn(int i ) const { return ps[i].second; }
-    char get_ch(int i ) const { return ps[i].first; }
-    // void push_back(std::pair<char, int>) {ps;
-    Qubits get_qubs() const { return qubs; }
-    int size() const { return ps.size(); }
-private:
-    std::vector<std::pair<char, Qubit>> ps;
-    Qubits qubs;
-    std::string s;
-};
+
 
 namespace bm{
     Operator X(Qubit);

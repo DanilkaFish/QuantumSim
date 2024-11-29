@@ -1,2 +1,0 @@
-/usr/bin/ar qc libqubits.a CMakeFiles/qubits.dir/qubits.cpp.o
-/usr/bin/ranlib libqubits.a

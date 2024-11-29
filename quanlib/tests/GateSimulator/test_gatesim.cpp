@@ -50,6 +50,18 @@ TEST_P(SimpleCircsTest, TestCirc) {
   // }
 }
 
+TEST_P(PauliRotationTest, TestAdditivity){
+  QuantumCircuit qc1({BaseInstr::PR(ps, angle), BaseInstr::PR(ps, angle)});
+  QuantumCircuit qc2({BaseInstr::PR(ps, 2*angle)});
+  TensorProvider exec1(qc1);
+  TensorProvider exec2(qc1);
+  exec1.state = init_state;
+  exec2.state = init_state;
+  exec1.run();
+  exec2.run();
+  EXPECT_TRUE(std::abs(Tensor{exec1.state.conj()* exec2.state}[0]) == 1) << ERR_PREFIX << "exec1:\n" << exec1.state << "exec2 : \n" << exec2.state << "\n" ;
+}
+
 
 INSTANTIATE_TEST_CASE_P(SelectValues, SimpleCircsTest,
                         Values(
@@ -79,3 +91,17 @@ INSTANTIATE_TEST_CASE_P(ComboValues, SimpleSetUp,
                                   )
                             )
                           );
+
+
+// INSTANTIATE_TEST_CASE_P(ComboValues, PauliRotationTest,
+    //                     Combine(Values(
+    // {ones({0,1,2,3}), zeros({0,1,2,3}), random({0,1,2,3})}),
+    // std::vector<InstructionPtr>{BaseInstr::CX(0,1)},
+    // std::vector<InstructionPtr>{BaseInstr::X(0)},
+    // std::vector<InstructionPtr>{BaseInstr::X(0), BaseInstr::X(1)},
+    // std::vector<InstructionPtr>{BaseInstr::X(0), BaseInstr::Y(1), BaseInstr::Z(2)},
+    // std::vector<InstructionPtr>{BaseInstr::X(0), BaseInstr::Y(1), BaseInstr::I(2)},
+    // std::vector<InstructionPtr>{BaseInstr::TOF(0,1,2)}
+    //                               )
+    //                         )
+    //                       );
