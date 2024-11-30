@@ -16,6 +16,11 @@ std::ostream& operator<<(std::ostream& os, const Qubit& qub){
     return os << qub.num;
 }
 
+
+std::ostream& operator<<(std::ostream& os, const PauliString& ps){
+    return os << ps.get_name();
+}
+
 bool operator<(Qubit l, Qubit r){
     return l.num < r.num;
 }

@@ -51,15 +51,29 @@ TEST_P(SimpleCircsTest, TestCirc) {
 }
 
 TEST_P(PauliRotationTest, TestAdditivity){
-  QuantumCircuit qc1({BaseInstr::PR(ps, angle), BaseInstr::PR(ps, angle)});
+  QuantumCircuit qc1({BaseInstr::PR(ps, 1*angle), BaseInstr::PR(ps, 1*angle)});
   QuantumCircuit qc2({BaseInstr::PR(ps, 2*angle)});
   TensorProvider exec1(qc1);
-  TensorProvider exec2(qc1);
+  TensorProvider exec2(qc2);
   exec1.state = init_state;
   exec2.state = init_state;
   exec1.run();
   exec2.run();
-  EXPECT_TRUE(std::abs(Tensor{exec1.state.conj()* exec2.state}[0]) == 1) << ERR_PREFIX << "exec1:\n" << exec1.state << "exec2 : \n" << exec2.state << "\n" ;
+  double res = std::abs(Tensor{exec1.state.conj()* exec2.state}[0]);
+  EXPECT_TRUE( std::abs(res-1) < 0.0000001) << ERR_PREFIX << "exec1:\n" << exec1.state << "exec2 : \n" << exec2.state << "\n" ;
+}
+
+TEST_P(PauliRotationTest, TestDecomposition){
+  QuantumCircuit qc1({BaseInstr::PR(ps, 1*angle)});
+  QuantumCircuit qc2 = qc1.decompose();
+  TensorProvider exec1(qc1);
+  TensorProvider exec2(qc2);
+  exec1.state = init_state;
+  exec2.state = init_state;
+  exec1.run();
+  exec2.run();
+  double res = std::abs(Tensor{exec1.state.conj()* exec2.state}[0]);
+  EXPECT_TRUE( std::abs(res-1) < 0.0000001) << ERR_PREFIX << "exec1:\n" << exec1.state << "exec2 : \n" << exec2.state << "\n" ;
 }
 
 
@@ -79,18 +93,25 @@ INSTANTIATE_TEST_CASE_P(SelectValues, SimpleCircsTest,
                           );
 
 
-INSTANTIATE_TEST_CASE_P(ComboValues, SimpleSetUp,
+INSTANTIATE_TEST_CASE_P(ComboValues, PauliRotationTest,
                         Combine(Values(
-    std::vector<InstructionPtr>{},
-    std::vector<InstructionPtr>{BaseInstr::CX(0,1)},
-    std::vector<InstructionPtr>{BaseInstr::X(0)},
-    std::vector<InstructionPtr>{BaseInstr::X(0), BaseInstr::X(1)},
-    std::vector<InstructionPtr>{BaseInstr::X(0), BaseInstr::Y(1), BaseInstr::Z(2)},
-    std::vector<InstructionPtr>{BaseInstr::X(0), BaseInstr::Y(1), BaseInstr::I(2)},
-    std::vector<InstructionPtr>{BaseInstr::TOF(0,1,2)}
-                                  )
-                            )
-                          );
+                                  random({0,1,2,3}),
+                                  zeros({0,1,2,3}),
+                                  ones({0,1,2,3}) 
+                                  ),
+                                Values(0.1, 1, 0.5, 3.1416/4),
+                                Values(
+                                  PauliString("xyz",{0,1,2} ),
+                                  PauliString("zzz",{0,1,2} ),
+                                  PauliString("yyx",{0,1,2} ),
+                                  PauliString("zzy",{0,1,2} ),
+                                  PauliString("xyz",{0,3,2} ),
+                                  PauliString("xyz",{3,1,2} ),
+                                  PauliString("xx",{0,3} )
+                                  ),
+                                Values(zeros({0,1,2,3}))
+                              )
+                       );
 
 
 // INSTANTIATE_TEST_CASE_P(ComboValues, PauliRotationTest,

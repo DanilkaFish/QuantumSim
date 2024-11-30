@@ -117,6 +117,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+tests/CMakeFiles/test_gatesim.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_gatesim.dir/rule
+.PHONY : tests/CMakeFiles/test_gatesim.dir/rule
+
+# Convenience name for target.
+test_gatesim: tests/CMakeFiles/test_gatesim.dir/rule
+.PHONY : test_gatesim
+
+# fast build rule for target.
+test_gatesim/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/build
+.PHONY : test_gatesim/fast
+
+# Convenience name for target.
 tests/CMakeFiles/test_grover.dir/rule:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_grover.dir/rule
 .PHONY : tests/CMakeFiles/test_grover.dir/rule
@@ -129,6 +143,30 @@ test_grover: tests/CMakeFiles/test_grover.dir/rule
 test_grover/fast:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/build
 .PHONY : test_grover/fast
+
+GateSimulator/test_gatesim.o: GateSimulator/test_gatesim.cpp.o
+.PHONY : GateSimulator/test_gatesim.o
+
+# target to build an object file
+GateSimulator/test_gatesim.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/GateSimulator/test_gatesim.cpp.o
+.PHONY : GateSimulator/test_gatesim.cpp.o
+
+GateSimulator/test_gatesim.i: GateSimulator/test_gatesim.cpp.i
+.PHONY : GateSimulator/test_gatesim.i
+
+# target to preprocess a source file
+GateSimulator/test_gatesim.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/GateSimulator/test_gatesim.cpp.i
+.PHONY : GateSimulator/test_gatesim.cpp.i
+
+GateSimulator/test_gatesim.s: GateSimulator/test_gatesim.cpp.s
+.PHONY : GateSimulator/test_gatesim.s
+
+# target to generate assembly for a file
+GateSimulator/test_gatesim.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/GateSimulator/test_gatesim.cpp.s
+.PHONY : GateSimulator/test_gatesim.cpp.s
 
 algorithms/grover_test.o: algorithms/grover_test.cpp.o
 .PHONY : algorithms/grover_test.o
@@ -162,7 +200,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test_gatesim"
 	@echo "... test_grover"
+	@echo "... GateSimulator/test_gatesim.o"
+	@echo "... GateSimulator/test_gatesim.i"
+	@echo "... GateSimulator/test_gatesim.s"
 	@echo "... algorithms/grover_test.o"
 	@echo "... algorithms/grover_test.i"
 	@echo "... algorithms/grover_test.s"

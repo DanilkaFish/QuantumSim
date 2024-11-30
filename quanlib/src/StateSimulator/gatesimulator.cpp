@@ -4,9 +4,10 @@
 
 
 Operator bm::I(const Qubits& qubs){
-    DataPtr dptr(new Data(1<<2*qubs.size()));
-    for(int i=0; 1 < 1 << qubs.size(); i++){
-        (*dptr)[i*i + i] = 1;
+    int n = 1 << qubs.size();
+    DataPtr dptr(new Data((n*n), 0));
+    for(int i=0; i < n; i++){
+        (*dptr)[i*n + i] = 1;
     }
     return Operator(qubs, dptr);
 }
@@ -83,10 +84,25 @@ Operator bm::TOF(Qubit ctrl1, Qubit ctrl2, Qubit trg ){
     return Operator({ctrl1, ctrl2, trg}, data);
 }
 
+Operator bm::Rx(const Qubits& qubs, double angle){
+    DataType c = cos(angle/2);
+    DataType is = i::i*sin(angle/2);
+    return Operator(qubs, Data{c,is,is,c});
+}
 
+Operator bm::Ry(const Qubits& qubs, double angle){
+    DataType c = cos(angle/2);
+    DataType s = sin(angle/2);
+    return Operator(qubs, Data{c, -s, s,c});
+}
+Operator bm::Rz(const Qubits& qubs, double angle){
+    DataType c = cos(angle/2);
+    DataType is = i::i*sin(angle/2);
+    return Operator(qubs, Data{c + is, 0, 0, c - is});
+}
 
 Operator bm::PR(const PauliString& pauli, double theta){
-    Operator T;
+    Tensor T(1);
     for(int i=0; i<pauli.size(); i++){
         switch (tolower(pauli.get_ch(i)))
         {
@@ -106,7 +122,13 @@ Operator bm::PR(const PauliString& pauli, double theta){
             std::cerr << "WTF char in pualistring";
         }
     }
-    return Tensor{cos(theta/2)}*bm::I(pauli.get_qubs()) + Tensor{sin(theta/2)}*T;
+    std::cerr << "hello\n\n" << sin(theta/2) << "\n\n\n";
+    // std::cerr << Tensor{Tensor(sin(theta/2))*T} << std::endl;
+    // std::cerr << bm::I(pauli.get_qubs()) << std::endl;
+
+    std::cerr << Operator{Tensor{cos(theta/2)}*bm::I(pauli.get_qubs()) + Tensor{i::i*sin(theta/2)}*T};
+    std::cerr << "hello\n\n\n\n\n";
+    return Operator{Tensor{cos(theta/2)}*bm::I(pauli.get_qubs()) + Tensor{i::i* sin(theta/2)}*T};
 }
 
 void TensorProvider::I(const Qubits& qubs){
@@ -135,6 +157,19 @@ void TensorProvider::CX(const Qubits& qubs){
 }
 void TensorProvider::TOF(const Qubits& qubs){
     inplace_evolve(bm::TOF(qubs[0], qubs[1], qubs[2]));
+}
+
+void TensorProvider::PR(const PauliString& ps, double angle){
+    inplace_evolve(bm::PR(ps, angle));
+}
+void TensorProvider::Rx(const Qubits& qubs, double dptr){
+    inplace_evolve(bm::Rx(qubs, dptr));
+}
+void TensorProvider::Ry(const Qubits& qubs, double dptr){
+    inplace_evolve(bm::Ry(qubs, dptr));
+}
+void TensorProvider::Rz(const Qubits& qubs, double dptr){
+    inplace_evolve(bm::Rz(qubs, dptr));
 }
 
 // void TensorProvider::U1(const Qubits& qubs, DataPtr dptr){
@@ -172,7 +207,7 @@ inline void _fill(int init, int finit, int dif, const Data& l, Data& r, const ma
 void TensorProvider::inplace_evolve(const Operator& op){
     mask buffer_mask(state.get_shape().pos_up.compress(state.get_shape().pos_up.m) ^ 
                         state.get_shape().pos_up.compress(op.get_shape().pos_down.m));
-    int dif = 1 << op.get_qubits().size();
+    int dif = 1 << index_sum(op.get_shape().pos_down.m);
     std::vector<int> expand;
     mask op_mask(state.get_shape().pos_up.compress(op.get_shape().pos_down.m));
     for (int j=0; j < (dif); j++){

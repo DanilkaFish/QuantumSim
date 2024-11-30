@@ -80,14 +80,14 @@ quan_EXTERNAL_OBJECTS = \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/QuantumCircuit/CMakeFiles/quantum.dir/quantumcircuit.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/Tensors/CMakeFiles/tensor.dir/tensors.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/Qubits/CMakeFiles/qubits.dir/qubits.cpp.o" \
-"/home/yadanilka/Projects/quansim/quanlib/bin/src/GateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o" \
+"/home/yadanilka/Projects/quansim/quanlib/bin/src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/grover.dir/grover.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/random/CMakeFiles/random.dir/genfactory.cpp.o"
 
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/QuantumCircuit/CMakeFiles/quantum.dir/quantumcircuit.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/Tensors/CMakeFiles/tensor.dir/tensors.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/Qubits/CMakeFiles/qubits.dir/qubits.cpp.o
-/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/GateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o
+/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/algorithms/CMakeFiles/grover.dir/grover.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/random/CMakeFiles/random.dir/genfactory.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: CMakeFiles/quan.dir/build.make

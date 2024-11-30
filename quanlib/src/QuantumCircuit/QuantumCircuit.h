@@ -62,9 +62,11 @@ namespace BaseInstr{
     InstructionPtr Rx(Qubit qub, ParameterPtr angle);
     InstructionPtr Ry(Qubit qub, ParameterPtr angle);
     InstructionPtr Rz(Qubit qub, ParameterPtr angle);
+    InstructionPtr PR(const PauliString& pauli, double theta);
+    InstructionPtr PR(const PauliString& pauli, ParameterPtr theta);
     // InstructionPtr PR()
     // InstructionPtr U1(Qubit qub, DataPtr dptr);
     // InstructionPtr U2(Qubit qub1, Qubit qub2, DataPtr dptr);
-    // InstructionPtr U(Qubits qubs, DataPtr dptr);
+    InstructionPtr U(const Qubits& qubs, DataPtr dptr);
 }
 #endif

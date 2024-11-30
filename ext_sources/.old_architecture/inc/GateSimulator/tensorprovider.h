@@ -23,7 +23,7 @@ public:
     virtual void U1(const Qubits& qubs, DataPtr dptr) override ;
     virtual void U2(const Qubits& qubs, DataPtr dptr) override ;
     virtual void U(const Qubits& qubs, DataPtr dptr) override ;
-    //  PR(Double angle, const PauliString& ps);
+    virtual void PR(const PauliString& ps, ParameterPtr parptr) override ;
 
     State state;
     ParameterSet ps;

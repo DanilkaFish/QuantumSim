@@ -36,9 +36,21 @@ public:
         }
     }
     Tensor(const Shape& shape, DataPtr dptr): shape{shape}, dptr{dptr} { }
-    Tensor(const Tensor& T): dptr{T.dptr}, shape{T.shape} {} 
+    Tensor(const Tensor& T): dptr{new Data(T.size())}, shape{T.shape} {
+        for (int i=0; i<this->size(); i++){
+            (*dptr)[i] = T[i];
+        }
+    } 
+    Tensor& operator=(const Tensor& T){
+        dptr = DataPtr{new Data(T.size())};
+        shape = T.shape; 
+        for (int i=0; i<this->size(); i++){
+            (*dptr)[i] = T[i];
+        }
+        return *this;
+    }
     // Tensor(Tensor&& T): dptr{T.dptr}, shape{T.shape} {} 
-    
+    // Tensor& operator=(Tensor&& T) = default;
     template<typename E>
 	Tensor(const Expression<E> &e): dptr{new Data(1<<e.get_shape().size(),0)}, shape{e.get_shape()}
 	{

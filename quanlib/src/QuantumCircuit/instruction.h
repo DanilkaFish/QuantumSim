@@ -4,7 +4,8 @@
 #include <memory>
 #include "common.h"
 #include "QuantumCircuit.h"
-#include "metaprovider.h"
+// #include "metaprovider.h"
+class MetaProvider;
 
 class Instruction{
 public:
@@ -56,13 +57,7 @@ typedef std::shared_ptr<Instruction> InstructionPtr;
 //     DataPtr dptr;
 // };
 
-// class _U: public Instruction{
-// public:
-//     _U(const Qubits& qubs, DataPtr dptr): Instruction{qubs, "U"}, dptr{dptr} {}
-//     void apply(MetaProvider& md) override { md.U(qubits, dptr); }
-// private:
-//     DataPtr dptr;
-// };
+
 
 
 #endif

@@ -274,15 +274,17 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: \
  /usr/include/c++/14.2.1/bits/stl_heap.h \
  /usr/include/c++/14.2.1/bits/uniform_int_dist.h \
  /usr/include/c++/14.2.1/pstl/glue_algorithm_defs.h \
- /home/yadanilka/Projects/quansim/quanlib/src/GateSimulator/tensorprovider.h \
- /home/yadanilka/Projects/quansim/quanlib/src/GateSimulator/tensorspec.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/tensorprovider.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/tensorspec.h \
  /home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensor.h \
  /home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensorexpr.h \
  /home/yadanilka/Projects/quansim/quanlib/src/Tensors/shape.h \
  /usr/include/c++/14.2.1/thread /usr/include/c++/14.2.1/bits/std_thread.h \
  /usr/include/c++/14.2.1/bits/this_thread_sleep.h \
- /home/yadanilka/Projects/quansim/quanlib/src/GateSimulator/gatesim.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/gatesim.h \
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/metaprovider.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/instruction.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h \
  /home/yadanilka/Projects/quansim/quanlib/tests/common_test.h \
  /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/stdc++.h \
  /usr/include/c++/14.2.1/cfloat /usr/include/c++/14.2.1/climits \

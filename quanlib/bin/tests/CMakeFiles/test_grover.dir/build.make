@@ -95,14 +95,14 @@ test_grover_EXTERNAL_OBJECTS = \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/QuantumCircuit/CMakeFiles/quantum.dir/quantumcircuit.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/Tensors/CMakeFiles/tensor.dir/tensors.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/Qubits/CMakeFiles/qubits.dir/qubits.cpp.o" \
-"/home/yadanilka/Projects/quansim/quanlib/bin/src/GateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o" \
+"/home/yadanilka/Projects/quansim/quanlib/bin/src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/grover.dir/grover.cpp.o"
 
 test_grover: tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o
 test_grover: src/QuantumCircuit/CMakeFiles/quantum.dir/quantumcircuit.cpp.o
 test_grover: src/Tensors/CMakeFiles/tensor.dir/tensors.cpp.o
 test_grover: src/Qubits/CMakeFiles/qubits.dir/qubits.cpp.o
-test_grover: src/GateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o
+test_grover: src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o
 test_grover: src/algorithms/CMakeFiles/grover.dir/grover.cpp.o
 test_grover: tests/CMakeFiles/test_grover.dir/build.make
 test_grover: tests/CMakeFiles/test_grover.dir/compiler_depend.ts

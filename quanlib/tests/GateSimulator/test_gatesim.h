@@ -15,6 +15,20 @@
 
 using ::testing::TestWithParam;  
 
+State random(Qubits qubs){
+  Data data(1 << qubs.size(), 0);
+  double norm=0;
+  for (auto& x: data){
+    x = DataType(double(std::rand())/(1<<30), double(std::rand())/(1<<30));
+    norm += std::real(std::conj(x)*x);
+  }
+  norm = std::sqrt(norm); 
+  for (auto& x: data){
+    x = x/norm;
+  } 
+  return State(qubs, data);
+}
+
 State zeros(Qubits qubs){
   Data data(1 << qubs.size(), 0);
   data[0] = 1;

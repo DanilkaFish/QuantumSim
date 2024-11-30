@@ -9,9 +9,8 @@
     
 class TensorProvider: public MetaProvider{
 public:
-    TensorProvider(const QuantumCircuit& qc): MetaProvider{qc},
-                                            dptr(new Data(1<<qc.get_qubits().size())) { 
-        (*dptr)[0] = 1; state = State(qc.get_qubits(), dptr); 
+    TensorProvider(const QuantumCircuit& qc): MetaProvider{qc} { 
+        state = State(qc.get_qubits()); 
     }
     
     virtual void I(const Qubits& qubs) override;
@@ -26,8 +25,11 @@ public:
     // virtual void U1(const Qubits& qubs, DataPtr dptr) override ;
     // virtual void U2(const Qubits& qubs, DataPtr dptr) override ;
     virtual void U(const Qubits& qubs, DataPtr dptr) override ;
+    virtual void PR(const PauliString& ps, double dptr) override;
+    virtual void Rx(const Qubits& qubs, double dptr) override;
+    virtual void Ry(const Qubits& qubs, double dptr) override;
+    virtual void Rz(const Qubits& qubs, double dptr) override;
     State state;
-    DataPtr dptr;
 private:
     void inplace_evolve(const Operator& op);
 };
@@ -49,6 +51,9 @@ namespace bm{
     Operator CX(Qubit trg, Qubit ctrl);
     Operator TOF(Qubit ctrl1, Qubit ctrl2, Qubit trg);
     Operator PR(const PauliString& pauli, double theta);
+    Operator Rx(const Qubits& qubs, double theta);
+    Operator Ry(const Qubits& qubs, double theta);
+    Operator Rz(const Qubits& qubs, double theta);
 };
 
 #endif

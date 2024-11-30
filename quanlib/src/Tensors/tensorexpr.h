@@ -136,7 +136,13 @@ public:
 template<typename Tl, typename Tr>
 class TensorSum: public Expression<TensorSum<Tl, Tr>>{
 public:
-    TensorSum(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} { }
+    TensorSum(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} {
+        if (!(exprl.get_shape() == exprr.get_shape())) {
+            std::cerr << "dif shapes" << exprl.get_shape() << exprr.get_shape();
+        }else {
+            std::cerr << "same\n";
+        }
+    }
     Shape get_shape() const noexcept { return exprl->get_shape(); }
 
     DataType operator[](int i) const{

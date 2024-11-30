@@ -31,10 +31,11 @@ public:
     virtual void Rx(const Qubits& qubs, double angle) {};
     virtual void Ry(const Qubits& qubs, double angle) {};
     virtual void Rz(const Qubits& qubs, double angle) {};
-    virtual void PR(const Qubits& qubs, double angle) {};
+    // virtual void PR(const Qubits& qubs, double angle) {};
     // virtual void U1(const Qubits& qubs, DataPtr dptr) {};
     // virtual void U2(const Qubits& qubs, DataPtr dptr) {};
     virtual void U(const Qubits& qubs, DataPtr dptr) {};
+    virtual void PR(const PauliString& ps, double dptr) {};
     virtual ~MetaProvider() {};
     virtual void SetUp() {}
     void run();
@@ -133,10 +134,17 @@ public:
     // _Rx(const Qubits& qubs, double angle): Instruction{qubs, "Rx"}, angle{new Parameter{"", angle}} {}
     _PR(const PauliString& ps, ParameterPtr angle): ps{ps}, Instruction{ps.get_qubs(), ps.get_name()}, angle{angle} {}
     virtual QuantumCircuit decompose(const InstructionPtr& ip) override;
-    void apply(MetaProvider& md) override { md.PR(qubits, angle->value);}
+    void apply(MetaProvider& md) override { md.PR(ps, angle->value);}
 private:
     ParameterPtr angle; 
     PauliString ps;
 };
 
+class _U: public Instruction{
+public:
+    _U(const Qubits& qubs, DataPtr dptr): Instruction{qubs, "U"}, dptr{dptr} {}
+    void apply(MetaProvider& md) override { md.U(qubits, dptr); }
+private:
+    DataPtr dptr;
+};
 #endif

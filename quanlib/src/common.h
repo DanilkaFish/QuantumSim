@@ -21,7 +21,7 @@ namespace i{
 
 class Parameter{
 public:
-    explicit Parameter(std::string name="t", double val=0): name{name}, value{value} {}
+    explicit Parameter(std::string name="t", double val=0): name{name}, value{val} {}
     std::string name;
     double value;
 };
@@ -96,19 +96,8 @@ private:
 class PauliString{
 public:
     PauliString()=default;
-    PauliString(const std::string& s, const Qubits& qubs);
-    Qubit get_qn(int i ) const { return ps[i].second; }
-    Qubits get_qubs() const { return qubs; }
-    std::string get_name() const { return "PR"; }
-    char get_ch(int i ) const { return ps[i].first; }
-    int size() const { return ps.size(); }
-private:
-    std::vector<std::pair<char, Qubit>> ps;
-    Qubits qubs;
-    std::string s;
-};
-
-PauliString::PauliString(const std::string& s, const Qubits& qubs): s{s}, qubs{qubs}{
+    // PauliString(const std::string& s, const Qubits& qubs);
+    PauliString(const std::string& s, const Qubits& qubs): s{s}, qubs{qubs}{
     if (s.size() != qubs.size()){
         std::cerr << "Wrong sizes in paulistring!!!";
         return;
@@ -122,12 +111,26 @@ PauliString::PauliString(const std::string& s, const Qubits& qubs): s{s}, qubs{q
     //                                         return l.second > r.second;   
     //                                     });
     // }
-}
+    }
+    Qubit get_qn(int i ) const { return ps[i].second; }
+    Qubits get_qubs() const { return qubs; }
+    std::string get_name() const { 
+        return s; 
+    }
+    char get_ch(int i ) const { return ps[i].first; }
+    int size() const { return ps.size(); }
+private:
+    std::vector<std::pair<char, Qubit>> ps;
+    Qubits qubs;
+    std::string s;
+};
+
+
 
 
 std::ostream& operator<<(std::ostream& os, const Qubits& qubs);
 std::ostream& operator<<(std::ostream& os, const Qubit& qub);
-// std::ostream& operator<<(std::ostream& os, const Qubit& qub);
+std::ostream& operator<<(std::ostream& os, const PauliString& ps);
 
 bool operator<(Qubit l, Qubit r);
 bool operator>(Qubit l, Qubit r);

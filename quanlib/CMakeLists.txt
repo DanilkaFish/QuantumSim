@@ -67,7 +67,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../lib)
 add_subdirectory(src/random)
 add_subdirectory(src/Qubits)
 add_subdirectory(src/QuantumCircuit)
-add_subdirectory(src/GateSimulator)
+add_subdirectory(${GS_SOURCE_PATH})
 add_subdirectory(src/Tensors)
 add_subdirectory(src/algorithms)
 
