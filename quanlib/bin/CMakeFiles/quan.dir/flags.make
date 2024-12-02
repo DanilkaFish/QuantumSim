@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit -I/quantumcircuit -I/home/yadanilka/Projects/quansim/quanlib/src/Tensors -I/quantumcircuit/algorithms
+CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/src/Utils -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit -I/home/yadanilka/Projects/quansim/quanlib/src/Tensors -I/quantumcircuit/algorithms
 
-CXX_FLAGS = -O3
+CXX_FLAGS = -g
 

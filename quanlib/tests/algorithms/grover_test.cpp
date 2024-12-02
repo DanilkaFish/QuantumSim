@@ -53,7 +53,7 @@ TEST_P(GroverTest, TestGrover) {
 
     QuantumCircuit qc = Grover(std::get<0>(qcqq), std::get<1>(qcqq), std::get<2>(qcqq), k);
 
-    TensorProvider exec(qc);
+    StateProvider exec(qc);
 
     Qubits qubs = qc.get_qubits();
     Qubits used_qubs = std::get<1>(qcqq);
@@ -65,11 +65,11 @@ TEST_P(GroverTest, TestGrover) {
         }
     }
 
-    exec.run();
+    exec.state_evolve();
 
-    State res = State(anc_qubs).conj() * exec.state;
-    EXPECT_TRUE(compare(exec.state.conj() * exec.state, Tensor{1})) << ERR_PREFIX 
-                                << "Not normed " << Tensor{exec.state.conj() * exec.state};
+    State res = State(anc_qubs).conj() * exec.get_evolved_state();
+    EXPECT_TRUE(compare(exec.get_evolved_state().conj() * exec.get_evolved_state(), Tensor{1})) << ERR_PREFIX 
+                                << "Not normed " << Tensor{exec.get_evolved_state().conj() * exec.get_evolved_state()};
     for (int i = 0; i < s.size(); i++){
         EXPECT_TRUE(compare(res, s)) << ERR_PREFIX 
                                     << "not_equal\n " << "theory : \n" << s << "result : \n" << res;

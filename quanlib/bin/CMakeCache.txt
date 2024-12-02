@@ -22,7 +22,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=RELEASE
+CMAKE_BUILD_TYPE:STRING=DEBUG
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -243,25 +243,28 @@ GTest_DIR:PATH=/usr/lib/cmake/GTest
 MAIN:BOOL=ON
 
 //QC
-QC_INTER_TEST:BOOL=OFF
+QC_INTER_TEST:BOOL=ON
 
 //random_qc
-RANDOMQC_TEST:BOOL=OFF
+RANDOMQC_TEST:BOOL=ON
 
 //Tensor
-TENSOR_TEST:BOOL=OFF
+TENSOR_TEST:BOOL=ON
 
 //enable tests
 TESTS:BOOL=ON
 
-//Value Computed by CMake
-gatesim_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/StateSimulator
+//vqe
+VQE_TEST:BOOL=ON
 
 //Value Computed by CMake
-gatesim_IS_TOP_LEVEL:STATIC=OFF
+common_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/Utils
 
 //Value Computed by CMake
-gatesim_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/StateSimulator
+common_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+common_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/Utils
 
 //Value Computed by CMake
 grover_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms
@@ -291,15 +294,6 @@ quantum_IS_TOP_LEVEL:STATIC=OFF
 quantum_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit
 
 //Value Computed by CMake
-qubits_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/Qubits
-
-//Value Computed by CMake
-qubits_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-qubits_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/Qubits
-
-//Value Computed by CMake
 random_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/random
 
 //Value Computed by CMake
@@ -307,6 +301,15 @@ random_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 random_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/random
+
+//Value Computed by CMake
+state_evolve_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/StateSimulator
+
+//Value Computed by CMake
+state_evolve_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+state_evolve_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/StateSimulator
 
 //Value Computed by CMake
 tensor_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/Tensors
@@ -318,13 +321,49 @@ tensor_IS_TOP_LEVEL:STATIC=OFF
 tensor_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/Tensors
 
 //Value Computed by CMake
-test_gatesim_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/tests
+test_qci_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/tests
 
 //Value Computed by CMake
-test_gatesim_IS_TOP_LEVEL:STATIC=OFF
+test_qci_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-test_gatesim_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/tests
+test_qci_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/tests
+
+//Value Computed by CMake
+test_state_evolve_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/tests
+
+//Value Computed by CMake
+test_state_evolve_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_state_evolve_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/tests
+
+//Value Computed by CMake
+test_tensor_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/tests
+
+//Value Computed by CMake
+test_tensor_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_tensor_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/tests
+
+//Value Computed by CMake
+test_vqe_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/tests
+
+//Value Computed by CMake
+test_vqe_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+test_vqe_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/tests
+
+//Value Computed by CMake
+vqe_BINARY_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/bin/src/VQE
+
+//Value Computed by CMake
+vqe_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+vqe_SOURCE_DIR:STATIC=/home/yadanilka/Projects/quansim/quanlib/src/VQE
 
 
 ########################
@@ -435,7 +474,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

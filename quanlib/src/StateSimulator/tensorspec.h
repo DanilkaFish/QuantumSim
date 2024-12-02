@@ -22,32 +22,31 @@ public:
         dptr = DataPtr{new Data(s.size())};
         shape = s.shape; 
         for (int i=0; i<this->size(); i++){
-            (*dptr)[i] = s[i] + DataType{0};
+            (*dptr)[i] = s[i];
         }
         return *this;
     }
-    // State(const TensorProd<Operator, State>& tp, DataPtr dumptr);
     State(const Qubits& qubs): Tensor{{qubs, Qubits()}} {(*dptr)[0] = 1;}
     State(const Qubits& qubs, DataPtr dptr): Tensor{{qubs, Qubits()}, dptr} { }
     State(const Qubits& qubs, const Data& data): Tensor{qubs, Qubits(), data} { }
-
 };
 
 
-template<>
-class TensorProd<Operator, State>: public Expression<TensorProd<Operator, State>>{
+class DensityMatrix: public Tensor{
 public:
-    TensorProd(const Operator& exprl, const State& exprr): exprl{&exprl}, exprr{&exprr}, shape{exprr.get_shape()} { }
-    Shape get_shape() const noexcept { return shape; }
-    DataType operator[](int i) const{
-        return 0;
+    using Tensor::Tensor;
+    DensityMatrix& operator=(const DensityMatrix& s){
+        dptr = DataPtr{new Data(s.size())};
+        shape = s.shape; 
+        for (int i=0; i<this->size(); i++){
+            (*dptr)[i] = s[i];
+        }
+        return *this;
     }
-
-    Shape shape;
-    const Operator *exprl;
-    const State *exprr;
+    DensityMatrix(const Qubits& qubs): Tensor{{qubs, qubs}} {(*dptr)[0] = 1;}
+    DensityMatrix(const Qubits& qubs, DataPtr dptr): Tensor{{qubs, qubs}, dptr} { }
+    DensityMatrix(const Qubits& qubs, const Data& data): Tensor{qubs, qubs, data} { }
 };
-
 // template<>
 // class TensorProd<Operator, State>: public Expression<TensorProd<Operator, State>>{
 // public:

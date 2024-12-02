@@ -18,7 +18,7 @@ int index_sum(int val){
 }
 
 bool operator==(const Shape& sl, const Shape& sr){
-    return sl.pos_up.m == sr.pos_up.m & sl.pos_down.m == sr.pos_down.m;
+    return sl.pos_up.msk() == sr.pos_up.msk() & sl.pos_down.msk() == sr.pos_down.msk();
 }
 
 int index_shape_change(int id, const std::map<Qubit, int>& up, const std::map<Qubit, int>& down){
@@ -41,15 +41,17 @@ int index_shape_change(int id, const std::map<Qubit, int>& up, const std::map<Qu
     return new_id;
 }
 
+
+//-------------------------------------
 Shape prod(const Shape& shl, const Shape& shr){
-    int intersect = ( shr.pos_up.m & shl.pos_down.m );
-    return Shape(mask(shl.pos_up.m | (shr.pos_up.m ^ intersect)), 
-                 mask(shr.pos_down.m | (shl.pos_down.m ^ intersect)));
+    int intersect = ( shr.pos_up.msk() & shl.pos_down.msk() );
+    return Shape(mask(shl.pos_up.msk() | (shr.pos_up.msk() ^ intersect)), 
+                 mask(shr.pos_down.msk() | (shl.pos_down.msk() ^ intersect)));
 }
 
 
 std::ostream& operator<<(std::ostream& os, const Shape& sh){
-    int up = sh.pos_up.m;
+    int up = sh.pos_up.msk();
     int i = 0;
     os << "up  : ";
         while (up > 0){
@@ -60,7 +62,7 @@ std::ostream& operator<<(std::ostream& os, const Shape& sh){
         }
 
     i = 0;
-    up = sh.pos_down.m;
+    up = sh.pos_down.msk();
     os << "\ndown: ";
         while (up > 0){
             if ((up&1) == 1)

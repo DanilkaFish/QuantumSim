@@ -6,8 +6,6 @@
 class MetaProvider;
 class QC_representation;
 
-
-
 class QuantumCircuit{
 public:
     using container=std::vector<InstructionPtr>; 

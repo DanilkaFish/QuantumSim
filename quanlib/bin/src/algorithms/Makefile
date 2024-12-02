@@ -130,6 +130,34 @@ grover/fast:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/grover.dir/build.make src/algorithms/CMakeFiles/grover.dir/build
 .PHONY : grover/fast
 
+# Convenience name for target.
+src/algorithms/CMakeFiles/random_qc.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/algorithms/CMakeFiles/random_qc.dir/rule
+.PHONY : src/algorithms/CMakeFiles/random_qc.dir/rule
+
+# Convenience name for target.
+random_qc: src/algorithms/CMakeFiles/random_qc.dir/rule
+.PHONY : random_qc
+
+# fast build rule for target.
+random_qc/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/random_qc.dir/build.make src/algorithms/CMakeFiles/random_qc.dir/build
+.PHONY : random_qc/fast
+
+# Convenience name for target.
+src/algorithms/CMakeFiles/transpiler.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/algorithms/CMakeFiles/transpiler.dir/rule
+.PHONY : src/algorithms/CMakeFiles/transpiler.dir/rule
+
+# Convenience name for target.
+transpiler: src/algorithms/CMakeFiles/transpiler.dir/rule
+.PHONY : transpiler
+
+# fast build rule for target.
+transpiler/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/build
+.PHONY : transpiler/fast
+
 grover.o: grover.cpp.o
 .PHONY : grover.o
 
@@ -154,6 +182,54 @@ grover.cpp.s:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/grover.dir/build.make src/algorithms/CMakeFiles/grover.dir/grover.cpp.s
 .PHONY : grover.cpp.s
 
+random_qc.o: random_qc.cpp.o
+.PHONY : random_qc.o
+
+# target to build an object file
+random_qc.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/random_qc.dir/build.make src/algorithms/CMakeFiles/random_qc.dir/random_qc.cpp.o
+.PHONY : random_qc.cpp.o
+
+random_qc.i: random_qc.cpp.i
+.PHONY : random_qc.i
+
+# target to preprocess a source file
+random_qc.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/random_qc.dir/build.make src/algorithms/CMakeFiles/random_qc.dir/random_qc.cpp.i
+.PHONY : random_qc.cpp.i
+
+random_qc.s: random_qc.cpp.s
+.PHONY : random_qc.s
+
+# target to generate assembly for a file
+random_qc.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/random_qc.dir/build.make src/algorithms/CMakeFiles/random_qc.dir/random_qc.cpp.s
+.PHONY : random_qc.cpp.s
+
+transpilers.o: transpilers.cpp.o
+.PHONY : transpilers.o
+
+# target to build an object file
+transpilers.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/transpilers.cpp.o
+.PHONY : transpilers.cpp.o
+
+transpilers.i: transpilers.cpp.i
+.PHONY : transpilers.i
+
+# target to preprocess a source file
+transpilers.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/transpilers.cpp.i
+.PHONY : transpilers.cpp.i
+
+transpilers.s: transpilers.cpp.s
+.PHONY : transpilers.s
+
+# target to generate assembly for a file
+transpilers.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/transpilers.cpp.s
+.PHONY : transpilers.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -163,9 +239,17 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... grover"
+	@echo "... random_qc"
+	@echo "... transpiler"
 	@echo "... grover.o"
 	@echo "... grover.i"
 	@echo "... grover.s"
+	@echo "... random_qc.o"
+	@echo "... random_qc.i"
+	@echo "... random_qc.s"
+	@echo "... transpilers.o"
+	@echo "... transpilers.i"
+	@echo "... transpilers.s"
 .PHONY : help
 
 

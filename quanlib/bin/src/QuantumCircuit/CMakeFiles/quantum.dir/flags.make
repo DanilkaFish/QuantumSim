@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit
+CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/src/Utils
 
-CXX_FLAGS = -O3
+CXX_FLAGS = -g
 

@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -Wl,--dependency-file,CMakeFiles/test_state_evolve.dir/link.d CMakeFiles/test_state_evolve.dir/GateSimulator/test_state_evolve.cpp.o -o ../test_state_evolve  /usr/lib/libgtest.so.1.15.2 -lgtest_main -lpthread /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a

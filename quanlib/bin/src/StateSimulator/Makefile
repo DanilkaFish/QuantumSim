@@ -117,25 +117,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-src/StateSimulator/CMakeFiles/gatesim.dir/rule:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/StateSimulator/CMakeFiles/gatesim.dir/rule
-.PHONY : src/StateSimulator/CMakeFiles/gatesim.dir/rule
+src/StateSimulator/CMakeFiles/state_evolve.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/StateSimulator/CMakeFiles/state_evolve.dir/rule
+.PHONY : src/StateSimulator/CMakeFiles/state_evolve.dir/rule
 
 # Convenience name for target.
-gatesim: src/StateSimulator/CMakeFiles/gatesim.dir/rule
-.PHONY : gatesim
+state_evolve: src/StateSimulator/CMakeFiles/state_evolve.dir/rule
+.PHONY : state_evolve
 
 # fast build rule for target.
-gatesim/fast:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/gatesim.dir/build.make src/StateSimulator/CMakeFiles/gatesim.dir/build
-.PHONY : gatesim/fast
+state_evolve/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/state_evolve.dir/build.make src/StateSimulator/CMakeFiles/state_evolve.dir/build
+.PHONY : state_evolve/fast
 
 gatesimulator.o: gatesimulator.cpp.o
 .PHONY : gatesimulator.o
 
 # target to build an object file
 gatesimulator.cpp.o:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/gatesim.dir/build.make src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/state_evolve.dir/build.make src/StateSimulator/CMakeFiles/state_evolve.dir/gatesimulator.cpp.o
 .PHONY : gatesimulator.cpp.o
 
 gatesimulator.i: gatesimulator.cpp.i
@@ -143,7 +143,7 @@ gatesimulator.i: gatesimulator.cpp.i
 
 # target to preprocess a source file
 gatesimulator.cpp.i:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/gatesim.dir/build.make src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.i
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/state_evolve.dir/build.make src/StateSimulator/CMakeFiles/state_evolve.dir/gatesimulator.cpp.i
 .PHONY : gatesimulator.cpp.i
 
 gatesimulator.s: gatesimulator.cpp.s
@@ -151,7 +151,7 @@ gatesimulator.s: gatesimulator.cpp.s
 
 # target to generate assembly for a file
 gatesimulator.cpp.s:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/gatesim.dir/build.make src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.s
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/state_evolve.dir/build.make src/StateSimulator/CMakeFiles/state_evolve.dir/gatesimulator.cpp.s
 .PHONY : gatesimulator.cpp.s
 
 # Help Target
@@ -162,7 +162,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... gatesim"
+	@echo "... state_evolve"
 	@echo "... gatesimulator.o"
 	@echo "... gatesimulator.i"
 	@echo "... gatesimulator.s"

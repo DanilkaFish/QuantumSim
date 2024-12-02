@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/src -I/quantumcircuit/algorithms
 
-CXX_FLAGS = -O3
+CXX_FLAGS = -g
 

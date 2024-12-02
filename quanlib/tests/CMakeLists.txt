@@ -6,11 +6,12 @@ set(TEST_QC_DIR "QuantumCircuit")
 set(TEST_TENSOR_DIR "Tensors")
 set(TEST_SIM_DIR "GateSimulator")
 
-option(TENSOR_TEST "Tensor" OFF)
-option(QC_INTER_TEST "QC" OFF)
-option(GATESIM_TEST "Gate simulator" OFF)
-option(RANDOMQC_TEST "random_qc" OFF)
+option(TENSOR_TEST "Tensor" ON)
+option(QC_INTER_TEST "QC" ON)
+option(GATESIM_TEST "Gate simulator" ON)
+option(RANDOMQC_TEST "random_qc" ON)
 option(GROVER_TEST "grover" ON)
+option(VQE_TEST "vqe" ON)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 if(QC_INTER_TEST)
@@ -32,6 +33,11 @@ endif()
 
 if(GROVER_TEST)
     include(algorithms/CMakeLists.txt)
+else()
+endif()
+
+if(GROVER_TEST)
+    include(VQE/CMakeLists.txt)
 else()
 endif()
 

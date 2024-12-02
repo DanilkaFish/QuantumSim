@@ -21,10 +21,10 @@ int main(){
         for (int j=0; j< n; j++)
             if (i != (j + 10) % n)
                 qc.add_instruction(BaseInstr::U(Qubits{i, (j + 10) % n}, dptr));
-    TensorProvider exec(qc);
+    StateProvider exec(qc);
     std::cout << exec.state;
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    exec.run();
+    exec.state_evolve();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::cout << exec.state;
     std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "[ms]" << std::endl;

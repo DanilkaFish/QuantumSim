@@ -32,7 +32,7 @@ TEST_P(InstuctionSetUp, TestExecuteCircuit) {
   }
   // std::string exp = bf->s;
   std::string exp = qc.get_qcr().s;
-  exec.run();
+  exec.state_evolve();
   std::string res = bf->s;
   
   EXPECT_TRUE(exp == res) << ERR_PREFIX 
@@ -52,9 +52,9 @@ TEST_P(InstuctionSetUp, TestComposeCircuit) {
   }
   cqc.compose(qc);
 
-  exec.run();
+  exec.state_evolve();
   std::string exp = bf->s;
-  cexec.run();
+  cexec.state_evolve();
   std::string res = bf->s;
 
   EXPECT_TRUE(cqc.size() == 1) << ERR_PREFIX 
@@ -82,9 +82,9 @@ TEST_P(InstuctionSetUp, TestDeComposeCircuit) {
   cqc = cqc.decompose();
   EXPECT_TRUE(cqc.size() == qc.size()) << ERR_PREFIX 
                                   << "diff sizes" << cqc.size() << std::endl << qc.size();
-  exec.run();
+  exec.state_evolve();
   std::string exp = bf->s;
-  cexec.run();
+  cexec.state_evolve();
   std::string res = bf->s;
 
 

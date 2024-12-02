@@ -143,17 +143,17 @@ random/fast:
 .PHONY : random/fast
 
 #=============================================================================
-# Target rules for targets named qubits
+# Target rules for targets named common
 
 # Build rule for target.
-qubits: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 qubits
-.PHONY : qubits
+common: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 common
+.PHONY : common
 
 # fast build rule for target.
-qubits/fast:
-	$(MAKE) $(MAKESILENT) -f src/Qubits/CMakeFiles/qubits.dir/build.make src/Qubits/CMakeFiles/qubits.dir/build
-.PHONY : qubits/fast
+common/fast:
+	$(MAKE) $(MAKESILENT) -f src/Utils/CMakeFiles/common.dir/build.make src/Utils/CMakeFiles/common.dir/build
+.PHONY : common/fast
 
 #=============================================================================
 # Target rules for targets named quantum
@@ -169,17 +169,17 @@ quantum/fast:
 .PHONY : quantum/fast
 
 #=============================================================================
-# Target rules for targets named gatesim
+# Target rules for targets named state_evolve
 
 # Build rule for target.
-gatesim: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gatesim
-.PHONY : gatesim
+state_evolve: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 state_evolve
+.PHONY : state_evolve
 
 # fast build rule for target.
-gatesim/fast:
-	$(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/gatesim.dir/build.make src/StateSimulator/CMakeFiles/gatesim.dir/build
-.PHONY : gatesim/fast
+state_evolve/fast:
+	$(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/state_evolve.dir/build.make src/StateSimulator/CMakeFiles/state_evolve.dir/build
+.PHONY : state_evolve/fast
 
 #=============================================================================
 # Target rules for targets named tensor
@@ -208,17 +208,95 @@ grover/fast:
 .PHONY : grover/fast
 
 #=============================================================================
-# Target rules for targets named test_gatesim
+# Target rules for targets named random_qc
 
 # Build rule for target.
-test_gatesim: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_gatesim
-.PHONY : test_gatesim
+random_qc: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 random_qc
+.PHONY : random_qc
 
 # fast build rule for target.
-test_gatesim/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/build
-.PHONY : test_gatesim/fast
+random_qc/fast:
+	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/random_qc.dir/build.make src/algorithms/CMakeFiles/random_qc.dir/build
+.PHONY : random_qc/fast
+
+#=============================================================================
+# Target rules for targets named transpiler
+
+# Build rule for target.
+transpiler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 transpiler
+.PHONY : transpiler
+
+# fast build rule for target.
+transpiler/fast:
+	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/build
+.PHONY : transpiler/fast
+
+#=============================================================================
+# Target rules for targets named vqe
+
+# Build rule for target.
+vqe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vqe
+.PHONY : vqe
+
+# fast build rule for target.
+vqe/fast:
+	$(MAKE) $(MAKESILENT) -f src/VQE/CMakeFiles/vqe.dir/build.make src/VQE/CMakeFiles/vqe.dir/build
+.PHONY : vqe/fast
+
+#=============================================================================
+# Target rules for targets named test_qci
+
+# Build rule for target.
+test_qci: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_qci
+.PHONY : test_qci
+
+# fast build rule for target.
+test_qci/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/build
+.PHONY : test_qci/fast
+
+#=============================================================================
+# Target rules for targets named test_tensor_crtp
+
+# Build rule for target.
+test_tensor_crtp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_tensor_crtp
+.PHONY : test_tensor_crtp
+
+# fast build rule for target.
+test_tensor_crtp/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/build
+.PHONY : test_tensor_crtp/fast
+
+#=============================================================================
+# Target rules for targets named test_tensor_data
+
+# Build rule for target.
+test_tensor_data: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_tensor_data
+.PHONY : test_tensor_data
+
+# fast build rule for target.
+test_tensor_data/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/build
+.PHONY : test_tensor_data/fast
+
+#=============================================================================
+# Target rules for targets named test_state_evolve
+
+# Build rule for target.
+test_state_evolve: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_state_evolve
+.PHONY : test_state_evolve
+
+# fast build rule for target.
+test_state_evolve/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_state_evolve.dir/build.make tests/CMakeFiles/test_state_evolve.dir/build
+.PHONY : test_state_evolve/fast
 
 #=============================================================================
 # Target rules for targets named test_grover
@@ -233,6 +311,19 @@ test_grover/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/build
 .PHONY : test_grover/fast
 
+#=============================================================================
+# Target rules for targets named test_vqe
+
+# Build rule for target.
+test_vqe: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_vqe
+.PHONY : test_vqe
+
+# fast build rule for target.
+test_vqe/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_vqe.dir/build.make tests/CMakeFiles/test_vqe.dir/build
+.PHONY : test_vqe/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -241,15 +332,22 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... gatesim"
+	@echo "... common"
 	@echo "... grover"
 	@echo "... quan"
 	@echo "... quantum"
-	@echo "... qubits"
 	@echo "... random"
+	@echo "... random_qc"
+	@echo "... state_evolve"
 	@echo "... tensor"
-	@echo "... test_gatesim"
 	@echo "... test_grover"
+	@echo "... test_qci"
+	@echo "... test_state_evolve"
+	@echo "... test_tensor_crtp"
+	@echo "... test_tensor_data"
+	@echo "... test_vqe"
+	@echo "... transpiler"
+	@echo "... vqe"
 .PHONY : help
 
 

@@ -1,7 +1,7 @@
 // #include "test/QuanCirc/inc/algorithms/grover_test.h"
 
-#include "tests/QuantumCircuit/algorithms/random_qc_test.h"
-#include "inc/GateSimulator/__init__.h"
+#include "random_qc_test.h"
+#include "state_evolve.h"
 #include <bits/stdc++.h>
 #include <string>
 
@@ -18,8 +18,8 @@ TEST(SimpleTest, TestRandomQC){
     QCGenerator qg(100, 20, GeneratorKind::LCG);
     QuantumCircuit qc = qg.get_qc(0.64);
     // std::cout << qc.get_qcr().s;
-    TensorProvider exec(qc);
-    exec.run();
+    StateProvider exec(qc);
+    exec.state_evolve();
     // std::cout << exec.state;
     Tensor tot = exec.state.conj()*exec.state;
     DataType res = conv(exec.state);

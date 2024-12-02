@@ -6,6 +6,6 @@ int main(){
     qc.add_instruction(BaseInstr::H(Qubit{1}));
     qc.add_instruction(BaseInstr::H(Qubit{0}));
     qc.add_instruction(BaseInstr::H(Qubit{3}));
-    TensorProvider exec(qc);
-    exec.run();
+    StateProvider exec(qc);
+    exec.state_evolve();
 }

@@ -79,17 +79,21 @@ quan_OBJECTS =
 quan_EXTERNAL_OBJECTS = \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/QuantumCircuit/CMakeFiles/quantum.dir/quantumcircuit.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/Tensors/CMakeFiles/tensor.dir/tensors.cpp.o" \
-"/home/yadanilka/Projects/quansim/quanlib/bin/src/Qubits/CMakeFiles/qubits.dir/qubits.cpp.o" \
-"/home/yadanilka/Projects/quansim/quanlib/bin/src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o" \
+"/home/yadanilka/Projects/quansim/quanlib/bin/src/Utils/CMakeFiles/common.dir/common.cpp.o" \
+"/home/yadanilka/Projects/quansim/quanlib/bin/src/StateSimulator/CMakeFiles/state_evolve.dir/gatesimulator.cpp.o" \
 "/home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/grover.dir/grover.cpp.o" \
-"/home/yadanilka/Projects/quansim/quanlib/bin/src/random/CMakeFiles/random.dir/genfactory.cpp.o"
+"/home/yadanilka/Projects/quansim/quanlib/bin/src/random/CMakeFiles/random.dir/genfactory.cpp.o" \
+"/home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/random_qc.dir/random_qc.cpp.o" \
+"/home/yadanilka/Projects/quansim/quanlib/bin/src/VQE/CMakeFiles/vqe.dir/vqe.cpp.o"
 
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/QuantumCircuit/CMakeFiles/quantum.dir/quantumcircuit.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/Tensors/CMakeFiles/tensor.dir/tensors.cpp.o
-/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/Qubits/CMakeFiles/qubits.dir/qubits.cpp.o
-/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/StateSimulator/CMakeFiles/gatesim.dir/gatesimulator.cpp.o
+/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/Utils/CMakeFiles/common.dir/common.cpp.o
+/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/StateSimulator/CMakeFiles/state_evolve.dir/gatesimulator.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/algorithms/CMakeFiles/grover.dir/grover.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/random/CMakeFiles/random.dir/genfactory.cpp.o
+/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/algorithms/CMakeFiles/random_qc.dir/random_qc.cpp.o
+/home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: src/VQE/CMakeFiles/vqe.dir/vqe.cpp.o
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: CMakeFiles/quan.dir/build.make
 /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a: CMakeFiles/quan.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Linking CXX static library /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a"

@@ -1,6 +1,5 @@
 #include "QuantumCircuit.h"
 #include "instruction.h"
-#include "metaprovider.h"
 #include "drawer.h"
 
 #include <utility>
@@ -25,7 +24,7 @@ QuantumCircuit MagicInstruction::decompose(const InstructionPtr& that)  {
     return this->qc;
 }
 
-void MetaProvider::run() {
+void MetaProvider::state_evolve() {
     SetUp();
     for(auto ins: qc){
         ins->apply(*this);

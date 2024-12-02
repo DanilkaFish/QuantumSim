@@ -3,8 +3,9 @@
 
 src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quansim/quanlib/src/algorithms/grover.cpp \
   /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h \
+  /home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h \
+  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h \
   /home/yadanilka/Projects/quansim/quanlib/src/algorithms/Grover.h \
-  /home/yadanilka/Projects/quansim/quanlib/src/common.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -38,9 +39,7 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
-  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -150,6 +149,7 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
   /usr/include/c++/14.2.1/bits/stl_multimap.h \
   /usr/include/c++/14.2.1/bits/stl_pair.h \
   /usr/include/c++/14.2.1/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/14.2.1/bits/stl_relops.h \
   /usr/include/c++/14.2.1/bits/stl_tempbuf.h \
   /usr/include/c++/14.2.1/bits/stl_tree.h \
   /usr/include/c++/14.2.1/bits/stl_uninitialized.h \
@@ -221,6 +221,7 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
   /usr/include/c++/14.2.1/tuple \
   /usr/include/c++/14.2.1/type_traits \
   /usr/include/c++/14.2.1/typeinfo \
+  /usr/include/c++/14.2.1/utility \
   /usr/include/c++/14.2.1/vector \
   /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h \
   /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/c++allocator.h \
@@ -261,6 +262,8 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h
 
 
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h:
+
 /usr/include/c++/14.2.1/bits/ptr_traits.h:
 
 /usr/include/c++/14.2.1/bits/new_allocator.h:
@@ -287,8 +290,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/bits/hash_bytes.h:
 
-/usr/include/c++/14.2.1/bits/exception_defines.h:
-
 /usr/include/c++/14.2.1/bits/predefined_ops.h:
 
 /usr/include/bits/stdio_lim.h:
@@ -303,8 +304,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/bits/memory_resource.h:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stddef.h:
-
 /usr/include/c++/14.2.1/bits/locale_classes.h:
 
 /usr/include/c++/14.2.1/bits/concept_check.h:
@@ -312,8 +311,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 /usr/include/c++/14.2.1/bits/char_traits.h:
 
 /usr/include/bits/uintn-identity.h:
-
-/usr/include/c++/14.2.1/bits/basic_string.tcc:
 
 /usr/include/linux/errno.h:
 
@@ -393,15 +390,33 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/bits/flt-eval-method.h:
 
-/usr/include/c++/14.2.1/bits/shared_ptr_base.h:
-
 /usr/include/bits/errno.h:
 
 /usr/include/bits/locale.h:
 
+/usr/include/bits/mathcalls.h:
+
+/usr/include/bits/types/__fpos_t.h:
+
+/usr/include/bits/types/clock_t.h:
+
+/usr/include/c++/14.2.1/utility:
+
+/usr/include/bits/libm-simd-decl-stubs.h:
+
 /usr/include/c++/14.2.1/limits:
 
 /usr/include/c++/14.2.1/backward/binders.h:
+
+/usr/include/c++/14.2.1/bits/shared_ptr_base.h:
+
+/usr/include/bits/math-vector.h:
+
+/usr/include/c++/14.2.1/bits/stl_function.h:
+
+/usr/include/c++/14.2.1/bits/exception_defines.h:
+
+/home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h:
 
 /usr/include/bits/long-double.h:
 
@@ -415,10 +430,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/bits/cpu-set.h:
 
-/usr/include/bits/struct_mutex.h:
-
-/usr/include/c++/14.2.1/bits/locale_classes.tcc:
-
 /usr/include/bits/types/struct_itimerspec.h:
 
 /usr/include/bits/struct_rwlock.h:
@@ -429,23 +440,23 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/bits/types/struct_timeval.h:
 
+/usr/include/bits/byteswap.h:
+
+/usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/os_defines.h:
+
+/usr/include/c++/14.2.1/algorithm:
+
+/usr/include/c++/14.2.1/bits/postypes.h:
+
+/usr/include/c++/14.2.1/bits/basic_ios.tcc:
+
+/usr/include/bits/time64.h:
+
+/usr/include/bits/stdlib-float.h:
+
 /usr/include/bits/types/timer_t.h:
 
-/usr/include/bits/stdio.h:
-
-/home/yadanilka/Projects/quansim/quanlib/src/common.h:
-
 /usr/include/asm-generic/errno-base.h:
-
-/usr/include/bits/math-vector.h:
-
-/usr/include/c++/14.2.1/bits/stl_function.h:
-
-/usr/include/bits/types/__fpos_t.h:
-
-/usr/include/bits/mathcalls.h:
-
-/usr/include/bits/types/clock_t.h:
 
 /usr/include/alloca.h:
 
@@ -455,19 +466,9 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/bits/types/__sigset_t.h:
 
-/usr/include/bits/libm-simd-decl-stubs.h:
+/usr/include/bits/struct_mutex.h:
 
-/usr/include/bits/byteswap.h:
-
-/usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/os_defines.h:
-
-/usr/include/c++/14.2.1/algorithm:
-
-/usr/include/c++/14.2.1/bits/postypes.h:
-
-/usr/include/bits/time64.h:
-
-/usr/include/bits/stdlib-float.h:
+/usr/include/c++/14.2.1/bits/locale_classes.tcc:
 
 /usr/include/bits/pthreadtypes-arch.h:
 
@@ -493,25 +494,7 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/tr1/special_function_util.h:
 
-/usr/include/c++/14.2.1/bits/erase_if.h:
-
-/usr/include/bits/types/error_t.h:
-
-/usr/include/c++/14.2.1/new:
-
-/usr/include/sys/types.h:
-
-/usr/include/c++/14.2.1/exception:
-
-/usr/include/c++/14.2.1/bits/basic_ios.tcc:
-
-/usr/include/bits/stdlib-bsearch.h:
-
-/usr/include/c++/14.2.1/bit:
-
-/usr/include/c++/14.2.1/bits/vector.tcc:
-
-/usr/include/c++/14.2.1/cstddef:
+/home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h:
 
 /usr/include/bits/types/time_t.h:
 
@@ -528,6 +511,16 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 /usr/include/c++/14.2.1/bits/stl_tree.h:
 
 /usr/include/c++/14.2.1/concepts:
+
+/usr/include/c++/14.2.1/bits/erase_if.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/c++/14.2.1/exception:
+
+/usr/include/bits/types/error_t.h:
+
+/usr/include/c++/14.2.1/new:
 
 /usr/include/bits/types.h:
 
@@ -555,17 +548,17 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/map:
 
-/usr/include/asm/errno.h:
-
-/usr/include/c++/14.2.1/iostream:
-
-/usr/include/bits/stdint-uintn.h:
-
 /usr/include/features.h:
 
 /usr/include/bits/types/__FILE.h:
 
 /usr/include/bits/sched.h:
+
+/usr/include/asm/errno.h:
+
+/usr/include/c++/14.2.1/iostream:
+
+/usr/include/bits/stdint-uintn.h:
 
 /usr/include/bits/types/cookie_io_functions_t.h:
 
@@ -605,6 +598,14 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/bits/stl_raw_storage_iter.h:
 
+/usr/include/c++/14.2.1/bits/basic_string.tcc:
+
+/usr/include/c++/14.2.1/bits/stl_relops.h:
+
+/usr/include/bits/floatn-common.h:
+
+/usr/include/c++/14.2.1/vector:
+
 /usr/include/c++/14.2.1/bits/stl_vector.h:
 
 /usr/include/c++/14.2.1/bits/streambuf.tcc:
@@ -627,9 +628,19 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 
 /usr/include/c++/14.2.1/bits/utility.h:
 
+/usr/include/c++/14.2.1/bit:
+
+/usr/include/c++/14.2.1/bits/vector.tcc:
+
+/usr/include/c++/14.2.1/cstddef:
+
 /usr/include/bits/types/FILE.h:
 
 /usr/include/c++/14.2.1/cctype:
+
+/usr/include/wchar.h:
+
+/usr/include/c++/14.2.1/clocale:
 
 /usr/include/c++/14.2.1/complex:
 
@@ -716,14 +727,6 @@ src/algorithms/CMakeFiles/grover.dir/grover.cpp.o: /home/yadanilka/Projects/quan
 /usr/include/c++/14.2.1/tuple:
 
 /usr/include/c++/14.2.1/type_traits:
-
-/usr/include/bits/floatn-common.h:
-
-/usr/include/c++/14.2.1/vector:
-
-/usr/include/c++/14.2.1/clocale:
-
-/usr/include/wchar.h:
 
 /usr/include/c++/14.2.1/system_error:
 

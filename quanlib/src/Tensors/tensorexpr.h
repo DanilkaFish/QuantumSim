@@ -48,24 +48,36 @@ private:
 
 
 // TODO
-// template<typename T>
-// class Convulate: public Expression<Convulate<T>>{
-// public:
-//     Convulate(const T& expr, const Qubits& qubs): expr{&expr}, qubs{qubs} { }
-//     Shape get_shape() const noexcept { return expr->get_shape().to_conv(qubs); }
-//     DataType operator[](int i) const { 
-//         DataType val=0;
-//         Shape shape =this->get_shape();
-//         Int id = Transform::index_shape_change(i, shape, expr->get_shape());
-//         for (int j=0; j < (1 << shape.get_qtype(QType::cup).size()); j++){
-//             val += (*expr)[id + Transform::conv_id_for_conv(j, shape)];
-//         }
-//         return val;
-//     }
-// private:
-//     const T *expr;
-//     Qubits qubs;
-// };
+template<typename T>
+class Convulate: public Expression<Convulate<T>>{
+public:
+    Convulate(const T& expr, const Qubits& qubs): expr{&expr}, dif{1 << qubs.size()} { 
+        int qubs_int = qubs_to_int(qubs); 
+        int pos_up = expr.get_shape().pos_up.msk();
+        int pos_down = expr.get_shape().pos_down.msk();
+        if (((pos_up | qubs_int) ^ pos_up != 0) | ((pos_down | qubs_int) ^ pos_down != 0)){
+            throw QException("trying to conv by unexisted qubits");
+        }
+        shape = Shape(pos_up ^ qubs_int, pos_down ^ qubs_int);
+        up_mask = mask(expr.get_shape().pos_up.compress(shape.pos_up));
+        down_mask = mask(expr.get_shape().pos_down.compress(shape.pos_down));
+    }
+    Shape get_shape() const noexcept { return shape; }
+    DataType operator[](int i) const { 
+        DataType val=0;
+        int id = ((shape.pos_up.msk() << shape.nd) + shape.pos_down.msk()) ^ i;
+        for (int j=0; j < dif; j++){
+            val += (*expr)[id + shape.pos_up.expand(j) << shape.nd + shape.pos_down.expand(j)];
+        }
+        return val;
+    }
+private:
+    Shape shape;
+    const T *expr;
+    mask up_mask;
+    mask down_mask;
+    int dif;
+};
 
 
 template<typename Tl, typename Tr>
@@ -97,17 +109,17 @@ public:
         mask mrd(exprr->get_shape().pos_down);
         mask mld(exprl->get_shape().pos_down);
         mask mru(exprr->get_shape().pos_up);
-        int anti_intersect = ~(mld.m&mru.m);
+        int anti_intersect = ~(mld.msk()&mru.msk());
 
-        mcilu = mask(shape.pos_up.compress(mlu.m));
-        mcird = mask(shape.pos_down.compress(mrd.m));
-        mcild = mask(shape.pos_down.compress(mld.m &anti_intersect));
-        mciru = mask(shape.pos_up.compress(mru.m&anti_intersect));
-        meld = mask(mld.compress(mld.m & anti_intersect));
-        meru = mask(mru.compress(mru.m & anti_intersect));
+        mcilu = mask(shape.pos_up.compress(mlu.msk()));
+        mcird = mask(shape.pos_down.compress(mrd.msk()));
+        mcild = mask(shape.pos_down.compress(mld.msk() &anti_intersect));
+        mciru = mask(shape.pos_up.compress(mru.msk()&anti_intersect));
+        meld = mask(mld.compress(mld.msk() & anti_intersect));
+        meru = mask(mru.compress(mru.msk() & anti_intersect));
 
-        mejld = mask(meld.m ^ ( (1 << nld) - 1));
-        mejru = mask(meru.m ^ ( (1 << nru) - 1));
+        mejld = mask(meld.msk() ^ ( (1 << nld) - 1));
+        mejru = mask(meru.msk() ^ ( (1 << nru) - 1));
         dif = 1<<(nlu + nru - shape.nu);
     }
 
@@ -139,8 +151,6 @@ public:
     TensorSum(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} {
         if (!(exprl.get_shape() == exprr.get_shape())) {
             std::cerr << "dif shapes" << exprl.get_shape() << exprr.get_shape();
-        }else {
-            std::cerr << "same\n";
         }
     }
     Shape get_shape() const noexcept { return exprl->get_shape(); }
@@ -158,7 +168,11 @@ private:
 template<typename Tl, typename Tr>
 class TensorDiv: public Expression<TensorDiv<Tl, Tr>>{
 public:
-    TensorDiv(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} { }
+    TensorDiv(const Tl& exprl, const Tr& exprr): exprl{&exprl}, exprr{&exprr} { 
+        if (!(exprl.get_shape() == exprr.get_shape())) {
+            std::cerr << "dif shapes" << exprl.get_shape() << exprr.get_shape();
+        }
+     }
     Shape get_shape() const noexcept { return exprl->get_shape(); }
 
     DataType operator[](int i) const{

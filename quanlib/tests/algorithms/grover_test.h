@@ -12,7 +12,7 @@
 using ::testing::TestWithParam;  // GTest parametric test fixture
 // using namespace tensor;
 // #include "common.h"
-#include "tensorprovider.h"
+#include "state_evolve.h"
 #include "common_test.h"
 
 class GroverTest : public TestWithParam<std::tuple<int, std::vector<int>, int>>{

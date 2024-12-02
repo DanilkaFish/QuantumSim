@@ -7,7 +7,6 @@
 
 #include "common_test.h"
 #include "QuantumCircuit.h"
-#include "metaprovider.h"
 #include "instruction.h"
 #include "drawer.h"
 #include <gtest/gtest.h>

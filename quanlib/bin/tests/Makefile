@@ -117,18 +117,60 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-tests/CMakeFiles/test_gatesim.dir/rule:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_gatesim.dir/rule
-.PHONY : tests/CMakeFiles/test_gatesim.dir/rule
+tests/CMakeFiles/test_qci.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_qci.dir/rule
+.PHONY : tests/CMakeFiles/test_qci.dir/rule
 
 # Convenience name for target.
-test_gatesim: tests/CMakeFiles/test_gatesim.dir/rule
-.PHONY : test_gatesim
+test_qci: tests/CMakeFiles/test_qci.dir/rule
+.PHONY : test_qci
 
 # fast build rule for target.
-test_gatesim/fast:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/build
-.PHONY : test_gatesim/fast
+test_qci/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/build
+.PHONY : test_qci/fast
+
+# Convenience name for target.
+tests/CMakeFiles/test_tensor_crtp.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_tensor_crtp.dir/rule
+.PHONY : tests/CMakeFiles/test_tensor_crtp.dir/rule
+
+# Convenience name for target.
+test_tensor_crtp: tests/CMakeFiles/test_tensor_crtp.dir/rule
+.PHONY : test_tensor_crtp
+
+# fast build rule for target.
+test_tensor_crtp/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/build
+.PHONY : test_tensor_crtp/fast
+
+# Convenience name for target.
+tests/CMakeFiles/test_tensor_data.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_tensor_data.dir/rule
+.PHONY : tests/CMakeFiles/test_tensor_data.dir/rule
+
+# Convenience name for target.
+test_tensor_data: tests/CMakeFiles/test_tensor_data.dir/rule
+.PHONY : test_tensor_data
+
+# fast build rule for target.
+test_tensor_data/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/build
+.PHONY : test_tensor_data/fast
+
+# Convenience name for target.
+tests/CMakeFiles/test_state_evolve.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_state_evolve.dir/rule
+.PHONY : tests/CMakeFiles/test_state_evolve.dir/rule
+
+# Convenience name for target.
+test_state_evolve: tests/CMakeFiles/test_state_evolve.dir/rule
+.PHONY : test_state_evolve
+
+# fast build rule for target.
+test_state_evolve/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_state_evolve.dir/build.make tests/CMakeFiles/test_state_evolve.dir/build
+.PHONY : test_state_evolve/fast
 
 # Convenience name for target.
 tests/CMakeFiles/test_grover.dir/rule:
@@ -144,29 +186,139 @@ test_grover/fast:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/build
 .PHONY : test_grover/fast
 
-GateSimulator/test_gatesim.o: GateSimulator/test_gatesim.cpp.o
-.PHONY : GateSimulator/test_gatesim.o
+# Convenience name for target.
+tests/CMakeFiles/test_vqe.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_vqe.dir/rule
+.PHONY : tests/CMakeFiles/test_vqe.dir/rule
+
+# Convenience name for target.
+test_vqe: tests/CMakeFiles/test_vqe.dir/rule
+.PHONY : test_vqe
+
+# fast build rule for target.
+test_vqe/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_vqe.dir/build.make tests/CMakeFiles/test_vqe.dir/build
+.PHONY : test_vqe/fast
+
+GateSimulator/test_state_evolve.o: GateSimulator/test_state_evolve.cpp.o
+.PHONY : GateSimulator/test_state_evolve.o
 
 # target to build an object file
-GateSimulator/test_gatesim.cpp.o:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/GateSimulator/test_gatesim.cpp.o
-.PHONY : GateSimulator/test_gatesim.cpp.o
+GateSimulator/test_state_evolve.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_state_evolve.dir/build.make tests/CMakeFiles/test_state_evolve.dir/GateSimulator/test_state_evolve.cpp.o
+.PHONY : GateSimulator/test_state_evolve.cpp.o
 
-GateSimulator/test_gatesim.i: GateSimulator/test_gatesim.cpp.i
-.PHONY : GateSimulator/test_gatesim.i
+GateSimulator/test_state_evolve.i: GateSimulator/test_state_evolve.cpp.i
+.PHONY : GateSimulator/test_state_evolve.i
 
 # target to preprocess a source file
-GateSimulator/test_gatesim.cpp.i:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/GateSimulator/test_gatesim.cpp.i
-.PHONY : GateSimulator/test_gatesim.cpp.i
+GateSimulator/test_state_evolve.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_state_evolve.dir/build.make tests/CMakeFiles/test_state_evolve.dir/GateSimulator/test_state_evolve.cpp.i
+.PHONY : GateSimulator/test_state_evolve.cpp.i
 
-GateSimulator/test_gatesim.s: GateSimulator/test_gatesim.cpp.s
-.PHONY : GateSimulator/test_gatesim.s
+GateSimulator/test_state_evolve.s: GateSimulator/test_state_evolve.cpp.s
+.PHONY : GateSimulator/test_state_evolve.s
 
 # target to generate assembly for a file
-GateSimulator/test_gatesim.cpp.s:
-	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_gatesim.dir/build.make tests/CMakeFiles/test_gatesim.dir/GateSimulator/test_gatesim.cpp.s
-.PHONY : GateSimulator/test_gatesim.cpp.s
+GateSimulator/test_state_evolve.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_state_evolve.dir/build.make tests/CMakeFiles/test_state_evolve.dir/GateSimulator/test_state_evolve.cpp.s
+.PHONY : GateSimulator/test_state_evolve.cpp.s
+
+QuantumCircuit/test_qc_interface.o: QuantumCircuit/test_qc_interface.cpp.o
+.PHONY : QuantumCircuit/test_qc_interface.o
+
+# target to build an object file
+QuantumCircuit/test_qc_interface.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/QuantumCircuit/test_qc_interface.cpp.o
+.PHONY : QuantumCircuit/test_qc_interface.cpp.o
+
+QuantumCircuit/test_qc_interface.i: QuantumCircuit/test_qc_interface.cpp.i
+.PHONY : QuantumCircuit/test_qc_interface.i
+
+# target to preprocess a source file
+QuantumCircuit/test_qc_interface.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/QuantumCircuit/test_qc_interface.cpp.i
+.PHONY : QuantumCircuit/test_qc_interface.cpp.i
+
+QuantumCircuit/test_qc_interface.s: QuantumCircuit/test_qc_interface.cpp.s
+.PHONY : QuantumCircuit/test_qc_interface.s
+
+# target to generate assembly for a file
+QuantumCircuit/test_qc_interface.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/QuantumCircuit/test_qc_interface.cpp.s
+.PHONY : QuantumCircuit/test_qc_interface.cpp.s
+
+Tensors/test_crtp.o: Tensors/test_crtp.cpp.o
+.PHONY : Tensors/test_crtp.o
+
+# target to build an object file
+Tensors/test_crtp.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/Tensors/test_crtp.cpp.o
+.PHONY : Tensors/test_crtp.cpp.o
+
+Tensors/test_crtp.i: Tensors/test_crtp.cpp.i
+.PHONY : Tensors/test_crtp.i
+
+# target to preprocess a source file
+Tensors/test_crtp.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/Tensors/test_crtp.cpp.i
+.PHONY : Tensors/test_crtp.cpp.i
+
+Tensors/test_crtp.s: Tensors/test_crtp.cpp.s
+.PHONY : Tensors/test_crtp.s
+
+# target to generate assembly for a file
+Tensors/test_crtp.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/Tensors/test_crtp.cpp.s
+.PHONY : Tensors/test_crtp.cpp.s
+
+Tensors/test_datatensor.o: Tensors/test_datatensor.cpp.o
+.PHONY : Tensors/test_datatensor.o
+
+# target to build an object file
+Tensors/test_datatensor.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/Tensors/test_datatensor.cpp.o
+.PHONY : Tensors/test_datatensor.cpp.o
+
+Tensors/test_datatensor.i: Tensors/test_datatensor.cpp.i
+.PHONY : Tensors/test_datatensor.i
+
+# target to preprocess a source file
+Tensors/test_datatensor.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/Tensors/test_datatensor.cpp.i
+.PHONY : Tensors/test_datatensor.cpp.i
+
+Tensors/test_datatensor.s: Tensors/test_datatensor.cpp.s
+.PHONY : Tensors/test_datatensor.s
+
+# target to generate assembly for a file
+Tensors/test_datatensor.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/Tensors/test_datatensor.cpp.s
+.PHONY : Tensors/test_datatensor.cpp.s
+
+VQE/test_vqe.o: VQE/test_vqe.cpp.o
+.PHONY : VQE/test_vqe.o
+
+# target to build an object file
+VQE/test_vqe.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_vqe.dir/build.make tests/CMakeFiles/test_vqe.dir/VQE/test_vqe.cpp.o
+.PHONY : VQE/test_vqe.cpp.o
+
+VQE/test_vqe.i: VQE/test_vqe.cpp.i
+.PHONY : VQE/test_vqe.i
+
+# target to preprocess a source file
+VQE/test_vqe.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_vqe.dir/build.make tests/CMakeFiles/test_vqe.dir/VQE/test_vqe.cpp.i
+.PHONY : VQE/test_vqe.cpp.i
+
+VQE/test_vqe.s: VQE/test_vqe.cpp.s
+.PHONY : VQE/test_vqe.s
+
+# target to generate assembly for a file
+VQE/test_vqe.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_vqe.dir/build.make tests/CMakeFiles/test_vqe.dir/VQE/test_vqe.cpp.s
+.PHONY : VQE/test_vqe.cpp.s
 
 algorithms/grover_test.o: algorithms/grover_test.cpp.o
 .PHONY : algorithms/grover_test.o
@@ -200,11 +352,27 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test_gatesim"
 	@echo "... test_grover"
-	@echo "... GateSimulator/test_gatesim.o"
-	@echo "... GateSimulator/test_gatesim.i"
-	@echo "... GateSimulator/test_gatesim.s"
+	@echo "... test_qci"
+	@echo "... test_state_evolve"
+	@echo "... test_tensor_crtp"
+	@echo "... test_tensor_data"
+	@echo "... test_vqe"
+	@echo "... GateSimulator/test_state_evolve.o"
+	@echo "... GateSimulator/test_state_evolve.i"
+	@echo "... GateSimulator/test_state_evolve.s"
+	@echo "... QuantumCircuit/test_qc_interface.o"
+	@echo "... QuantumCircuit/test_qc_interface.i"
+	@echo "... QuantumCircuit/test_qc_interface.s"
+	@echo "... Tensors/test_crtp.o"
+	@echo "... Tensors/test_crtp.i"
+	@echo "... Tensors/test_crtp.s"
+	@echo "... Tensors/test_datatensor.o"
+	@echo "... Tensors/test_datatensor.i"
+	@echo "... Tensors/test_datatensor.s"
+	@echo "... VQE/test_vqe.o"
+	@echo "... VQE/test_vqe.i"
+	@echo "... VQE/test_vqe.s"
 	@echo "... algorithms/grover_test.o"
 	@echo "... algorithms/grover_test.i"
 	@echo "... algorithms/grover_test.s"

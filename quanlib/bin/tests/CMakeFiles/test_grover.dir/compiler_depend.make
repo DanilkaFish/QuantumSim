@@ -9,15 +9,14 @@ test_grover: /usr/lib/libc.so \
 tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/Projects/quansim/quanlib/tests/algorithms/grover_test.cpp \
   /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h \
   /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/instruction.h \
-  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/metaprovider.h \
-  /home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/gatesim.h \
-  /home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/tensorprovider.h \
+  /home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/state_evolve.h \
   /home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/tensorspec.h \
   /home/yadanilka/Projects/quansim/quanlib/src/Tensors/shape.h \
   /home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensor.h \
   /home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensorexpr.h \
+  /home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h \
+  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h \
   /home/yadanilka/Projects/quansim/quanlib/src/algorithms/Grover.h \
-  /home/yadanilka/Projects/quansim/quanlib/src/common.h \
   /home/yadanilka/Projects/quansim/quanlib/tests/algorithms/grover_test.h \
   /home/yadanilka/Projects/quansim/quanlib/tests/common_test.h \
   /usr/include/alloca.h \
@@ -87,9 +86,7 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
-  /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/stdlib-bsearch.h \
   /usr/include/bits/stdlib-float.h \
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
@@ -531,8 +528,6 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/limits.h:
 
-/usr/include/inttypes.h:
-
 /usr/include/gtest/internal/gtest-param-util.h:
 
 /usr/include/gtest/internal/gtest-filepath.h:
@@ -751,6 +746,10 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/unique_lock.h:
 
+/usr/include/locale.h:
+
+/usr/include/c++/14.2.1/bits/uniform_int_dist.h:
+
 /usr/include/c++/14.2.1/bits/stringfwd.h:
 
 /usr/include/gtest/gtest_pred_impl.h:
@@ -779,11 +778,7 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/stl_raw_storage_iter.h:
 
-/usr/include/c++/14.2.1/bits/stl_queue.h:
-
-/usr/include/c++/14.2.1/bits/stl_pair.h:
-
-/usr/include/bits/types/struct_statx_timestamp.h:
+/usr/include/bits/types/struct_tm.h:
 
 /usr/include/bits/types/sigset_t.h:
 
@@ -821,6 +816,12 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/bits/time64.h:
 
+/usr/include/c++/14.2.1/thread:
+
+/usr/include/c++/14.2.1/ciso646:
+
+/usr/include/bits/types/struct_timeval.h:
+
 /usr/include/bits/stdio_lim.h:
 
 /usr/include/c++/14.2.1/forward_list:
@@ -828,10 +829,6 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 /usr/include/bits/types/__mbstate_t.h:
 
 /usr/include/c++/14.2.1/bits/predefined_ops.h:
-
-/usr/include/bits/stdio.h:
-
-/home/yadanilka/Projects/quansim/quanlib/src/common.h:
 
 /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/gthr.h:
 
@@ -857,7 +854,11 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/bits/signum-generic.h:
 
+/usr/include/c++/14.2.1/bits/stl_pair.h:
+
 /usr/include/bits/types/struct_sigstack.h:
+
+/usr/include/c++/14.2.1/bits/stl_queue.h:
 
 /usr/include/bits/types/stack_t.h:
 
@@ -875,11 +876,11 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/stl_function.h:
 
-/usr/include/bits/stdlib-bsearch.h:
-
 /usr/include/c++/14.2.1/bits/basic_ios.tcc:
 
 /usr/include/bits/types/struct_timespec.h:
+
+/usr/include/c++/14.2.1/bits/stl_iterator_base_funcs.h:
 
 /usr/include/bits/pthreadtypes-arch.h:
 
@@ -888,16 +889,6 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 /usr/include/c++/14.2.1/tr1/ell_integral.tcc:
 
 /usr/include/bits/pthread_stack_min-dynamic.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-/usr/include/c++/14.2.1/tr1/hypergeometric.tcc:
-
-/usr/include/c++/14.2.1/bitset:
-
-/usr/include/c++/14.2.1/bits/fstream.tcc:
-
-/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/metaprovider.h:
 
 /usr/include/bits/types/__sigset_t.h:
 
@@ -909,35 +900,33 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/enable_special_members.h:
 
-/usr/include/bits/types/siginfo_t.h:
-
-/usr/include/features.h:
-
-/usr/include/bits/types/__FILE.h:
-
-/usr/include/bits/sched.h:
-
-/usr/include/bits/statx.h:
-
-/usr/include/asm-generic/int-ll64.h:
-
-/usr/include/c++/14.2.1/bits/stl_map.h:
-
-/home/yadanilka/Projects/quansim/quanlib/tests/common_test.h:
-
-/usr/include/gtest/gtest-matchers.h:
-
-/usr/include/bits/types/idtype_t.h:
-
 /usr/include/c++/14.2.1/chrono:
 
 /usr/include/asm-generic/errno.h:
 
 /usr/include/bits/fp-logb.h:
 
-/usr/include/c++/14.2.1/bits/stl_iterator_base_funcs.h:
+/usr/include/asm-generic/errno-base.h:
 
-/usr/include/bits/stat.h:
+/usr/include/c++/14.2.1/tr1/hypergeometric.tcc:
+
+/usr/include/c++/14.2.1/bitset:
+
+/usr/include/c++/14.2.1/bits/fstream.tcc:
+
+/usr/include/inttypes.h:
+
+/home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/state_evolve.h:
+
+/usr/include/c++/14.2.1/bits/stl_map.h:
+
+/home/yadanilka/Projects/quansim/quanlib/tests/common_test.h:
+
+/usr/include/asm-generic/int-ll64.h:
+
+/usr/include/gtest/gtest-matchers.h:
+
+/usr/include/bits/types/idtype_t.h:
 
 /usr/include/c++/14.2.1/cmath:
 
@@ -947,37 +936,29 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/assert.h:
 
+/usr/include/bits/stat.h:
+
 /usr/include/c++/14.2.1/bits/concept_check.h:
 
-/usr/include/bits/ss_flags.h:
+/usr/include/bits/siginfo-consts.h:
 
-/usr/include/asm/posix_types_64.h:
+/usr/include/c++/14.2.1/ext/aligned_buffer.h:
 
-/usr/include/c++/14.2.1/debug/assertions.h:
+/usr/include/bits/libc-header-start.h:
 
-/usr/include/bits/time.h:
+/usr/include/bits/types/struct_statx_timestamp.h:
 
-/usr/include/asm/posix_types.h:
+/home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h:
 
-/usr/include/bits/signal_ext.h:
+/usr/include/bits/types/siginfo_t.h:
 
-/usr/include/bits/types/mbstate_t.h:
+/usr/include/features.h:
 
-/home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensor.h:
+/usr/include/bits/types/__FILE.h:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h:
+/usr/include/bits/sched.h:
 
-/usr/include/bits/flt-eval-method.h:
-
-/usr/include/c++/14.2.1/bits/atomic_futex.h:
-
-/home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensorexpr.h:
-
-/usr/include/locale.h:
-
-/usr/include/c++/14.2.1/bits/uniform_int_dist.h:
-
-/home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/tensorprovider.h:
+/usr/include/bits/statx.h:
 
 /usr/include/c++/14.2.1/tuple:
 
@@ -1001,32 +982,6 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/locale_facets.h:
 
-/home/yadanilka/Projects/quansim/quanlib/src/StateSimulator/gatesim.h:
-
-/usr/include/c++/14.2.1/tr1/bessel_function.tcc:
-
-/usr/include/c++/14.2.1/bits/shared_ptr.h:
-
-/usr/include/c++/14.2.1/condition_variable:
-
-/usr/include/bits/sigstack.h:
-
-/usr/include/bits/siginfo-consts-arch.h:
-
-/usr/include/c++/14.2.1/locale:
-
-/usr/include/bits/getopt_core.h:
-
-/usr/include/gtest/internal/gtest-port.h:
-
-/usr/include/c++/14.2.1/bits/fs_dir.h:
-
-/usr/include/bits/sigaction.h:
-
-/usr/include/bits/iscanonical.h:
-
-/usr/include/c++/14.2.1/bits/codecvt.h:
-
 /usr/include/bits/types/cookie_io_functions_t.h:
 
 /usr/include/bits/types/struct_itimerspec.h:
@@ -1039,17 +994,19 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/bits/mathcalls-narrow.h:
 
-/usr/include/bits/sigcontext.h:
+/usr/include/bits/ss_flags.h:
 
-/usr/include/bits/types/wint_t.h:
+/usr/include/c++/14.2.1/iomanip:
 
-/usr/include/c++/14.2.1/bits/basic_ios.h:
+/usr/include/asm/types.h:
 
-/usr/include/c++/14.2.1/bits/deque.tcc:
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/float.h:
 
-/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/instruction.h:
+/usr/include/c++/14.2.1/bits/stl_uninitialized.h:
 
-/usr/include/bits/endian.h:
+/usr/include/bits/types/struct_sched_param.h:
+
+/usr/include/c++/14.2.1/bits/regex_constants.h:
 
 /usr/include/gnu/stubs-64.h:
 
@@ -1085,35 +1042,73 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/regex_executor.tcc:
 
-/usr/include/bits/posix_opt.h:
+/usr/include/bits/endian.h:
 
-/usr/include/bits/siginfo-consts.h:
+/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/instruction.h:
 
-/usr/include/c++/14.2.1/ext/aligned_buffer.h:
+/usr/include/bits/sigcontext.h:
 
-/usr/include/bits/libc-header-start.h:
+/usr/include/bits/types/wint_t.h:
 
-/usr/include/c++/14.2.1/iomanip:
+/usr/include/c++/14.2.1/bits/basic_ios.h:
 
-/usr/include/asm/types.h:
+/usr/include/c++/14.2.1/bits/deque.tcc:
 
-/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/float.h:
+/usr/include/asm/posix_types_64.h:
 
-/usr/include/c++/14.2.1/bits/stl_uninitialized.h:
+/usr/include/c++/14.2.1/debug/assertions.h:
 
-/usr/include/bits/types/struct_sched_param.h:
+/usr/include/bits/time.h:
 
-/usr/include/c++/14.2.1/bits/regex_constants.h:
+/usr/include/asm/posix_types.h:
+
+/home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensor.h:
+
+/usr/include/bits/signal_ext.h:
+
+/usr/include/bits/types/mbstate_t.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/include/stdint.h:
+
+/usr/include/bits/flt-eval-method.h:
+
+/usr/include/c++/14.2.1/bits/atomic_futex.h:
+
+/home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h:
+
+/home/yadanilka/Projects/quansim/quanlib/src/Tensors/tensorexpr.h:
 
 /usr/include/bits/stdint-intn.h:
 
 /usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/posix_opt.h:
+
+/usr/include/bits/siginfo-consts-arch.h:
+
+/usr/include/c++/14.2.1/locale:
+
+/usr/include/bits/getopt_core.h:
+
+/usr/include/c++/14.2.1/condition_variable:
+
+/usr/include/bits/sigstack.h:
+
+/usr/include/gtest/internal/gtest-port.h:
+
+/usr/include/c++/14.2.1/bits/fs_dir.h:
 
 /usr/include/gtest/gtest-death-test.h:
 
 /usr/include/bits/local_lim.h:
 
 /usr/include/bits/byteswap.h:
+
+/usr/include/c++/14.2.1/bits/fs_ops.h:
+
+/usr/include/bits/types/clock_t.h:
+
+/usr/include/c++/14.2.1/bits/random.tcc:
 
 /usr/include/bits/confname.h:
 
@@ -1155,28 +1150,6 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/cxxabi_init_exception.h:
 
-/usr/include/wchar.h:
-
-/usr/include/c++/14.2.1/clocale:
-
-/usr/include/bits/posix1_lim.h:
-
-/usr/include/c++/14.2.1/bits/stl_stack.h:
-
-/usr/include/c++/14.2.1/bits/regex.tcc:
-
-/usr/include/bits/pthreadtypes.h:
-
-/usr/lib/libc.so:
-
-/usr/include/wctype.h:
-
-/usr/include/sched.h:
-
-/usr/include/bits/fp-fast.h:
-
-/usr/include/c++/14.2.1/bits/atomic_lockfree_defines.h:
-
 /usr/include/bits/long-double.h:
 
 /usr/include/c++/14.2.1/numeric:
@@ -1195,23 +1168,37 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 
 /usr/include/c++/14.2.1/bits/mask_array.h:
 
+/usr/include/bits/sigaction.h:
+
+/usr/include/bits/iscanonical.h:
+
+/usr/include/c++/14.2.1/bits/codecvt.h:
+
 /usr/include/bits/mathcalls-helper-functions.h:
 
 /usr/include/c++/14.2.1/bits/stl_multiset.h:
 
-/usr/include/c++/14.2.1/thread:
+/usr/include/bits/pthreadtypes.h:
 
-/usr/include/c++/14.2.1/ciso646:
+/usr/lib/libc.so:
 
-/usr/include/bits/types/struct_timeval.h:
+/usr/include/wctype.h:
 
-/usr/include/bits/types/struct_tm.h:
+/usr/include/sched.h:
 
-/usr/include/bits/types/clock_t.h:
+/usr/include/bits/fp-fast.h:
 
-/usr/include/c++/14.2.1/bits/random.tcc:
+/usr/include/c++/14.2.1/bits/atomic_lockfree_defines.h:
 
-/usr/include/c++/14.2.1/bits/fs_ops.h:
+/usr/include/wchar.h:
+
+/usr/include/c++/14.2.1/clocale:
+
+/usr/include/bits/posix1_lim.h:
+
+/usr/include/c++/14.2.1/bits/stl_stack.h:
+
+/usr/include/c++/14.2.1/bits/regex.tcc:
 
 /usr/include/bits/types/timer_t.h:
 
@@ -1448,6 +1435,10 @@ tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.o: /home/yadanilka/P
 /usr/include/c++/14.2.1/cfloat:
 
 /usr/include/c++/14.2.1/bits/regex_scanner.tcc:
+
+/usr/include/c++/14.2.1/tr1/bessel_function.tcc:
+
+/usr/include/c++/14.2.1/bits/shared_ptr.h:
 
 /usr/include/c++/14.2.1/bits/slice_array.h:
 

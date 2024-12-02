@@ -3,8 +3,6 @@
 #include "iostream"
 
 
-constexpr int num_threads=8;
-
 int index_shape_change(int id, const std::map<Qubit, int>& up, const std::map<Qubit, int>& down);
 
 template<typename E>
@@ -13,6 +11,7 @@ void fill(int init, int finit, Data& data, const Expression<E> &e){
         data[i] = e[i];
     }
 }; 
+
 
 class Tensor : public Expression<Tensor>{
 public:
@@ -49,8 +48,7 @@ public:
         }
         return *this;
     }
-    // Tensor(Tensor&& T): dptr{T.dptr}, shape{T.shape} {} 
-    // Tensor& operator=(Tensor&& T) = default;
+    
     template<typename E>
 	Tensor(const Expression<E> &e): dptr{new Data(1<<e.get_shape().size(),0)}, shape{e.get_shape()}
 	{
@@ -77,8 +75,3 @@ std::ostream& operator<<(std::ostream& os, const Tensor& T);
 bool operator==(const Tensor& Tl, const Tensor& Tr);
 bool compare(const Tensor& Tl, const Tensor& Tr, double pres=0.0000001);
 bool compare(const Tensor& Tl, const Tensor& Tr, double pres);
-// {
-//     for (auto x: *T.get_dptr())
-//         os << x;
-//     return os << std::endl;
-// }

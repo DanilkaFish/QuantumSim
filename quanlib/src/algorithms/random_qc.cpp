@@ -1,6 +1,5 @@
-#include "inc/QuantumCircuit/algorithms/random_qc.h"
-#include "Eigen/Eigen"
-#include "inc/GateSimulator/unitary.h"
+#include "random_qc.h"
+#include "Eigen"
 // #include <numeric>
 // #include <complex>
 
@@ -86,8 +85,6 @@ DataPtr herm_to_un(const DataPtr& op, int n){
     std::cerr << m;
     for (int i=0; i<n*n; i++){
         (*u)[i] = m(i / n, i % n);
-        // std::cerr << (*u)[i];
     }
-    // std::cerr << std::ednl
     return u;
 }

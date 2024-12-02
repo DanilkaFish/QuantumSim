@@ -6,10 +6,14 @@ project(quanlib VERSION 0.1.0 )
 option(TESTS "enable tests" ON)
 option(MAIN "grover" ON)
 
-set(TENSOR_PATH ${PROJECT_SOURCE_DIR}/src/Tensors)
+set(TR_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/Tensors)
 set(QC_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/QuantumCircuit)
 set(GS_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/StateSimulator)
+set(RD_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/random)
+set(CM_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/Utils)
+set(VQE_SOURCE_PATH ${PROJECT_SOURCE_DIR}/src/VQE)
 set(QULACS_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/../ext_sources/qulacs/include)
+set(EIGEN_INCLUDE_PATH ${PROJECT_SOURCE_DIR}/../ext_sources/Eigen/)
 # set(MYPUBLIC_PATH ${PROJECT_SOURCE_DIR}/)
 
 # set(CMAKE_CXX_FLAGS "-Wall -Wextra")
@@ -65,18 +69,19 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/../lib)
 
 
 add_subdirectory(src/random)
-add_subdirectory(src/Qubits)
+add_subdirectory(src/Utils)
 add_subdirectory(src/QuantumCircuit)
 add_subdirectory(${GS_SOURCE_PATH})
 add_subdirectory(src/Tensors)
 add_subdirectory(src/algorithms)
+add_subdirectory(src/VQE)
 
 add_library(quan)
-# target_link_libraries(quan PUBLIC sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random )
-target_link_libraries(quan PUBLIC quantum tensor qubits gatesim grover random)
+# target_link_libraries(quan PUBLIC sub::quantum sub::tensor sub::qubits sub::state_evolve sub::grover sub::random )
+target_link_libraries(quan PUBLIC quantum tensor common state_evolve grover random random_qc vqe)
 
 # add_library(everything)
-# target_link_libraries(everything PUBLIC sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random)
+# target_link_libraries(everything PUBLIC sub::quantum sub::tensor sub::qubits sub::state_evolve sub::grover sub::random)
 
 
 if(TESTS)
@@ -90,8 +95,8 @@ endif()
 #     target_sources(main PRIVATE 
 #         main.cpp
 #         )
-#     target_link_libraries(main PRIVATE sub::quantum sub::tensor sub::qubits sub::gatesim sub::grover sub::random )
-#     target_include_directories(main PUBLIC ${TENSOR_PATH} ${MYPUBLIC_PATH})
+#     target_link_libraries(main PRIVATE sub::quantum sub::tensor sub::qubits sub::state_evolve sub::grover sub::random )
+#     target_include_directories(main PUBLIC ${TR_SOURCE_PATH} ${MYPUBLIC_PATH})
 #     target_compile_options(main PRIVATE -pthread)
 #     # target_link_options(main PRIVATE -pthread -sPTHREAD_POOL_SIZE=16)
 # else()
