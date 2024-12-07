@@ -3,8 +3,9 @@
 
 #include<utility>
 
-#include "instruction.h"
+#include "nlopt.hpp"
 
+#include "instruction.h"
 #include "q_errors.h"
 
 
@@ -26,9 +27,9 @@ public:
 class Optimizer{
 public:
     // Optimizer(MetaProvider& mp, const ParameterVector& pv):  mp{mp}, pv{pv} { cb=EmptyCallback{}; }
-    Optimizer(MetaProvider& mp, const ParameterVector& pv, Callback& cb): cb{cb}, mp{mp}, pv{pv} {}
+    Optimizer(MetaProvider& mp, ParameterVector& pv, Callback& cb): cb{cb}, mp{mp}, pv{pv} {}
     
-    std::pair<DoubleVec, double> optimize(int max_iter){
+    virtual std::pair<DoubleVec, double> optimize(int max_iter){
         int i = 0;
         SetUp();
         auto res = _update();
@@ -49,8 +50,29 @@ protected:
     virtual bool is_to_stop(std::pair<DoubleVec, double> data) = 0;
     Callback& cb;
     MetaProvider& mp;
-    ParameterVector pv;
+    ParameterVector& pv;
 };
 
+
+struct quantum_obj_data{
+    MetaProvider& mp;
+    ParameterVector& pv;
+}
+
+// class COBYLA()
+double eval_cost(const std::vector<double> &x, std::vector<double> &grad, void *data){
+    quantum_obj_data *d = reinterpret_cast<quantum_obj_data *>(data);
+    
+}
+class Nlopt_Optimizer: public Optimizer{
+public:
+    Nlopt_Optimizer(const nlopt_opt& opt, MetaProvider& mp, ParameterVector& pv, Callback& cb): opt{opt}, Optimizer{mp,pv,cb} {
+        nlopt_set_min_objective(opt, mp.evaluate_cost(), NULL);
+    }
+    static double eval_cost()
+private:
+    nlopt_opt opt;
+    
+}
 
 #endif

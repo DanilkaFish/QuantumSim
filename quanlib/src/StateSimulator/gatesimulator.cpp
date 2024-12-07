@@ -168,6 +168,10 @@ void BaseTensorProvider::U(const Qubits& qubs, DataPtr dptr){
     inplace_evolve(Operator{qubs, dptr});
 }
 
+void BaseTensorProvider::U(const Qubits& qubs, const Data& data){
+    inplace_evolve(Operator{qubs, data});
+}
+
 inline void _fill(int init, int finit, int dif, const Data& l, Data& r, const mask& buffer_mask, const std::vector<int>& expand){
     int buffer_i;
     DataType val;

@@ -29,6 +29,7 @@ public:
     void S(const Qubits& qubs) override ;
     void Sdag(const Qubits& qubs) override ;
     void U(const Qubits& qubs, DataPtr dptr) override ;
+    void U(const Qubits& qubs, const Data& data) override ;
     void PR(const PauliString& ps, double dptr) override;
     void Rx(const Qubits& qubs, double dptr) override;
     void Ry(const Qubits& qubs, double dptr) override;

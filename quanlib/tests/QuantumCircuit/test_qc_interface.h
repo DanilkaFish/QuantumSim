@@ -52,7 +52,6 @@ class InstuctionSetUp : public TestWithParam<std::tuple<std::vector<Qubits>>> {
   void SetUp() override {
     l = std::get<0>(GetParam());
   }
-
 };
 
 

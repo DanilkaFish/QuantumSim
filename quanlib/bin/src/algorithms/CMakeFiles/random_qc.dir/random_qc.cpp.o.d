@@ -203,6 +203,7 @@ src/algorithms/CMakeFiles/random_qc.dir/random_qc.cpp.o: \
  /usr/include/c++/14.2.1/utility \
  /usr/include/c++/14.2.1/bits/stl_relops.h \
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h \
  /home/yadanilka/Projects/quansim/quanlib/../ext_sources/Eigen/Eigen \
  /home/yadanilka/Projects/quansim/quanlib/../ext_sources/Eigen/Dense \
  /home/yadanilka/Projects/quansim/quanlib/../ext_sources/Eigen/Core \

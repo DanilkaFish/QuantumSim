@@ -22,6 +22,7 @@ public:
     virtual void CX(const Qubits& qubs) {};
     virtual void TOF(const Qubits& qubs) {};
     virtual void U(const Qubits& qubs, DataPtr dptr) {};
+    virtual void U(const Qubits& qubs, const Data& data) {};
     virtual void Rx(const Qubits& qubs, double angle) {};
     virtual void Ry(const Qubits& qubs, double angle) {};
     virtual void Rz(const Qubits& qubs, double angle) {};
@@ -29,7 +30,8 @@ public:
     virtual double evaluate_cost() { return 0; }
     virtual ~MetaProvider() {};
     virtual void SetUp() {}
-    void state_evolve();
+    void apply_instructions();
+    virtual void state_evolve() { apply_instructions(); };
 protected:
     const QuantumCircuit& qc;
 };
@@ -132,41 +134,48 @@ public:
 
 class _Rz: public Instruction{
 public:
-    _Rz(const Qubits& qubs, ParameterPtr angle): Instruction{qubs, "Rz"}, angle{angle} {}
-    void apply(MetaProvider& md) override { md.Rz(qubits, angle->value);}
+    _Rz(const Qubits& qubs, const ParameterBaseExpr& angle): Instruction{qubs, "Rz"}, angle{angle} {}
+    void apply(MetaProvider& md) override { md.Rz(qubits, angle.eval());}
 private:
-    ParameterPtr angle; 
+    ParameterBaseExpr angle;
 };
 
 
 class _Ry: public Instruction{
 public:
-    _Ry(const Qubits& qubs, ParameterPtr angle): Instruction{qubs, "Ry"}, angle{angle} {}
-    void apply(MetaProvider& md) override { md.Ry(qubits, angle->value);}
+    _Ry(const Qubits& qubs, const ParameterBaseExpr& angle): Instruction{qubs, "Ry"}, angle{angle} {}
+    void apply(MetaProvider& md) override { md.Ry(qubits, angle.eval());}
 private:
-    ParameterPtr angle; 
+    ParameterBaseExpr angle;
 };
 
 
 class _Rx: public Instruction{
 public:
-    _Rx(const Qubits& qubs, ParameterPtr angle): Instruction{qubs, "Rx"}, angle{angle} {}
-    void apply(MetaProvider& md) override { md.Rx(qubits, angle->value);}
+    _Rx(const Qubits& qubs, const ParameterBaseExpr& angle): Instruction{qubs, "Rx"}, angle{angle} {}
+    void apply(MetaProvider& md) override { md.Rx(qubits, angle.eval());}
 private:
-    ParameterPtr angle; 
+    ParameterBaseExpr angle; 
 };
 
 
 class _PR: public Instruction{
 public:
-    _PR(const PauliString& ps, ParameterPtr angle): ps{ps}, Instruction{ps.get_qubs(), ps.get_name()}, angle{angle} {}
+    _PR(const PauliString& ps, const ParameterBaseExpr& angle): ps{ps}, Instruction{ps.get_qubs(), ps.get_name()}, angle{angle} {}
     virtual QuantumCircuit decompose(const InstructionPtr& ip) override;
-    void apply(MetaProvider& md) override { md.PR(ps, angle->value);}
+    void apply(MetaProvider& md) override { md.PR(ps, angle.eval());}
 private:
-    ParameterPtr angle; 
+    ParameterBaseExpr angle;
     PauliString ps;
 };
 
+class _U_ordered: public Instruction{
+public:
+    _U_ordered(const Qubits& qubs, const Data& data): Instruction{qubs, "U"}, data{data} {}
+    void apply(MetaProvider& md) override { md.U(qubits, data); }
+private:
+    Data data;
+};
 
 class _U: public Instruction{
 public:

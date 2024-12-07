@@ -197,4 +197,5 @@ src/algorithms/CMakeFiles/transpiler.dir/transpilers.cpp.o: \
  /usr/include/c++/14.2.1/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14.2.1/iostream /usr/include/c++/14.2.1/utility \
  /usr/include/c++/14.2.1/bits/stl_relops.h \
- /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h
+ /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h

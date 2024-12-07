@@ -98,6 +98,7 @@ test_grover: tests/CMakeFiles/test_grover.dir/build.make
 test_grover: tests/CMakeFiles/test_grover.dir/compiler_depend.ts
 test_grover: /usr/lib/libgtest.so.1.15.2
 test_grover: /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a
+test_grover: /usr/lib/libpython3.12.so
 test_grover: tests/CMakeFiles/test_grover.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../test_grover"
 	cd /home/yadanilka/Projects/quansim/quanlib/bin/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_grover.dir/link.txt --verbose=$(VERBOSE)

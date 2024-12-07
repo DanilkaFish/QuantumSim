@@ -1,3 +1,9 @@
 [submodule "ext_sources/qulacs"]
 	path = ext_sources/qulacs
 	url = https://github.com/qulacs/qulacs.git
+[submodule "ext_sources/pybind11"]
+	path = ext_sources/pybind11
+	url = https://github.com/pybind/pybind11.git
+[submodule "ext_sources/nlopt"]
+	path = ext_sources/nlopt
+	url = https://github.com/stevengj/nlopt.git

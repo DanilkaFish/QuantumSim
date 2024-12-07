@@ -247,6 +247,32 @@ vqe/fast:
 .PHONY : vqe/fast
 
 #=============================================================================
+# Target rules for targets named main
+
+# Build rule for target.
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
+
+# fast build rule for target.
+main/fast:
+	$(MAKE) $(MAKESILENT) -f src/QiskitSimulator/CMakeFiles/main.dir/build.make src/QiskitSimulator/CMakeFiles/main.dir/build
+.PHONY : main/fast
+
+#=============================================================================
+# Target rules for targets named qiskit_evolve
+
+# Build rule for target.
+qiskit_evolve: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 qiskit_evolve
+.PHONY : qiskit_evolve
+
+# fast build rule for target.
+qiskit_evolve/fast:
+	$(MAKE) $(MAKESILENT) -f src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/build.make src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/build
+.PHONY : qiskit_evolve/fast
+
+#=============================================================================
 # Target rules for targets named test_qci
 
 # Build rule for target.
@@ -312,6 +338,19 @@ test_grover/fast:
 .PHONY : test_grover/fast
 
 #=============================================================================
+# Target rules for targets named test_random
+
+# Build rule for target.
+test_random: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_random
+.PHONY : test_random
+
+# fast build rule for target.
+test_random/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_random.dir/build.make tests/CMakeFiles/test_random.dir/build
+.PHONY : test_random/fast
+
+#=============================================================================
 # Target rules for targets named test_vqe
 
 # Build rule for target.
@@ -334,6 +373,8 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... common"
 	@echo "... grover"
+	@echo "... main"
+	@echo "... qiskit_evolve"
 	@echo "... quan"
 	@echo "... quantum"
 	@echo "... random"
@@ -342,6 +383,7 @@ help:
 	@echo "... tensor"
 	@echo "... test_grover"
 	@echo "... test_qci"
+	@echo "... test_random"
 	@echo "... test_state_evolve"
 	@echo "... test_tensor_crtp"
 	@echo "... test_tensor_data"

@@ -18,22 +18,7 @@ public:
     Tensor()=default;
     Tensor(DataType d): shape{}, dptr{new Data{d}} { }
     Tensor(const Shape& shape): shape{shape}, dptr{new Data(1 << shape.size())} { }
-    Tensor(const Qubits& up, const Qubits& down, const Data& data): shape{up, down}, dptr{new Data(1 << up.size() + down.size())} {
-        std::map<Qubit, int> posmapd;
-        std::map<Qubit, int> posmapu;
-        int pos=0;
-        for (auto x: down){
-            posmapu[x] = pos;
-            pos++;
-        }
-        for (auto x: up){
-            posmapd[x] = pos;
-            pos++;
-        }
-        for (int i=0;i<dptr->size(); i++){
-            (*dptr)[index_shape_change(i, posmapd, posmapu)] = data[i]; 
-        }
-    }
+    Tensor(const Qubits& up, const Qubits& down, const Data& data);
     Tensor(const Shape& shape, DataPtr dptr): shape{shape}, dptr{dptr} { }
     Tensor(const Tensor& T): dptr{new Data(T.size())}, shape{T.shape} {
         for (int i=0; i<this->size(); i++){

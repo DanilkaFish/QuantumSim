@@ -17,7 +17,7 @@ class Parameter;
 
 typedef std::complex<double> DataType;
 typedef std::vector<DataType> Data;
-typedef std::shared_ptr<std::vector<DataType>> DataPtr;
+typedef std::shared_ptr<Data> DataPtr;
 typedef std::shared_ptr<Instruction> InstructionPtr;
 typedef std::shared_ptr<Parameter> ParameterPtr;
 typedef std::map<int, ParameterPtr> ParameterPtrMap;
@@ -32,6 +32,41 @@ public:
     explicit Parameter(std::string name="t", double val=0): name{name}, value{val} {}
     std::string name;
     double value;
+};
+
+
+class ParameterBaseExpr{
+public:
+    // explicit ParameterBaseExpr(ParameterPtr pptr): pptr{pptr} {}
+    virtual double eval() { return 0; }
+private:
+    ParameterPtr pptr;
+};
+
+class ParameterExpr: public ParameterBaseExpr{
+public:
+    ParameterExpr(const ParameterPtr& pptr): pptr{pptr} {}
+    virtual double eval() override { return pptr->value; }
+private:
+    ParameterPtr pptr;
+};
+
+
+class ParameterProd: public ParameterBaseExpr{
+public:
+    explicit ParameterProd(double mult, ParameterPtr pptr): mult{mult}, pptr{pptr} {}
+    virtual double eval() override { return mult*(pptr->value); }
+private:
+    double mult;
+    ParameterPtr pptr;
+};
+
+class ParameterConst: public ParameterBaseExpr{
+public:
+    explicit ParameterConst(double val): val{val} {}
+    virtual double eval() override { return val; }
+private:
+    double val;
 };
 
 

@@ -24,11 +24,16 @@
 /home/yadanilka/Projects/quansim/quanlib/bin/src/VQE/CMakeFiles/vqe.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/VQE/CMakeFiles/edit_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/VQE/CMakeFiles/rebuild_cache.dir
+/home/yadanilka/Projects/quansim/quanlib/bin/src/QiskitSimulator/CMakeFiles/main.dir
+/home/yadanilka/Projects/quansim/quanlib/bin/src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir
+/home/yadanilka/Projects/quansim/quanlib/bin/src/QiskitSimulator/CMakeFiles/edit_cache.dir
+/home/yadanilka/Projects/quansim/quanlib/bin/src/QiskitSimulator/CMakeFiles/rebuild_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_qci.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_tensor_crtp.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_tensor_data.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_state_evolve.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_grover.dir
+/home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_random.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/test_vqe.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/edit_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/tests/CMakeFiles/rebuild_cache.dir

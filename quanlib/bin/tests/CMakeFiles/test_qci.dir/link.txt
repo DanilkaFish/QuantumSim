@@ -1,1 +1,1 @@
-/usr/bin/c++ -g -Wl,--dependency-file,CMakeFiles/test_qci.dir/link.d CMakeFiles/test_qci.dir/QuantumCircuit/test_qc_interface.cpp.o -o ../test_qci  /usr/lib/libgtest.so.1.15.2 -lgtest_main -lpthread /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a
+/usr/bin/c++ -g -Wl,--dependency-file,CMakeFiles/test_qci.dir/link.d CMakeFiles/test_qci.dir/QuantumCircuit/test_qc_interface.cpp.o -o ../test_qci  /usr/lib/libgtest.so.1.15.2 -lgtest_main -lpthread /home/yadanilka/Projects/quansim/quanlib/lib/libquan.a /usr/lib/libpython3.12.so

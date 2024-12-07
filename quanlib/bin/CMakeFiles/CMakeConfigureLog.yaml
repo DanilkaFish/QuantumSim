@@ -551,3 +551,45 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:108 (try_compile)"
+      - "/usr/share/cmake/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake/Modules/CheckCXXCompilerFlag.cmake:55 (cmake_check_compiler_flag)"
+      - "/usr/lib/cmake/pybind11/pybind11Common.cmake:323 (check_cxx_compiler_flag)"
+      - "/usr/lib/cmake/pybind11/pybind11Common.cmake:368 (_pybind11_return_if_cxx_and_linker_flags_work)"
+      - "/usr/lib/cmake/pybind11/pybind11Common.cmake:435 (_pybind11_generate_lto)"
+      - "/usr/lib/cmake/pybind11/pybind11Config.cmake:250 (include)"
+      - "src/QiskitSimulator/CMakeLists.txt:8 (find_package)"
+    checks:
+      - "Performing Test HAS_FLTO"
+    directories:
+      source: "/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles/CMakeScratch/TryCompile-IT1Af5"
+      binary: "/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles/CMakeScratch/TryCompile-IT1Af5"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HAS_FLTO"
+      cached: true
+      stdout: |
+        Change Dir: '/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles/CMakeScratch/TryCompile-IT1Af5'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_b00f0/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_b00f0.dir/build.make CMakeFiles/cmTC_b00f0.dir/build
+        make[1]: Entering directory '/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles/CMakeScratch/TryCompile-IT1Af5'
+        Building CXX object CMakeFiles/cmTC_b00f0.dir/src.cxx.o
+        /usr/bin/c++ -DHAS_FLTO  -flto -fno-fat-lto-objects -o CMakeFiles/cmTC_b00f0.dir/src.cxx.o -c /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles/CMakeScratch/TryCompile-IT1Af5/src.cxx
+        Linking CXX executable cmTC_b00f0
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b00f0.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_b00f0.dir/src.cxx.o -o cmTC_b00f0  -flto
+        make[1]: Leaving directory '/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles/CMakeScratch/TryCompile-IT1Af5'
+        
+      exitCode: 0
+...

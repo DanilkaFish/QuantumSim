@@ -16,20 +16,22 @@ QCGenerator::~QCGenerator(){
 
 QuantumCircuit QCGenerator::get_qc(double p=0.64){
     QuantumCircuit qc;
+    int num = 1;
     for(int i=0; i< depth; i++){
         double n = ng->get_double(0, 1);
+        
         if (n > p){
-            Qubits qubs = gen_qubits(1);
-            qc.add_instruction(BaseInstr::U(qubs, gen_op(qubs)));
+            num = 1;
         }else{
-            Qubits qubs = gen_qubits(2);
-            qc.add_instruction(BaseInstr::U(qubs, gen_op(qubs)));
+            num = 2;
         }
+        Qubits qubs = gen_qubits(num);
+        qc.add_instruction(BaseInstr::U_ordered(qubs, gen_op(qubs)));
     }
     return qc;
 }  
 
-DataPtr QCGenerator::gen_op(Qubits qubs){
+Data QCGenerator::gen_op(Qubits qubs){
     int size = (1 << qubs.size());
     DataPtr dptr{ new Data(size*size)};
     for(int i=0; i < size; i++){
@@ -69,7 +71,7 @@ Qubits QCGenerator::gen_qubits(int n){
 
 class Operator;
 
-DataPtr herm_to_un(const DataPtr& op, int n){
+Data herm_to_un(const DataPtr& op, int n){
     Eigen::MatrixXcd m(n, n);
     for (int i=0; i<n*n; i++){
         m(i / n, i % n) = (*op)[i];
@@ -79,12 +81,12 @@ DataPtr herm_to_un(const DataPtr& op, int n){
         m(i / n, i % n) =  (i / n != i % n) ? 0 : std::exp(i::i* eigensolver.eigenvalues()[i/n]);
     }
     // HSMatrix u(this->n_qubits);
-    DataPtr u{ new Data(n*n) };
+    Data u(n*n);
 
     m = eigensolver.eigenvectors() * m * eigensolver.eigenvectors().adjoint();
-    std::cerr << m;
+    // std::cerr << m;
     for (int i=0; i<n*n; i++){
-        (*u)[i] = m(i / n, i % n);
+        u[i] = m(i / n, i % n);
     }
     return u;
 }

@@ -1,6 +1,6 @@
 {
     "editor.fontSize": 15,
-    "python.defaultInterpreterPath": "~/python_venvs/model/bin/python3",
+    "python.defaultInterpreterPath": "~/python_venvs/quansim/bin/python3",
     "files.associations": {
         "complex": "cpp",
         "*.ipp": "cpp",

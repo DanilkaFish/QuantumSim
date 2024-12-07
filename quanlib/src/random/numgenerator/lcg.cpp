@@ -5,7 +5,7 @@
 class LCG: public BaseGenerator{
 public:
     LCG(
-        int seed, 
+        int seed=18, 
         int init_step=100,
         int a=75, 
         int c=74, 

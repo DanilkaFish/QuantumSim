@@ -352,6 +352,7 @@ tests/CMakeFiles/test_qci.dir/QuantumCircuit/test_qc_interface.cpp.o: \
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h \
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h \
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h \
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/instruction.h \
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h \
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h

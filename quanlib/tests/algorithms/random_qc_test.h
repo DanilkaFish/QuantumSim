@@ -2,11 +2,11 @@
 #define _TEST_GROVER
 
 #include <gtest/gtest.h>
-#include "inc/QuantumCircuit/algorithms/random_qc.h"
+#include "algorithms/random_qc.h"
 
 #include <tuple>
 
-#include "tests/common_test.h"
+#include "common_test.h"
 
 
 // class RandomGenTest : public TestWithParam<std::tuple<int, IntArr, int>>{

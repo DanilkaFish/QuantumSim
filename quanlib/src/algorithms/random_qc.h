@@ -14,14 +14,14 @@ public:
     // QuantumCircuit   get_qc(double=0.64);
 
 private:
-    DataPtr          gen_op(Qubits qubs);
+    Data         gen_op(Qubits qubs);
     Qubits           gen_qubits(int n);
     int              n_qubits;
     int              depth;
     BaseGenerator*   ng;
 };
 
-DataPtr herm_to_un(const DataPtr& op, int n);
+Data herm_to_un(const DataPtr& op, int n);
 
 #endif
     

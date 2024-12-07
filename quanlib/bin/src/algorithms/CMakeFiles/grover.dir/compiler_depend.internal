@@ -4,6 +4,7 @@
 src/algorithms/CMakeFiles/grover.dir/grover.cpp.o
  /home/yadanilka/Projects/quansim/quanlib/src/algorithms/grover.cpp
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h
  /home/yadanilka/Projects/quansim/quanlib/src/algorithms/Grover.h

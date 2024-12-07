@@ -294,6 +294,7 @@ src/algorithms/CMakeFiles/random_qc.dir/random_qc.cpp.o
  /home/yadanilka/Projects/quansim/ext_sources/Eigen/src/misc/Kernel.h
  /home/yadanilka/Projects/quansim/ext_sources/Eigen/src/misc/RealSvd2x2.h
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h
  /home/yadanilka/Projects/quansim/quanlib/src/algorithms/random_qc.h

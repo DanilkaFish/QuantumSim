@@ -24,7 +24,7 @@ QuantumCircuit MagicInstruction::decompose(const InstructionPtr& that)  {
     return this->qc;
 }
 
-void MetaProvider::state_evolve() {
+void MetaProvider::apply_instructions() {
     SetUp();
     for(auto ins: qc){
         ins->apply(*this);
@@ -98,6 +98,7 @@ InstructionPtr BaseInstr::Rx(Qubit qub, double angle) { return InstructionPtr{ n
 InstructionPtr BaseInstr::PR(const PauliString& ps, double theta){ return InstructionPtr{ new _PR{ps, ParameterPtr{new Parameter{"", theta}}}}; };
 InstructionPtr BaseInstr::PR(const PauliString& ps, ParameterPtr theta){ return InstructionPtr{ new _PR{ps, theta}}; };
 InstructionPtr BaseInstr::U(const Qubits& qubs, DataPtr dptr) { return InstructionPtr{ new _U{qubs, dptr}}; } 
+InstructionPtr BaseInstr::U_ordered(const Qubits& qubs, const Data& data) { return InstructionPtr{ new _U_ordered{qubs, data}}; } 
 
 QuantumCircuit _PR::decompose(const InstructionPtr& x){
     QuantumCircuit qc;

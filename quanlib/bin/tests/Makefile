@@ -187,6 +187,20 @@ test_grover/fast:
 .PHONY : test_grover/fast
 
 # Convenience name for target.
+tests/CMakeFiles/test_random.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_random.dir/rule
+.PHONY : tests/CMakeFiles/test_random.dir/rule
+
+# Convenience name for target.
+test_random: tests/CMakeFiles/test_random.dir/rule
+.PHONY : test_random
+
+# fast build rule for target.
+test_random/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_random.dir/build.make tests/CMakeFiles/test_random.dir/build
+.PHONY : test_random/fast
+
+# Convenience name for target.
 tests/CMakeFiles/test_vqe.dir/rule:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_vqe.dir/rule
 .PHONY : tests/CMakeFiles/test_vqe.dir/rule
@@ -344,6 +358,30 @@ algorithms/grover_test.cpp.s:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/algorithms/grover_test.cpp.s
 .PHONY : algorithms/grover_test.cpp.s
 
+algorithms/random_qc_test.o: algorithms/random_qc_test.cpp.o
+.PHONY : algorithms/random_qc_test.o
+
+# target to build an object file
+algorithms/random_qc_test.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_random.dir/build.make tests/CMakeFiles/test_random.dir/algorithms/random_qc_test.cpp.o
+.PHONY : algorithms/random_qc_test.cpp.o
+
+algorithms/random_qc_test.i: algorithms/random_qc_test.cpp.i
+.PHONY : algorithms/random_qc_test.i
+
+# target to preprocess a source file
+algorithms/random_qc_test.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_random.dir/build.make tests/CMakeFiles/test_random.dir/algorithms/random_qc_test.cpp.i
+.PHONY : algorithms/random_qc_test.cpp.i
+
+algorithms/random_qc_test.s: algorithms/random_qc_test.cpp.s
+.PHONY : algorithms/random_qc_test.s
+
+# target to generate assembly for a file
+algorithms/random_qc_test.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_random.dir/build.make tests/CMakeFiles/test_random.dir/algorithms/random_qc_test.cpp.s
+.PHONY : algorithms/random_qc_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -354,6 +392,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test_grover"
 	@echo "... test_qci"
+	@echo "... test_random"
 	@echo "... test_state_evolve"
 	@echo "... test_tensor_crtp"
 	@echo "... test_tensor_data"
@@ -376,6 +415,9 @@ help:
 	@echo "... algorithms/grover_test.o"
 	@echo "... algorithms/grover_test.i"
 	@echo "... algorithms/grover_test.s"
+	@echo "... algorithms/random_qc_test.o"
+	@echo "... algorithms/random_qc_test.i"
+	@echo "... algorithms/random_qc_test.s"
 .PHONY : help
 
 

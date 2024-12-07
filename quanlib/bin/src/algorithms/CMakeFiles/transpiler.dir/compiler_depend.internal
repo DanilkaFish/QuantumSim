@@ -4,6 +4,7 @@
 src/algorithms/CMakeFiles/transpiler.dir/transpilers.cpp.o
  /home/yadanilka/Projects/quansim/quanlib/src/algorithms/transpilers.cpp
  /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/QuantumCircuit.h
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/common.h
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h
  /home/yadanilka/Projects/quansim/quanlib/src/algorithms/transpilers.h

@@ -202,4 +202,5 @@ src/VQE/CMakeFiles/vqe.dir/vqe.cpp.o: \
  /usr/include/c++/14.2.1/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14.2.1/iostream \
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h \
+ /home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit/drawer.h \
  /home/yadanilka/Projects/quansim/quanlib/src/Utils/q_errors.h

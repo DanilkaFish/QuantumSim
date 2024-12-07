@@ -2,6 +2,7 @@
 #define _QCINIT
 
 #include "common.h"
+#include "drawer.h"
 
 class MetaProvider;
 class QC_representation;
@@ -57,14 +58,15 @@ namespace BaseInstr{
     InstructionPtr Rx(Qubit qub, double angle);
     InstructionPtr Ry(Qubit qub, double angle);
     InstructionPtr Rz(Qubit qub, double angle);
-    InstructionPtr Rx(Qubit qub, ParameterPtr angle);
-    InstructionPtr Ry(Qubit qub, ParameterPtr angle);
-    InstructionPtr Rz(Qubit qub, ParameterPtr angle);
+    InstructionPtr Rx(Qubit qub, const ParameterBaseExpr& angle);
+    InstructionPtr Ry(Qubit qub, const ParameterBaseExpr& angle);
+    InstructionPtr Rz(Qubit qub, const ParameterBaseExpr& angle);
     InstructionPtr PR(const PauliString& pauli, double theta);
-    InstructionPtr PR(const PauliString& pauli, ParameterPtr theta);
+    InstructionPtr PR(const PauliString& pauli, const ParameterBaseExpr& theta);
     // InstructionPtr PR()
     // InstructionPtr U1(Qubit qub, DataPtr dptr);
     // InstructionPtr U2(Qubit qub1, Qubit qub2, DataPtr dptr);
     InstructionPtr U(const Qubits& qubs, DataPtr dptr);
+    InstructionPtr U_ordered(const Qubits& qubs, const Data& data);
 }
 #endif

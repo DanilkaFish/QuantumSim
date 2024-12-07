@@ -23,20 +23,17 @@ bool operator==(const Shape& sl, const Shape& sr){
 
 int index_shape_change(int id, const std::map<Qubit, int>& up, const std::map<Qubit, int>& down){
     int new_id=0;
-    int pos =0;
     for(auto qub: down){
         if ( (id & 1) != 0){
             new_id += (1 << qub.second);
         }
         id = id >> 1;
-        pos++;
     }
     for(auto qub: up){
         if ((id & 1) != 0){
             new_id += (1 << qub.second);
         }
         id = id >> 1;
-        pos++;
     }
     return new_id;
 }
@@ -112,3 +109,23 @@ std::ostream& operator<<(std::ostream& os, const Tensor& T){
 //         os << x;
 //     return os << std::endl;
 // }
+
+
+Tensor::Tensor(const Qubits& up, const Qubits& down, const Data& data): shape{up, down}, dptr{new Data(1 << (up.size() + down.size()))} {
+    std::map<Qubit, int> posmapd;
+    std::map<Qubit, int> posmapu;
+    int pos=0;
+    for (auto x: down){
+        posmapu[x] = pos;
+        pos++;
+    }
+    for (auto x: up){
+        posmapd[x] = pos;
+        pos++;
+    }
+
+    std::cerr << dptr->size() << std::endl;
+    for (int i=0;i<dptr->size(); i++){
+        (*dptr)[index_shape_change(i, posmapd, posmapu)] = data[i]; 
+    }
+    }

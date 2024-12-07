@@ -13,7 +13,6 @@ option(RANDOMQC_TEST "random_qc" ON)
 option(GROVER_TEST "grover" ON)
 option(VQE_TEST "vqe" ON)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 if(QC_INTER_TEST)
     include(QuantumCircuit/CMakeLists.txt)
 else()
