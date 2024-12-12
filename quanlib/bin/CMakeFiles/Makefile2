@@ -237,12 +237,14 @@ src/VQE/clean: src/VQE/CMakeFiles/vqe.dir/clean
 src/algorithms/all: src/algorithms/CMakeFiles/grover.dir/all
 src/algorithms/all: src/algorithms/CMakeFiles/random_qc.dir/all
 src/algorithms/all: src/algorithms/CMakeFiles/transpiler.dir/all
+src/algorithms/all: src/algorithms/CMakeFiles/qaoa.dir/all
 .PHONY : src/algorithms/all
 
 # Recursive "codegen" directory target.
 src/algorithms/codegen: src/algorithms/CMakeFiles/grover.dir/codegen
 src/algorithms/codegen: src/algorithms/CMakeFiles/random_qc.dir/codegen
 src/algorithms/codegen: src/algorithms/CMakeFiles/transpiler.dir/codegen
+src/algorithms/codegen: src/algorithms/CMakeFiles/qaoa.dir/codegen
 .PHONY : src/algorithms/codegen
 
 # Recursive "preinstall" directory target.
@@ -253,6 +255,7 @@ src/algorithms/preinstall:
 src/algorithms/clean: src/algorithms/CMakeFiles/grover.dir/clean
 src/algorithms/clean: src/algorithms/CMakeFiles/random_qc.dir/clean
 src/algorithms/clean: src/algorithms/CMakeFiles/transpiler.dir/clean
+src/algorithms/clean: src/algorithms/CMakeFiles/qaoa.dir/clean
 .PHONY : src/algorithms/clean
 
 #=============================================================================
@@ -322,16 +325,17 @@ CMakeFiles/quan.dir/all: src/StateSimulator/CMakeFiles/state_evolve.dir/all
 CMakeFiles/quan.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 CMakeFiles/quan.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 CMakeFiles/quan.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+CMakeFiles/quan.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 CMakeFiles/quan.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 CMakeFiles/quan.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/quan.dir/build.make CMakeFiles/quan.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/quan.dir/build.make CMakeFiles/quan.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=6 "Built target quan"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=7 "Built target quan"
 .PHONY : CMakeFiles/quan.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/quan.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/quan.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : CMakeFiles/quan.dir/rule
@@ -357,7 +361,7 @@ CMakeFiles/quan.dir/clean:
 src/random/CMakeFiles/random.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/random/CMakeFiles/random.dir/build.make src/random/CMakeFiles/random.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/random/CMakeFiles/random.dir/build.make src/random/CMakeFiles/random.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=8 "Built target random"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=9 "Built target random"
 .PHONY : src/random/CMakeFiles/random.dir/all
 
 # Build rule for subdir invocation for target.
@@ -419,7 +423,7 @@ src/Utils/CMakeFiles/common.dir/clean:
 src/QuantumCircuit/CMakeFiles/quantum.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/QuantumCircuit/CMakeFiles/quantum.dir/build.make src/QuantumCircuit/CMakeFiles/quantum.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/QuantumCircuit/CMakeFiles/quantum.dir/build.make src/QuantumCircuit/CMakeFiles/quantum.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=7 "Built target quantum"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=8 "Built target quantum"
 .PHONY : src/QuantumCircuit/CMakeFiles/quantum.dir/all
 
 # Build rule for subdir invocation for target.
@@ -450,7 +454,7 @@ src/QuantumCircuit/CMakeFiles/quantum.dir/clean:
 src/StateSimulator/CMakeFiles/state_evolve.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/state_evolve.dir/build.make src/StateSimulator/CMakeFiles/state_evolve.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/StateSimulator/CMakeFiles/state_evolve.dir/build.make src/StateSimulator/CMakeFiles/state_evolve.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=10 "Built target state_evolve"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=11 "Built target state_evolve"
 .PHONY : src/StateSimulator/CMakeFiles/state_evolve.dir/all
 
 # Build rule for subdir invocation for target.
@@ -481,7 +485,7 @@ src/StateSimulator/CMakeFiles/state_evolve.dir/clean:
 src/Tensors/CMakeFiles/tensor.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/Tensors/CMakeFiles/tensor.dir/build.make src/Tensors/CMakeFiles/tensor.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/Tensors/CMakeFiles/tensor.dir/build.make src/Tensors/CMakeFiles/tensor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=11 "Built target tensor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=12 "Built target tensor"
 .PHONY : src/Tensors/CMakeFiles/tensor.dir/all
 
 # Build rule for subdir invocation for target.
@@ -543,7 +547,7 @@ src/algorithms/CMakeFiles/grover.dir/clean:
 src/algorithms/CMakeFiles/random_qc.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/random_qc.dir/build.make src/algorithms/CMakeFiles/random_qc.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/random_qc.dir/build.make src/algorithms/CMakeFiles/random_qc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=9 "Built target random_qc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=10 "Built target random_qc"
 .PHONY : src/algorithms/CMakeFiles/random_qc.dir/all
 
 # Build rule for subdir invocation for target.
@@ -574,7 +578,7 @@ src/algorithms/CMakeFiles/random_qc.dir/clean:
 src/algorithms/CMakeFiles/transpiler.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=26 "Built target transpiler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=27 "Built target transpiler"
 .PHONY : src/algorithms/CMakeFiles/transpiler.dir/all
 
 # Build rule for subdir invocation for target.
@@ -599,13 +603,44 @@ src/algorithms/CMakeFiles/transpiler.dir/clean:
 .PHONY : src/algorithms/CMakeFiles/transpiler.dir/clean
 
 #=============================================================================
+# Target rules for target src/algorithms/CMakeFiles/qaoa.dir
+
+# All Build rule for target.
+src/algorithms/CMakeFiles/qaoa.dir/all:
+	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=5 "Built target qaoa"
+.PHONY : src/algorithms/CMakeFiles/qaoa.dir/all
+
+# Build rule for subdir invocation for target.
+src/algorithms/CMakeFiles/qaoa.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/algorithms/CMakeFiles/qaoa.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
+.PHONY : src/algorithms/CMakeFiles/qaoa.dir/rule
+
+# Convenience name for target.
+qaoa: src/algorithms/CMakeFiles/qaoa.dir/rule
+.PHONY : qaoa
+
+# codegen rule for target.
+src/algorithms/CMakeFiles/qaoa.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/codegen
+.PHONY : src/algorithms/CMakeFiles/qaoa.dir/codegen
+
+# clean rule for target.
+src/algorithms/CMakeFiles/qaoa.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/clean
+.PHONY : src/algorithms/CMakeFiles/qaoa.dir/clean
+
+#=============================================================================
 # Target rules for target src/VQE/CMakeFiles/vqe.dir
 
 # All Build rule for target.
 src/VQE/CMakeFiles/vqe.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/VQE/CMakeFiles/vqe.dir/build.make src/VQE/CMakeFiles/vqe.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/VQE/CMakeFiles/vqe.dir/build.make src/VQE/CMakeFiles/vqe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=27 "Built target vqe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=28 "Built target vqe"
 .PHONY : src/VQE/CMakeFiles/vqe.dir/all
 
 # Build rule for subdir invocation for target.
@@ -641,6 +676,7 @@ src/QiskitSimulator/CMakeFiles/main.dir/all: src/StateSimulator/CMakeFiles/state
 src/QiskitSimulator/CMakeFiles/main.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 src/QiskitSimulator/CMakeFiles/main.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 src/QiskitSimulator/CMakeFiles/main.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+src/QiskitSimulator/CMakeFiles/main.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 src/QiskitSimulator/CMakeFiles/main.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 src/QiskitSimulator/CMakeFiles/main.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f src/QiskitSimulator/CMakeFiles/main.dir/build.make src/QiskitSimulator/CMakeFiles/main.dir/depend
@@ -650,7 +686,7 @@ src/QiskitSimulator/CMakeFiles/main.dir/all: src/QiskitSimulator/CMakeFiles/qisk
 
 # Build rule for subdir invocation for target.
 src/QiskitSimulator/CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/QiskitSimulator/CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : src/QiskitSimulator/CMakeFiles/main.dir/rule
@@ -676,7 +712,7 @@ src/QiskitSimulator/CMakeFiles/main.dir/clean:
 src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/build.make src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/build.make src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=5 "Built target qiskit_evolve"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=6 "Built target qiskit_evolve"
 .PHONY : src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 
 # Build rule for subdir invocation for target.
@@ -712,16 +748,17 @@ tests/CMakeFiles/test_qci.dir/all: src/StateSimulator/CMakeFiles/state_evolve.di
 tests/CMakeFiles/test_qci.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_qci.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 tests/CMakeFiles/test_qci.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+tests/CMakeFiles/test_qci.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 tests/CMakeFiles/test_qci.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 tests/CMakeFiles/test_qci.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_qci.dir/build.make tests/CMakeFiles/test_qci.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=14,15 "Built target test_qci"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=15,16 "Built target test_qci"
 .PHONY : tests/CMakeFiles/test_qci.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_qci.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_qci.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_qci.dir/rule
@@ -752,16 +789,17 @@ tests/CMakeFiles/test_tensor_crtp.dir/all: src/StateSimulator/CMakeFiles/state_e
 tests/CMakeFiles/test_tensor_crtp.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_tensor_crtp.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 tests/CMakeFiles/test_tensor_crtp.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+tests/CMakeFiles/test_tensor_crtp.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 tests/CMakeFiles/test_tensor_crtp.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 tests/CMakeFiles/test_tensor_crtp.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_crtp.dir/build.make tests/CMakeFiles/test_tensor_crtp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=20,21 "Built target test_tensor_crtp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=21,22 "Built target test_tensor_crtp"
 .PHONY : tests/CMakeFiles/test_tensor_crtp.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_tensor_crtp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_tensor_crtp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_tensor_crtp.dir/rule
@@ -792,16 +830,17 @@ tests/CMakeFiles/test_tensor_data.dir/all: src/StateSimulator/CMakeFiles/state_e
 tests/CMakeFiles/test_tensor_data.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_tensor_data.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 tests/CMakeFiles/test_tensor_data.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+tests/CMakeFiles/test_tensor_data.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 tests/CMakeFiles/test_tensor_data.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 tests/CMakeFiles/test_tensor_data.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_tensor_data.dir/build.make tests/CMakeFiles/test_tensor_data.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=22,23 "Built target test_tensor_data"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=23,24 "Built target test_tensor_data"
 .PHONY : tests/CMakeFiles/test_tensor_data.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_tensor_data.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_tensor_data.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_tensor_data.dir/rule
@@ -832,16 +871,17 @@ tests/CMakeFiles/test_state_evolve.dir/all: src/StateSimulator/CMakeFiles/state_
 tests/CMakeFiles/test_state_evolve.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_state_evolve.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 tests/CMakeFiles/test_state_evolve.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+tests/CMakeFiles/test_state_evolve.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 tests/CMakeFiles/test_state_evolve.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 tests/CMakeFiles/test_state_evolve.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_state_evolve.dir/build.make tests/CMakeFiles/test_state_evolve.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_state_evolve.dir/build.make tests/CMakeFiles/test_state_evolve.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=18,19 "Built target test_state_evolve"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=19,20 "Built target test_state_evolve"
 .PHONY : tests/CMakeFiles/test_state_evolve.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_state_evolve.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_state_evolve.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_state_evolve.dir/rule
@@ -872,16 +912,17 @@ tests/CMakeFiles/test_grover.dir/all: src/StateSimulator/CMakeFiles/state_evolve
 tests/CMakeFiles/test_grover.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_grover.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 tests/CMakeFiles/test_grover.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+tests/CMakeFiles/test_grover.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 tests/CMakeFiles/test_grover.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 tests/CMakeFiles/test_grover.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_grover.dir/build.make tests/CMakeFiles/test_grover.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=12,13 "Built target test_grover"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=13,14 "Built target test_grover"
 .PHONY : tests/CMakeFiles/test_grover.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_grover.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_grover.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_grover.dir/rule
@@ -912,16 +953,17 @@ tests/CMakeFiles/test_random.dir/all: src/StateSimulator/CMakeFiles/state_evolve
 tests/CMakeFiles/test_random.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_random.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 tests/CMakeFiles/test_random.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+tests/CMakeFiles/test_random.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 tests/CMakeFiles/test_random.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 tests/CMakeFiles/test_random.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_random.dir/build.make tests/CMakeFiles/test_random.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_random.dir/build.make tests/CMakeFiles/test_random.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=16,17 "Built target test_random"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=17,18 "Built target test_random"
 .PHONY : tests/CMakeFiles/test_random.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_random.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_random.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_random.dir/rule
@@ -952,16 +994,17 @@ tests/CMakeFiles/test_vqe.dir/all: src/StateSimulator/CMakeFiles/state_evolve.di
 tests/CMakeFiles/test_vqe.dir/all: src/Tensors/CMakeFiles/tensor.dir/all
 tests/CMakeFiles/test_vqe.dir/all: src/algorithms/CMakeFiles/grover.dir/all
 tests/CMakeFiles/test_vqe.dir/all: src/algorithms/CMakeFiles/random_qc.dir/all
+tests/CMakeFiles/test_vqe.dir/all: src/algorithms/CMakeFiles/qaoa.dir/all
 tests/CMakeFiles/test_vqe.dir/all: src/VQE/CMakeFiles/vqe.dir/all
 tests/CMakeFiles/test_vqe.dir/all: src/QiskitSimulator/CMakeFiles/qiskit_evolve.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_vqe.dir/build.make tests/CMakeFiles/test_vqe.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_vqe.dir/build.make tests/CMakeFiles/test_vqe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=24,25 "Built target test_vqe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles --progress-num=25,26 "Built target test_vqe"
 .PHONY : tests/CMakeFiles/test_vqe.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_vqe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 13
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_vqe.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/yadanilka/Projects/quansim/quanlib/bin/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_vqe.dir/rule

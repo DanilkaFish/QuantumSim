@@ -19,6 +19,7 @@
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/grover.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/random_qc.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/transpiler.dir
+/home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/qaoa.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/edit_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/algorithms/CMakeFiles/rebuild_cache.dir
 /home/yadanilka/Projects/quansim/quanlib/bin/src/VQE/CMakeFiles/vqe.dir

@@ -117,7 +117,7 @@ Operator bm::PR(const PauliString& pauli, double theta){
             T = T*bm::I(pauli.get_qn(i));
             break;
         default:
-            std::cerr << "WTF char in pualistring";
+            throw QException("wrong pauli string name :" + pauli.get_ch(i));
         }
     }
     return Operator{Tensor{cos(theta/2)}*bm::I(pauli.get_qubs()) + Tensor{i::i* sin(theta/2)}*T};
@@ -194,6 +194,21 @@ inline void _fill(int init, int finit, int dif, const Data& l, Data& r, const ma
     }
 }; 
 
+
+double StateVQE::evaluate_cost() { 
+    state_evolve();
+    State state_copy = Operator(0)*state;
+    for (auto op: Ham.svec){
+        state_copy = state_copy + op*state;
+    }
+    std::cout << state_copy;
+    DataType energy = (state.conj()*state_copy)[0];
+    if (std::abs(std::imag(energy)) > 0.0000000000001){
+        throw QException("Hamiltonian is not hermitian");
+    }
+    return std::real(energy); 
+}
+
 void StateProvider::inplace_evolve(const Operator& op){
     mask buffer_mask(state.get_shape().pos_up.compress(state.get_shape().pos_up.msk()) ^ 
                         state.get_shape().pos_up.compress(op.get_shape().pos_down.msk()));
@@ -227,13 +242,14 @@ void StateProvider::inplace_evolve(const Operator& op){
 }
 
 std::ostream& operator<<(std::ostream& os, const State& s){
+    int size = s.get_shape().size();
     for(int i=0; i<s.size(); i++){
         if (s[i].imag() != 0 || s[i].real() != 0){
             os << '+' << s[i] << "|";
             int j = i;
-            for(int pos=0; pos<s.get_shape().size(); pos++){
-                os << (j & 1);
-                j = j >> 1;
+            for(int pos=0; pos<size; pos++){
+                os << (j>>(size-pos-1) & 1);
+                // j = j >> 1;
             }   
             os << "> ";
         }

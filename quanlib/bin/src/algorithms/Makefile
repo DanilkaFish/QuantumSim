@@ -158,6 +158,20 @@ transpiler/fast:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/transpiler.dir/build.make src/algorithms/CMakeFiles/transpiler.dir/build
 .PHONY : transpiler/fast
 
+# Convenience name for target.
+src/algorithms/CMakeFiles/qaoa.dir/rule:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/algorithms/CMakeFiles/qaoa.dir/rule
+.PHONY : src/algorithms/CMakeFiles/qaoa.dir/rule
+
+# Convenience name for target.
+qaoa: src/algorithms/CMakeFiles/qaoa.dir/rule
+.PHONY : qaoa
+
+# fast build rule for target.
+qaoa/fast:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/build
+.PHONY : qaoa/fast
+
 grover.o: grover.cpp.o
 .PHONY : grover.o
 
@@ -181,6 +195,30 @@ grover.s: grover.cpp.s
 grover.cpp.s:
 	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/grover.dir/build.make src/algorithms/CMakeFiles/grover.dir/grover.cpp.s
 .PHONY : grover.cpp.s
+
+qaoa.o: qaoa.cpp.o
+.PHONY : qaoa.o
+
+# target to build an object file
+qaoa.cpp.o:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/qaoa.cpp.o
+.PHONY : qaoa.cpp.o
+
+qaoa.i: qaoa.cpp.i
+.PHONY : qaoa.i
+
+# target to preprocess a source file
+qaoa.cpp.i:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/qaoa.cpp.i
+.PHONY : qaoa.cpp.i
+
+qaoa.s: qaoa.cpp.s
+.PHONY : qaoa.s
+
+# target to generate assembly for a file
+qaoa.cpp.s:
+	cd /home/yadanilka/Projects/quansim/quanlib/bin && $(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/qaoa.cpp.s
+.PHONY : qaoa.cpp.s
 
 random_qc.o: random_qc.cpp.o
 .PHONY : random_qc.o
@@ -239,11 +277,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... grover"
+	@echo "... qaoa"
 	@echo "... random_qc"
 	@echo "... transpiler"
 	@echo "... grover.o"
 	@echo "... grover.i"
 	@echo "... grover.s"
+	@echo "... qaoa.o"
+	@echo "... qaoa.i"
+	@echo "... qaoa.s"
 	@echo "... random_qc.o"
 	@echo "... random_qc.i"
 	@echo "... random_qc.s"

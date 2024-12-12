@@ -80,7 +80,7 @@ add_subdirectory(src/QiskitSimulator)
 
 add_library(quan)
 # target_link_libraries(quan PUBLIC sub::quantum sub::tensor sub::qubits sub::state_evolve sub::grover sub::random )
-target_link_libraries(quan PUBLIC quantum tensor common state_evolve grover random random_qc vqe qiskit_evolve)
+target_link_libraries(quan PUBLIC quantum tensor common state_evolve grover random random_qc vqe qiskit_evolve qaoa)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # add_library(everything)

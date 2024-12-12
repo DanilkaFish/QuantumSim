@@ -124,7 +124,6 @@ Tensor::Tensor(const Qubits& up, const Qubits& down, const Data& data): shape{up
         pos++;
     }
 
-    std::cerr << dptr->size() << std::endl;
     for (int i=0;i<dptr->size(); i++){
         (*dptr)[index_shape_change(i, posmapd, posmapu)] = data[i]; 
     }

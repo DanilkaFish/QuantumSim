@@ -38,24 +38,23 @@ public:
 class ParameterBaseExpr{
 public:
     // explicit ParameterBaseExpr(ParameterPtr pptr): pptr{pptr} {}
-    virtual double eval() { return 0; }
-private:
-    ParameterPtr pptr;
+    virtual double eval() const { return 0; }
 };
 
 class ParameterExpr: public ParameterBaseExpr{
 public:
     ParameterExpr(const ParameterPtr& pptr): pptr{pptr} {}
-    virtual double eval() override { return pptr->value; }
+    virtual double eval() const override { return pptr->value; }
 private:
     ParameterPtr pptr;
 };
 
+typedef std::shared_ptr<ParameterBaseExpr> ExprPtr;
 
 class ParameterProd: public ParameterBaseExpr{
 public:
     explicit ParameterProd(double mult, ParameterPtr pptr): mult{mult}, pptr{pptr} {}
-    virtual double eval() override { return mult*(pptr->value); }
+    virtual double eval() const override { return mult*(pptr->value); }
 private:
     double mult;
     ParameterPtr pptr;
@@ -64,7 +63,7 @@ private:
 class ParameterConst: public ParameterBaseExpr{
 public:
     explicit ParameterConst(double val): val{val} {}
-    virtual double eval() override { return val; }
+    virtual double eval() const override { return val; }
 private:
     double val;
 };
@@ -89,12 +88,7 @@ public:
         }
         return rd;
     }
-    void set_row_values(const std::vector<double>& sv) {
-        int i=0;
-        for (auto x: spl){
-            x.second->value = sv[i++];
-        }
-    }
+    void set_row_values(const std::vector<double>& sv);
 private:
     std::string base_name;
     ParameterPtrMap spl;

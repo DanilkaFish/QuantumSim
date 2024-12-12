@@ -234,6 +234,19 @@ transpiler/fast:
 .PHONY : transpiler/fast
 
 #=============================================================================
+# Target rules for targets named qaoa
+
+# Build rule for target.
+qaoa: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 qaoa
+.PHONY : qaoa
+
+# fast build rule for target.
+qaoa/fast:
+	$(MAKE) $(MAKESILENT) -f src/algorithms/CMakeFiles/qaoa.dir/build.make src/algorithms/CMakeFiles/qaoa.dir/build
+.PHONY : qaoa/fast
+
+#=============================================================================
 # Target rules for targets named vqe
 
 # Build rule for target.
@@ -374,6 +387,7 @@ help:
 	@echo "... common"
 	@echo "... grover"
 	@echo "... main"
+	@echo "... qaoa"
 	@echo "... qiskit_evolve"
 	@echo "... quan"
 	@echo "... quantum"

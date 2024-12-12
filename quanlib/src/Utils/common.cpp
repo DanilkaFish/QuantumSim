@@ -2,6 +2,16 @@
 #include "common.h"
 // #include "inc/qubits.h"
 // #include "src/"
+ void ParameterVector::set_row_values(const std::vector<double>& sv) {
+    int i=0;
+    if (sv.size() != spl.size()){
+        throw QException("ParameterVector dimension error: expectd = " + std::to_string(spl.size()) + ",given=" + std::to_string(sv.size()));
+    }
+    for (auto x: spl){
+        x.second->value = sv[i++];
+    }
+}
+
 
 PauliString::PauliString(const std::string& s, const Qubits& qubs){
     if (s.size() != qubs.size()){

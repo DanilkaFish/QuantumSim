@@ -15,6 +15,23 @@ public:
     double A(int i) const { return _A[i];}
     double C() const { return _C;}
     int get_size() const { return size; }
+    Hamiltonian to_Ham();
+    Operator to_Op();
+    std::pair<double, int> ans(){
+        Operator op = to_Op();
+        double min=std::real(op[0]);
+        double _min;
+        int n = 1 << size;
+        int min_x = 0;
+        for (int i=1; i<n; i++){
+            _min = std::real(op[i*n + i]);
+            if (min > _min){
+                min = _min;
+                min_x = i;
+            }
+        }
+        return std::pair<double, int>(min, min_x);
+    }
 private:
     std::vector<double> _Q;
     std::vector<double> _A;
@@ -35,41 +52,8 @@ public:
     double A(int i) const { return _A[i];}
     double C() const { return _C;}
     int get_size() const { return size; }
-    Operator to_Ham(){
-        DataPtr dptr(new Data(1 << size*size));
-        for (int k=0; k<dptr->size(); k++){
-            for (int i=0; i<size; i++){
-                for (int j=0; j<size; j++){
-                    if (((k>>i)&1) ^ ((k>>j)&1)){
-                        (*dptr)[k] -= Q(i,j);
-                    }else{
-                        (*dptr)[k] += Q(i,j);
-                    }
-                }
-                if (((k>>i)&1)){
-                    (*dptr)[k] -= A(i);
-                }else{
-                    (*dptr)[k] += A(i);
-                }
-            }
-        }
-        return Operator(Qubits(size), dptr);
-    }
-    
-    std::pair<double, int> ans(const Operator& op){
-        double min=std::real(op[0]);
-        double _min;
-        int n = 1 << size;
-        int min_x = 0;
-        for (int i=1; i<n; i++){
-            _min = std::real(op[i*n + i]);
-            if (min > _min){
-                min = _min;
-                min_x = i;
-            }
-        }
-        return std::pair<double, int>(min, min_x);
-    }
+
+
 
     QUSO to_QUSO(const QUBO& qubo){
         QUSO quso(qubo.get_size());
@@ -87,6 +71,7 @@ public:
         quso.C() = C() + c;
         return quso;
     }
+
 private:
     std::vector<double> _Q;
     std::vector<double> _A;
@@ -94,5 +79,5 @@ private:
     int size;
 };
 
-std::pair<QuantumCircuit, ParameterVector> QAOA(QUSO quso, int layers);
-std::pair<QuantumCircuit, ParameterVector> QAOA(QUSO quso, int layers=1);
+std::pair<QuantumCircuit, ParameterVector> QAOA(const QUSO& quso, int layers);
+// std::pair<QuantumCircuit, ParameterVector> QAOA(QUSO quso, int layers=1);

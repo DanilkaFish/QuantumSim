@@ -89,14 +89,14 @@ InstructionPtr BaseInstr::H(Qubit qub) { return InstructionPtr{ new _H{{qub}}}; 
 InstructionPtr BaseInstr::Sdag(Qubit qub) { return InstructionPtr{ new _Sdag{{qub}}}; }
 InstructionPtr BaseInstr::CX(Qubit ctrl, Qubit tar) { return InstructionPtr{ new _CX{{ctrl, tar}}}; }
 InstructionPtr BaseInstr::TOF(Qubit ctrl1, Qubit ctrl2, Qubit tar) { return InstructionPtr{ new _TOF{Qubits({ctrl1, ctrl2, tar})}}; }
-InstructionPtr BaseInstr::Rz(Qubit qub, ParameterPtr angle) { return InstructionPtr{ new _Rz{{qub}, angle}};}
-InstructionPtr BaseInstr::Rz(Qubit qub, double angle) { return InstructionPtr{ new _Rz{{qub}, ParameterPtr{new Parameter{"", angle}}}};}
-InstructionPtr BaseInstr::Ry(Qubit qub, ParameterPtr angle) { return InstructionPtr{ new _Ry{{qub}, angle}};}
-InstructionPtr BaseInstr::Ry(Qubit qub, double angle) { return InstructionPtr{ new _Ry{{qub}, ParameterPtr{new Parameter{"", angle}}}};}
-InstructionPtr BaseInstr::Rx(Qubit qub, ParameterPtr angle) { return InstructionPtr{ new _Rx{{qub}, angle}};}
-InstructionPtr BaseInstr::Rx(Qubit qub, double angle) { return InstructionPtr{ new _Rx{{qub}, ParameterPtr{new Parameter{"", angle}}}};}
-InstructionPtr BaseInstr::PR(const PauliString& ps, double theta){ return InstructionPtr{ new _PR{ps, ParameterPtr{new Parameter{"", theta}}}}; };
-InstructionPtr BaseInstr::PR(const PauliString& ps, ParameterPtr theta){ return InstructionPtr{ new _PR{ps, theta}}; };
+InstructionPtr BaseInstr::Rz(Qubit qub, const ExprPtr& angle) { return InstructionPtr{ new _Rz{{qub}, angle}};}
+InstructionPtr BaseInstr::Rz(Qubit qub, double theta) { return InstructionPtr{ new _Rz{{qub},  ExprPtr(new ParameterConst(theta))}};}
+InstructionPtr BaseInstr::Ry(Qubit qub, const ExprPtr& angle) { return InstructionPtr{ new _Ry{{qub}, angle}};}
+InstructionPtr BaseInstr::Ry(Qubit qub, double theta) { return InstructionPtr{ new _Ry{{qub},  ExprPtr(new ParameterConst(theta))}};}
+InstructionPtr BaseInstr::Rx(Qubit qub, const ExprPtr& angle) { return InstructionPtr{ new _Rx{{qub}, angle}};}
+InstructionPtr BaseInstr::Rx(Qubit qub, double theta) { return InstructionPtr{ new _Rx{{qub},  ExprPtr(new ParameterConst(theta))}};}
+InstructionPtr BaseInstr::PR(const PauliString& ps, double theta){ return InstructionPtr{ new _PR{ps, ExprPtr(new ParameterConst(theta))}}; };
+InstructionPtr BaseInstr::PR(const PauliString& ps, const ExprPtr& theta){ return InstructionPtr{ new _PR{ps, theta}}; };
 InstructionPtr BaseInstr::U(const Qubits& qubs, DataPtr dptr) { return InstructionPtr{ new _U{qubs, dptr}}; } 
 InstructionPtr BaseInstr::U_ordered(const Qubits& qubs, const Data& data) { return InstructionPtr{ new _U_ordered{qubs, data}}; } 
 

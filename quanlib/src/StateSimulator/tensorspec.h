@@ -8,6 +8,7 @@
 class Operator: public Tensor{
 public:
     using Tensor::Tensor;
+    Operator(const TensorProd<Operator, Operator>& tot): Tensor{tot} {}
     Operator(const Qubits& qubs): Tensor{Shape{qubs, qubs}} {(*dptr)[0] = 1;}
     Operator(const Qubits& qubs, DataPtr dptr): Tensor{{qubs, qubs}, dptr} { }
     Operator(const Qubits& qubs, const Data& data): Tensor{qubs, qubs, data} { }

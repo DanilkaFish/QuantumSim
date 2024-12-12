@@ -1,13 +1,8 @@
 #include "QuantumCircuit.h"
 #include "qaoa.h"
 
-QuantumCircuit QAOA(std::vector<std::vector<int>>& C, std::vector<int>& X, int layers){
-    QuantumCircuit circ(X.size());
-    return circ;
-}
 
-
-std::pair<QuantumCircuit, ParameterVector> QAOA(QUSO quso, int layers=1){
+std::pair<QuantumCircuit, ParameterVector> QAOA(const QUSO& quso, int layers){
     ParameterVector pv;
     QuantumCircuit qc;
     int size = quso.get_size();
@@ -21,15 +16,65 @@ std::pair<QuantumCircuit, ParameterVector> QAOA(QUSO quso, int layers=1){
         for(int i=0; i<size; i++){
             for(int j=i+1; j<size; j++){
                 if (quso.Q(i,j) + quso.Q(j,i) != 0){
-                    qc.add_instruction(BaseInstr::PR(PauliString("ZZ", Qubits{i,j}), ParameterProd(quso.Q(i,j) + quso.Q(j,i), alpha)));
+                    qc.add_instruction(BaseInstr::PR(PauliString("ZZ", Qubits{i,j}), ExprPtr(new ParameterProd(quso.Q(i,j) + quso.Q(j,i), alpha))));
                 }
             }
             if (quso.A(i) != 0){
-                qc.add_instruction(BaseInstr::Rz(i, ParameterProd(quso.A(i), alpha)));
+                qc.add_instruction(BaseInstr::Rz(i, ExprPtr(new ParameterProd(quso.A(i), alpha))));
             }
         }
         for(int i=0; i<size; i++){
-            qc.add_instruction(BaseInstr::Rx(i, ParameterExpr(beta)));
+            qc.add_instruction(BaseInstr::Rx(i, ExprPtr(new ParameterExpr(beta))));
         }
     }
+    return std::pair<QuantumCircuit, ParameterVector>(qc, pv);
+}
+
+Hamiltonian QUSO::to_Ham(){
+    DataPtr dptr(new Data{1,0,0,0,
+                            0,-1,0,0,
+                            0,0,-1,0,
+                            0,0,0,1});
+    Hamiltonian Ham;
+    DataType val=0;
+    for (int i=0; i<size; i++){
+        for (int j=i+1; j<size; j++){
+            if (i!=j){
+                if (Q(i,j) + Q(j,i)!= 0){
+                    Ham.svec.push_back(Operator(Operator(Q(i,j) + Q(j,i))*Operator({i,j}, dptr)));
+                }
+            }else{
+                if (Q(i,j) != 0){
+                    Ham.svec.push_back(Operator(Q(i,j)));
+                }
+            }
+        }
+        val += Q(i,i);
+            
+        if (A(i) != 0){
+            Ham.svec.push_back(Operator(Operator(A(i))*bm::Z(i)));
+        }
+    }
+    Ham.svec.push_back(Operator(val));
+    return Ham;
+}
+Operator QUSO::to_Op(){
+    DataPtr dptr(new Data(1 << size*size));
+    for (int k=0; k<dptr->size(); k++){
+        for (int i=0; i<size; i++){
+            for (int j=0; j<size; j++){
+                if (((k>>i)&1) ^ ((k>>j)&1)){
+                    (*dptr)[k] -= Q(i,j);
+                }else{
+                    (*dptr)[k] += Q(i,j);
+                }
+            }
+            if (((k>>i)&1)){
+                (*dptr)[k] -= A(i);
+            }else{
+                (*dptr)[k] += A(i);
+            }
+        }
+    }
+    return Operator(Qubits(size), dptr);
 }

@@ -18,8 +18,8 @@ add_library(sub::${TRANSPILER_NAME} ALIAS ${TRANSPILER_NAME})
 target_include_directories(${TRANSPILER_NAME} PRIVATE ${TR_SOURCE_PATH} ${QC_SOURCE_PATH} ${CM_SOURCE_PATH} ${RD_SOURCE_PATH} ${EIGEN_INCLUDE_PATH})
 
 set(QAOA_NAME qaoa)
-add_library(${QAOA_NAME} OBJECT random_qc.cpp)
+add_library(${QAOA_NAME} OBJECT qaoa.cpp)
 add_library(sub::${QAOA_NAME} ALIAS ${QAOA_NAME})
 # add_test()
-target_include_directories(${QAOA_NAME} PRIVATE ${QC_SOURCE_PATH} ${CM_SOURCE_PATH} ${RD_SOURCE_PATH} ${EIGEN_INCLUDE_PATH})
+target_include_directories(${QAOA_NAME} PRIVATE ${QC_SOURCE_PATH} ${CM_SOURCE_PATH} ${RD_SOURCE_PATH} ${EIGEN_INCLUDE_PATH} ${GS_SOURCE_PATH} ${TR_SOURCE_PATH})
 

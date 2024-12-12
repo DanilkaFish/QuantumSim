@@ -56,17 +56,19 @@ protected:
 };
 
 
+class Hamiltonian{
+public:
+    Hamiltonian()=default;
+    std::vector<Operator> svec;
+};
+
+
 class StateVQE: public StateProvider{
-    StateVQE(const QuantumCircuit& qc, const Operator& Ham): StateProvider(qc), Ham{Ham} {}
-    virtual double evaluate_cost() override { 
-        DataType energy = (state.conj()*Ham*state)[0];
-        if (std::abs(std::imag(energy)) > 0.0000000000001){
-            throw QException("Hamiltonian is not hermitian");
-        }
-        return std::real(energy); 
-    }
+public:
+    StateVQE(const QuantumCircuit& qc, const Hamiltonian& Ham): StateProvider(qc), Ham{Ham} {}
+    virtual double evaluate_cost() override;
 private:
-    const Operator& Ham;
+    Hamiltonian Ham;
 };
 
 
