@@ -261,6 +261,12 @@ Pybind_DIR:PATH=Pybind_DIR-NOTFOUND
 //QC
 QC_INTER_TEST:BOOL=ON
 
+//No help, variable specified on the command line.
+QISKIT_PROVIDER:UNINITIALIZED=OFF
+
+//qiskit provider in tests
+QISKIT_TEST:BOOL=ON
+
 //random_qc
 RANDOMQC_TEST:BOOL=ON
 

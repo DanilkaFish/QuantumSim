@@ -107,13 +107,13 @@ public:
 class Qubits{
 public:
     using container=std::vector<Qubit>; 
-    using iterator=typename container::reverse_iterator;
-    using const_iterator=typename container::const_reverse_iterator;
+    using iterator=typename container::iterator;
+    using const_iterator=typename container::const_iterator;
 
-    iterator begin() { return qubs.rbegin(); }
-    iterator end() { return qubs.rend(); }
-    const_iterator begin() const { return qubs.rbegin(); }
-    const_iterator end() const { return qubs.rend(); }
+    iterator begin() { return qubs.begin(); }
+    iterator end() { return qubs.end(); }
+    const_iterator begin() const { return qubs.begin(); }
+    const_iterator end() const { return qubs.end(); }
 
     Qubits(): qubs{} {}
     Qubits(const Qubits& qubs): qubs{qubs.qubs} {}
@@ -145,6 +145,11 @@ public:
     PauliString(const std::string& s, const Qubits& qubs);
     Qubit       get_qn(int i ) const { return qubs[i]; }
     Qubits      get_qubs() const { return qubs; }
+    Qubits      get_sorted_qubs() const { 
+        Qubits qubs_copy(qubs);
+        std::sort(qubs_copy.begin(), qubs_copy.end());
+        return qubs_copy;
+    }
     std::string get_name() const;
     char        get_ch(int i ) const { return s[i]; }
     int         size()         const { return s.size(); }

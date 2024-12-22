@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/yadanilka/Projects/quansim/quanlib/src -I/home/yadanilka/Projects/quansim/quanlib/src/Tensors -I/home/yadanilka/Projects/quansim/quanlib/src/QuantumCircuit -I/home/yadanilka/Projects/quansim/quanlib/src/StateSimulator -I/home/yadanilka/Projects/quansim/quanlib/src/Utils -I/usr/include/python3.12
 
-CXX_FLAGS = -g
+CXX_FLAGS = -g -fvisibility=hidden
 

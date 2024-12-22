@@ -63,6 +63,7 @@ public:
 // };
 
 std::ostream& operator<<(std::ostream& os, const State& s);
+std::ostream& operator<<(std::ostream& os, const Operator& op);
 
 template<typename Operator, typename State>
 TensorProd<Operator, State> operator*(const Operator &e1, const State &e2)

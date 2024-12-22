@@ -15,16 +15,17 @@ public:
     double A(int i) const { return _A[i];}
     double C() const { return _C;}
     int get_size() const { return size; }
-    Hamiltonian to_Ham();
-    Operator to_Op();
+    HamOpSet to_Ham();
+    // Operator to_Op();
+    HamDiag to_diag_Ham();
     std::pair<double, int> ans(){
-        Operator op = to_Op();
-        double min=std::real(op[0]);
+        HamDiag op = to_diag_Ham();
+        double min=std::real(op.diag_ham_state[0]);
         double _min;
         int n = 1 << size;
         int min_x = 0;
         for (int i=1; i<n; i++){
-            _min = std::real(op[i*n + i]);
+            _min = std::real(op.diag_ham_state[i]);
             if (min > _min){
                 min = _min;
                 min_x = i;
@@ -52,11 +53,8 @@ public:
     double A(int i) const { return _A[i];}
     double C() const { return _C;}
     int get_size() const { return size; }
-
-
-
-    QUSO to_QUSO(const QUBO& qubo){
-        QUSO quso(qubo.get_size());
+    QUSO to_QUSO(){
+        QUSO quso(get_size());
         double c=0;
         for (int i=0; i<size; i++){
             double ai = 0;

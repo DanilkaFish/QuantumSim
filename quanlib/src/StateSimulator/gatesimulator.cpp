@@ -74,11 +74,11 @@ Operator bm::TOF(Qubit ctrl1, Qubit ctrl2, Qubit trg ){
     static Data data{1,0,0,0,0,0,0,0,
                     0,1,0,0,0,0,0,0,
                     0,0,1,0,0,0,0,0,
-                    0,0,0,1,0,0,0,0,
+                    0,0,0,0,0,0,0,1,
                     0,0,0,0,1,0,0,0,
                     0,0,0,0,0,1,0,0,
-                    0,0,0,0,0,0,0,1,
-                    0,0,0,0,0,0,1,0};
+                    0,0,0,0,0,0,1,0,
+                    0,0,0,1,0,0,0,0};
     return Operator({ctrl1, ctrl2, trg}, data);
 }
 
@@ -120,7 +120,7 @@ Operator bm::PR(const PauliString& pauli, double theta){
             throw QException("wrong pauli string name :" + pauli.get_ch(i));
         }
     }
-    return Operator{Tensor{cos(theta/2)}*bm::I(pauli.get_qubs()) + Tensor{i::i* sin(theta/2)}*T};
+    return Operator{Tensor{cos(theta/2)}*bm::I(pauli.get_qubs()) + Tensor{i::i*sin(theta/2)}*T};
 }
 
 void BaseTensorProvider::I(const Qubits& qubs){
@@ -172,6 +172,66 @@ void BaseTensorProvider::U(const Qubits& qubs, const Data& data){
     inplace_evolve(Operator{qubs, data});
 }
 
+
+void StateProvider::CX(const Qubits& qubs){
+    // BaseTensorProvider::CX(qubs);
+    int ctrl = qubs[0].num;
+    int targ = qubs[1].num;
+    Data& data = *(state.get_dptr().get());
+
+    int size = data.size();
+    DataType index = 0;
+    int s_min;
+    int s_max;
+    if (targ > ctrl){
+        s_min = 1<<(ctrl+1);
+        s_max = 1<<(targ+1);
+    }else{
+        s_min = 1<<(targ+1);
+        s_max = 1<<(ctrl+1);
+    }
+
+    for (int i=0; i<s_min/2; i++){
+        for (int j=i ; j<s_max/2; j+=s_min){
+            for (int k=j + (1<<ctrl); k<size; k+=s_max){
+                std::swap(data[k], data[k + (1 << targ)]);
+            }
+        }
+    }
+}
+// void StateProvider::TOF(const Qubits& qubs ){
+//     int ctrl = qubs[0].num;
+//     int ctrl = qubs[1].num;
+//     int targ = qubs[2].num;
+//     Data& data = *(state.get_dptr().get());
+
+//     int size = data.size();
+//     int index = 0;
+//     int s_min;
+//     int s_max;
+//     if (targ > ctrl){
+//         s_min = 1<<ctrl;
+//         s_max = 1<<targ;
+//     }else{
+//         s_min = 1<<targ;
+//         s_max = 1<<ctrl;
+//     }
+//     for (int i=0; i<s_min; i++){
+//         for (int j=0; i<(s_min-s_max)/2; j++){
+//             for (int k=0; k<(size-s_max)/2; k++){
+//                 index = i + j*s_min*2 + k*s_max*2 + 1<<ctrl;
+//                 std::swap(data[index], data[index + (1 << targ)]);
+//             }
+//         }
+//     }
+// }
+// void StateProvider::S(const Qubits& qubs){
+
+// }
+// void StateProvider::Sdag(const Qubits& qubs){
+
+// }
+
 inline void _fill(int init, int finit, int dif, const Data& l, Data& r, const mask& buffer_mask, const std::vector<int>& expand){
     int buffer_i;
     DataType val;
@@ -195,14 +255,25 @@ inline void _fill(int init, int finit, int dif, const Data& l, Data& r, const ma
 }; 
 
 
-double StateVQE::evaluate_cost() { 
-    state_evolve();
+double HamOpSet::eval(const State& state) const { 
     State state_copy = Operator(0)*state;
-    for (auto op: Ham.svec){
+    for (auto op: svec){
         state_copy = state_copy + op*state;
     }
-    std::cout << state_copy;
     DataType energy = (state.conj()*state_copy)[0];
+    if (std::abs(std::imag(energy)) > 0.0000000000001){
+        throw QException("Hamiltonian is not hermitian");
+    }
+    return std::real(energy); 
+}
+
+double HamDiag::eval(const State& state) const { 
+    int size = state.size();
+    DataPtr dptr(new Data(size));
+    for (int i=0; i<size; i++){
+        (*dptr)[i] = std::conj(state[i])*state[i];
+    }
+    DataType energy = (this->diag_ham_state.conj()*State{state.get_shape(), dptr})[0];
     if (std::abs(std::imag(energy)) > 0.0000000000001){
         throw QException("Hamiltonian is not hermitian");
     }
@@ -218,27 +289,28 @@ void StateProvider::inplace_evolve(const Operator& op){
     for (int j=0; j < (dif); j++){
         expand.push_back(op_mask.expand(j));
     }
-    // _fill(0, 
-    //                                     state.get_dptr()->size() / dif, 
+    _fill(0, 
+          state.get_dptr()->size() / dif, 
+          dif,
+          std::cref(*(op.get_dptr().get())), 
+          std::ref(*(state.get_dptr().get())),
+          std::cref(buffer_mask), 
+          std::cref(expand)
+         );
+    // std::vector<std::thread> threads(num_thread);
+    // int size = state.get_dptr()->size() / dif / num_thread;
+    // for (int j=0; j<num_thread; j++){
+    //     threads[j] = std::thread(_fill, size*j, 
+    //                                     size*(j+1), 
     //                                     dif,
     //                                     std::cref(*(op.get_dptr().get())), 
     //                                     std::ref(*(state.get_dptr().get())),
     //                                     std::cref(buffer_mask), 
     //                                     std::cref(expand));
-    std::vector<std::thread> threads(num_thread);
-    int size = state.get_dptr()->size() / dif / num_thread;
-    for (int j=0; j<num_thread; j++){
-        threads[j] = std::thread(_fill, size*j, 
-                                        size*(j+1), 
-                                        dif,
-                                        std::cref(*(op.get_dptr().get())), 
-                                        std::ref(*(state.get_dptr().get())),
-                                        std::cref(buffer_mask), 
-                                        std::cref(expand));
-    }
-    for (int j=0; j<num_thread; j++){
-        threads[j].join();
-    }
+    // }
+    // for (int j=0; j<num_thread; j++){
+    //     threads[j].join();
+    // }
 }
 
 std::ostream& operator<<(std::ostream& os, const State& s){
@@ -255,6 +327,18 @@ std::ostream& operator<<(std::ostream& os, const State& s){
         }
     }
     return os << "\n";
+}
+
+std::ostream& operator<<(std::ostream& os, const Operator& op){
+    os << "[ ";
+    int size = 1 << op.get_shape().nu;
+    for(int i = 0; i < size; i++ ){
+        for(int j = 0; j < size; j++ ){
+            os << op[i*size + j] << " ";
+        }
+        os << std::endl;
+    }
+    return os << "]\n";
 }
 
 

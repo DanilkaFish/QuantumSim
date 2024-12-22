@@ -12,6 +12,11 @@ option(GATESIM_TEST "Gate simulator" ON)
 option(RANDOMQC_TEST "random_qc" ON)
 option(GROVER_TEST "grover" ON)
 option(VQE_TEST "vqe" ON)
+option(QISKIT_TEST "qiskit provider in tests" ON)
+if(QISKIT_TEST)
+    add_compile_definitions(QISKIT_PROVIDER)
+else()
+endif()
 
 if(QC_INTER_TEST)
     include(QuantumCircuit/CMakeLists.txt)
@@ -27,8 +32,6 @@ if(GATESIM_TEST)
     include(GateSimulator/CMakeLists.txt)
 else()
 endif()
-
-
 
 if(GROVER_TEST)
     include(algorithms/CMakeLists.txt)

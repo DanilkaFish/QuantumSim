@@ -4,7 +4,7 @@
 
 #include <utility>
 
-
+constexpr double pi = 3.141592653589;
 // TODO
 void validate_in_range(Qubits all, Qubits in){}
 
@@ -70,7 +70,7 @@ void QuantumCircuit::compose(const QuantumCircuit& qc){
 
 
 QuantumCircuit QuantumCircuit::decompose() {
-    QuantumCircuit qc;
+    QuantumCircuit qc(qubs.size());
     for(auto& x: (*this)){
         for (auto& y: x->decompose(x)){
             qc.add_instruction(y);
@@ -99,6 +99,46 @@ InstructionPtr BaseInstr::PR(const PauliString& ps, double theta){ return Instru
 InstructionPtr BaseInstr::PR(const PauliString& ps, const ExprPtr& theta){ return InstructionPtr{ new _PR{ps, theta}}; };
 InstructionPtr BaseInstr::U(const Qubits& qubs, DataPtr dptr) { return InstructionPtr{ new _U{qubs, dptr}}; } 
 InstructionPtr BaseInstr::U_ordered(const Qubits& qubs, const Data& data) { return InstructionPtr{ new _U_ordered{qubs, data}}; } 
+
+
+// QuantumCircuit _TOF::decompose(const InstructionPtr& ip){
+//     QuantumCircuit qc;
+//     Qubits qubs = ip->get_qubits();
+//     Qubit q0 = qubs[0];
+//     Qubit q1 = qubs[1];
+//     Qubit q2 = qubs[2];
+//     // Hadamard(wires=[2]),
+//     //      CNOT(wires=[1, 2]),
+//     //      Adjoint(T(wires=[2])),
+//     //      CNOT(wires=[0, 2]),
+//     //      T(wires=[2]),
+//     //      CNOT(wires=[1, 2]),
+//     //      Adjoint(T(wires=[2])),
+//     //      CNOT(wires=[0, 2]),
+//     //      T(wires=[2]),
+//     //      T(wires=[1]),
+//     //      CNOT(wires=[0, 1]),
+//     //      Hadamard(wires=[2]),
+//     //      T(wires=[0]),
+//     //      Adjoint(T(wires=[1])),
+//     //      CNOT(wires=[0, 1])]
+//     qc.add_instruction(BaseInstr::H(q2));
+//     qc.add_instruction(BaseInstr::CX(q1,q2));
+//     qc.add_instruction(BaseInstr::Rz(q2, -pi/4));
+//     qc.add_instruction(BaseInstr::CX(q0,q2));
+//     qc.add_instruction(BaseInstr::Rz(q2, pi/4));
+//     qc.add_instruction(BaseInstr::CX(q1,q2));
+//     qc.add_instruction(BaseInstr::Rz(q2, -pi/4));
+//     qc.add_instruction(BaseInstr::CX(q0,q2));
+//     qc.add_instruction(BaseInstr::Rz(q2, pi/4));
+//     qc.add_instruction(BaseInstr::Rz(q1, pi/4));
+//     qc.add_instruction(BaseInstr::CX(q0,q1));
+//     qc.add_instruction(BaseInstr::H(q2));
+//     qc.add_instruction(BaseInstr::Rz(q0, pi/4));
+//     qc.add_instruction(BaseInstr::Rz(q1, -pi/4));
+//     qc.add_instruction(BaseInstr::CX(q0,q1));
+//     return qc;
+// }
 
 QuantumCircuit _PR::decompose(const InstructionPtr& x){
     QuantumCircuit qc;

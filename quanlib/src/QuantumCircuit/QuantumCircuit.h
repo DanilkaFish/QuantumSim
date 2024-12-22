@@ -3,6 +3,8 @@
 
 #include "common.h"
 #include "drawer.h"
+#include <algorithm>
+
 
 class MetaProvider;
 class QC_representation;
@@ -24,14 +26,26 @@ public:
     const_reverse_iterator rend() const { return ins.rend(); }
     
     QuantumCircuit(): ins{}, qubs{} {}
+    QuantumCircuit(int n): ins{}, qubs(n) {}
     ~QuantumCircuit() {  }
     QuantumCircuit(std::initializer_list<InstructionPtr> in);
     QuantumCircuit(const QuantumCircuit& qc): ins{qc.ins}, qubs{qc.qubs} { } 
     Qubits get_qubits() const { return qubs; } 
+    // Qubits get_sorted_qubits() const { 
+    //     Qubits qubs_copy =qubs;
+    //     std::sort(qubs.begin(), qubs.end());
+    //     return qubs;
+    // } 
     std::size_t size() const { return ins.size(); }
     
     template<class cont>
-    QuantumCircuit(const cont& vec): ins{vec} { }
+    QuantumCircuit(const cont& vec): ins{vec} {
+        for (auto x : vec){
+            for (Qubit qub: x->get_qubits()){
+                qubs.insert(qub);
+            }
+        }
+    }
 
     InstructionPtr    to_instruction();
     QC_representation get_qcr() const;

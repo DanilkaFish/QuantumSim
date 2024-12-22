@@ -2,6 +2,8 @@
 #define _GATESIM
 #include <string>
 #include <utility>
+#include <gsl/gsl_cdf.h>
+#include <gsl/gsl_randist.h>
 
 #include "common.h"
 #include "instruction.h"
@@ -38,6 +40,7 @@ public:
     virtual double evaluate_cost() = 0 ;
 protected:
     virtual void inplace_evolve(const Operator& op) = 0;
+    // virtual void inplace_sparse_evolve(std::) = 0;
 };
 
 
@@ -46,29 +49,51 @@ public:
     StateProvider(const QuantumCircuit& qc): BaseTensorProvider{qc} { 
         init_state = State(qc.get_qubits()); 
     }
+    void CX(const Qubits& qubs) override ;
+    // void TOF(const Qubits& qubs ) override;
+    // void S(const Qubits& qubs) override ;
+    // void Sdag(const Qubits& qubs) override ;
     virtual void SetUp() override { state = init_state; }
-    virtual double evaluate_cost() {return 0; };
+    virtual double evaluate_cost() override { return 0; };
     State& get_evolved_state() { return state; }
-    State init_state;
+    void set_init_state(State& state) {
+        init_state = state;
+    }
+
 protected:
+    void inplace_evolve(const Operator& op) override;
+    State init_state;
     State state;
-    void inplace_evolve(const Operator& op);
 };
 
 
 class Hamiltonian{
 public:
     Hamiltonian()=default;
+    virtual double eval(const State& state) const {return 0; };
+};
+
+class HamOpSet: public Hamiltonian{
+public:
+    virtual double eval(const State& state) const override;
     std::vector<Operator> svec;
 };
+
+class HamDiag: public Hamiltonian{
+public:
+    HamDiag(const State& state): diag_ham_state{state} {};
+    virtual double eval(const State& state) const override;
+    State diag_ham_state;
+};
+
 
 
 class StateVQE: public StateProvider{
 public:
     StateVQE(const QuantumCircuit& qc, const Hamiltonian& Ham): StateProvider(qc), Ham{Ham} {}
-    virtual double evaluate_cost() override;
-private:
-    Hamiltonian Ham;
+    virtual double evaluate_cost() override { state_evolve(); return Ham.eval(state); }
+protected:
+    const Hamiltonian& Ham;
 };
 
 

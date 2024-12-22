@@ -9,3 +9,7 @@ state.da
 ev_state = state.evolve(qc)
 i = 1 +1j
 print(ev_state)
+
+from numpy.random import multinomial
+
+multinomial()

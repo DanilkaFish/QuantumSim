@@ -108,6 +108,7 @@ class _TOF: public Instruction{
 public:
     _TOF(const Qubits& qubs): Instruction{qubs,"TOF"} { }
     void apply(MetaProvider& md) override { md.TOF(qubits);}
+    // virtual QuantumCircuit decompose(const InstructionPtr& ip) override;
 };
 
 

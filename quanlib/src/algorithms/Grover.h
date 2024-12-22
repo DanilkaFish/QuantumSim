@@ -1,5 +1,5 @@
 #include "QuantumCircuit.h"
 
-std::tuple<QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int>);
+std::tuple<QuantumCircuit,QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int>);
 
-QuantumCircuit Grover(QuantumCircuit& oracle, Qubits main_qubits, Qubit trg,  int num_layers);
+QuantumCircuit Grover(QuantumCircuit& oracle, QuantumCircuit& diff_op, Qubits main_qubits, Qubit trg,  int num_layers);

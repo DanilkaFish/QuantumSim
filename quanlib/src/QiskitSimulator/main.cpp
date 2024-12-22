@@ -1,4 +1,4 @@
-#include "pybind.h"
+#include "qiskit_provider.h"
 
 
 int main() {
@@ -7,8 +7,11 @@ int main() {
     qc.add_instruction(BaseInstr::X({2}));
     qc.add_instruction(BaseInstr::X({1}));
     // qc.add_instruction(BaseInstr::H(3));
-    // qc.add_instruction(BaseInstr::TOF({0},{1},{2}));
+    qc.add_instruction(BaseInstr::U({0,1}, DataPtr(new Data{1,0,0,0,
+                                                            0,1,0,0,
+                                                            0,0,0,1,
+                                                            0,0,1,0})));
     QiskitProvider exec(qc);
     exec.state_evolve();
-    std::cerr << exec.get_state_evolve();
+    std::cerr << exec.get_evolved_state();
 }

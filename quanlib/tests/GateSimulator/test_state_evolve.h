@@ -10,6 +10,7 @@
 #include "common_test.h"
 #include "tensorspec.h"
 #include "state_evolve.h"
+#include "qiskit_provider.h"
 #include "QuantumCircuit.h"
 
 
@@ -59,23 +60,25 @@ State Hones(Qubits qubs){
   return State(qubs, data);
 }
 
-class SimpleSetUp : public TestWithParam<std::tuple<std::vector<InstructionPtr>>> {
- protected:
-  std::vector<InstructionPtr> un_set;
-  void SetUp() override {
-    un_set = std::get<0>(GetParam());
-  }
-};
+// class SimpleSetUp : public TestWithParam<std::tuple<std::vector<InstructionPtr>>> {
+//  protected:
+//   std::vector<InstructionPtr> un_set;
+//   void SetUp() override {
+//     un_set = std::get<0>(GetParam());
+//   }
+// };
 
 class SimpleCircsTest : public TestWithParam<std::tuple<State, std::vector<InstructionPtr>, State>> {
  protected:
   State init_state;
   std::vector<InstructionPtr> un_set;
   State exp_state;
+  int n;
   void SetUp() override {
     init_state = std::get<0>(GetParam());
     un_set = std::get<1>(GetParam());
     exp_state = std::get<2>(GetParam());
+    n = init_state.get_shape().size();
   }
 };
 
@@ -85,11 +88,25 @@ class PauliRotationTest : public TestWithParam<std::tuple<State, double, PauliSt
   double angle;
   PauliString ps;
   State exp_state;
+  int n;
   void SetUp() override {
     init_state = std::get<0>(GetParam());
     angle = std::get<1>(GetParam());
     ps = std::get<2>(GetParam());
     exp_state = std::get<3>(GetParam());
+    n = init_state.get_shape().size();
+  }
+};
+
+class DecompositionTest : public TestWithParam<std::tuple<int, InstructionPtr>> {
+  protected:
+  State init_state;
+  InstructionPtr iptr;
+  int n;
+  void SetUp() override {
+    n = std::get<0>(GetParam());
+    init_state = random(Qubits(n));
+    iptr = std::get<1>(GetParam());
   }
 };
 

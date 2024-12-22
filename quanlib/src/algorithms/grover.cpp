@@ -10,11 +10,75 @@ std::vector<int> to_bin(int n, int range){
     return binv;
 }
 
-std::tuple<QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int> one_values){
+std::tuple<QuantumCircuit, QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int> one_values){
     QuantumCircuit main_qc;
     std::vector<int> binv;
-    int len = n;
+    int len;
     int rev_count = 0;
+    QuantumCircuit diff_op;
+    // diff_op.add_instruction(BaseInstr::H(Qubit(0)));
+
+    // int _n = n - 1;
+    // int _len = _n;
+    // int last=0;
+    // binv = to_bin(0, _n);
+    // for (int i = 0; i < _n/2; i++){
+    //     rev_count = 1;
+    //     if (!binv[2*i]){
+    //         diff_op.add_instruction(BaseInstr::X(2*i + 1));
+    //         rev_count+=2;
+    //     }
+    //     if (!binv[2*i + 1]){
+    //         diff_op.add_instruction(BaseInstr::X(2*i + 2));
+    //         rev_count+=2;
+    //     }
+    //     diff_op.add_instruction(BaseInstr::TOF(2*i + 1, 2*i + 2, _n + i + 1));
+    //     last =  _n + i + 1;
+    //     if (!binv[2*i])
+    //         diff_op.add_instruction(BaseInstr::X(2*i + 1));
+    //     if (!binv[2*i + 1])
+    //         diff_op.add_instruction(BaseInstr::X(2*i + 2));
+    // }
+    // int sdv = n;
+    // if (n % 2 == 1){
+    //     rev_count = 1;
+    //     if (!binv[_n-1]){
+    //         rev_count += 2;
+    //         diff_op.add_instruction(BaseInstr::X(_n));
+    //         diff_op.add_instruction(BaseInstr::TOF(_n, _n + 1, _n + _n/2 + 1));
+    //         last =  _n + _n/2 + 1;
+    //         diff_op.add_instruction(BaseInstr::X(_n));
+    //     }else{
+    //         diff_op.add_instruction(BaseInstr::TOF(_n, n + 1, _n + _n/2 + 1));
+    //     }
+    //     sdv++;
+    // }
+
+    // _len = _n / 2;
+    // while (_len > 1){
+    //     rev_count = 1;
+    //     for (int i=0; i < _len/2; i++){
+    //         diff_op.add_instruction(BaseInstr::TOF(sdv + 2*i + 1, sdv + 2*i + 2, _len + sdv + i + 1));
+    //         last = _len + sdv + i + 1;
+    //     }
+    //     sdv += _len;
+    //     if (_len % 2 == 1){
+    //         diff_op.add_instruction(BaseInstr::TOF(sdv, sdv, sdv + 2));
+    //         last = sdv + 2;
+    //         sdv++;
+    //     }
+    //     _len = _len/2;
+    // }
+    // diff_op.add_instruction(BaseInstr::CX(last, 0));
+    // diff_op.add_instruction(BaseInstr::H(Qubit(0)));
+    // auto it = diff_op.rbegin();
+    // for (int i=0; i < 1; i++){it++;}
+    // QuantumCircuit cqc;
+    // for (; it != diff_op.rend(); it++){
+    //     cqc.add_instruction(*it);
+    // }
+    // diff_op.compose(cqc);
+
     for (auto v : one_values){
         QuantumCircuit qc;
         binv = to_bin(v, n);
@@ -70,13 +134,14 @@ std::tuple<QuantumCircuit, Qubits, Qubit> Oracle(int n, std::vector<int> one_val
         // qc = qc.decompose();
         main_qc.compose(qc);
     }
-    return std::tuple<QuantumCircuit, Qubits, Qubit>(main_qc, Qubits(n), Qubit(2*n-2));
+    return std::tuple<QuantumCircuit, QuantumCircuit, Qubits, Qubit>(main_qc, diff_op.decompose().decompose(), Qubits(n), Qubit(2*n-2));
 }
 
 // QuantumCircuit Grover(QuantumCircuit& oracle, int n, int _k);
-QuantumCircuit Grover(QuantumCircuit& oracle, Qubits main_qubits, Qubit trg,  int num_layers){
+QuantumCircuit Grover(QuantumCircuit& oracle, QuantumCircuit& diff_op, Qubits main_qubits, Qubit trg,  int num_layers){
     const int n = main_qubits.size();
     int hilb_n = 1 << n;
+
     DataPtr difptr(new Data(hilb_n*hilb_n, 0));
     for(int i = 1; i < hilb_n; i++){
         (*difptr)[i*hilb_n + i] = -1;
@@ -97,7 +162,7 @@ QuantumCircuit Grover(QuantumCircuit& oracle, Qubits main_qubits, Qubit trg,  in
     for (auto x: main_qubits){
         _qc.add_instruction(BaseInstr::H(x));
     }
-
+    // _qc.compose(diff_op);
     _qc.add_instruction(BaseInstr::U(main_qubits, difptr));
 
     for (auto x: main_qubits){

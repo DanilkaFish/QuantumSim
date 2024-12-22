@@ -1,3 +1,0 @@
-/home/yadanilka/Projects/quansim/quanlib/CMakeFiles/main.dir
-/home/yadanilka/Projects/quansim/quanlib/CMakeFiles/edit_cache.dir
-/home/yadanilka/Projects/quansim/quanlib/CMakeFiles/rebuild_cache.dir

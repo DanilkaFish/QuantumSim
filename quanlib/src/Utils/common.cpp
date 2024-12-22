@@ -63,8 +63,8 @@ bool qubs_in_qubs(const Qubits& qubsl, const Qubits& qubsr){
 
 std::ostream& operator<<(std::ostream& os, const Qubits& qubs){
     os << '(';
-    for(auto x: qubs){
-            os << x <<  ',' ;
+    for(int i=0; i<qubs.size(); i++){
+            os << qubs[i] <<  ',' ;
     }
     return os << ") ";
 }
