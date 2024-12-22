@@ -17,6 +17,7 @@ public:
     Plot(): rp{RunPython::getInstance()}{
         plt = py::module_::import("matplotlib.pyplot");
         plt.attr("semilogx")();
+        plt.attr("ylim")(py::int_(-12), py::int_(5));
     }
     void set_x(const std::vector<double>& arr){
         x = to_array(arr);

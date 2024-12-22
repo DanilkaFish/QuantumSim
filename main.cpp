@@ -19,8 +19,14 @@ int depth(const QuantumCircuit& qc){
         depth[qub] = 0;
     }
     for (auto x: qc){
+        int max_depth = 0;
         for(Qubit qub: x->get_qubits()){
-            depth[qub]++;
+            if (depth[qub] > max_depth){
+                max_depth = depth[qub];
+            }
+        }
+        for(Qubit qub: x->get_qubits()){
+            depth[qub] = max_depth + 1;
         }
     }
     int max = 0;
@@ -69,9 +75,11 @@ std::ostream& operator<<(std::ostream& os, QUSO quso){
 int toto() {
     int seed = 200;
     int num_init_points = 10;
+    int num_eval = 30;
     // BaseGenerator* rd = RandGeneratorFactory::CreateRandGenerator(seed, GeneratorKind::LCG);
-    int size = 4;
+    int size = 8;
     int layers = 6;
+    int max_iter = 100;
     QUBO qubo(size);
     for (int i=0; i<size; i++ ){
         qubo.A(i) = 0;
@@ -86,28 +94,27 @@ int toto() {
     HamDiag ham = quso.to_diag_Ham();
     QuantumCircuit qc = qc_data.first.decompose().decompose();
     ShotsVQE exec(qc_data.first, ham);
+    exec.num_eval = num_eval;
     nlopt::opt opti(nlopt::LN_COBYLA, qc_data.second.size());
     // nlopt::LN_BOBYQA
     // nlopt::opt opti(nlopt::LN_NELDERMEAD, qc_data.second.size());
 
     std::vector<double> res;
-    int max_iter = 200;
     opt::Nlopt_Optimizer nl(opti, exec, qc_data.second, max_iter, 1e-7);
     
     double minf;
     DoubleVec x = qc_data.second.get_row_values();
     Plot plt;
-    int max_num_shots = 1024;
-    int step = 256;
+    int max_num_shots = 2049;
+    int step = 1;
     auto ans = quso.ans();
     DoubleVec _x(max_num_shots/step);
     DoubleVec _theory_y(max_num_shots/step, ans.first);
     DoubleVec _y(max_num_shots/step);
-    for (int i=0; i<max_num_shots/step;i++ ){
-        exec.set_shots(i*step + 1);
+    for (int i=0; i<5;i++ ){
+        exec.set_shots(step);
         exec.num = 0;
         double min_minf=100000000;
-        _x[i] = i*step + 1;
         
         for (int k=0; k < num_init_points; k++){
             for (int j=0; j<x.size(); j++){
@@ -123,10 +130,11 @@ int toto() {
             }
             DoubleVec __x;
             for (int j=1; j<_y.size()+1; j++){
-                __x.push_back(j*(i*step + 1));
+                __x.push_back(j*(step)*num_eval);
             }
             _x = __x;
         }
+        step = step*8;
         plt.set_x(_x);
         plt.set_y(_y);
         plt.plot();
