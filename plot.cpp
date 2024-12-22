@@ -16,6 +16,7 @@ class Plot{
 public:
     Plot(): rp{RunPython::getInstance()}{
         plt = py::module_::import("matplotlib.pyplot");
+        plt.attr("semilogx")();
     }
     void set_x(const std::vector<double>& arr){
         x = to_array(arr);

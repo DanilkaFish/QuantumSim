@@ -30,6 +30,7 @@ public:
     ShotsVQE(const QuantumCircuit& qc, const Hamiltonian& Ham, size_t shots=1024): StateVQE{qc, Ham}, shots{shots} {}
 
     virtual double evaluate_cost() override {
+        num++;
         state_evolve();
         return Ham.eval(sampler(state, shots)); 
     }
@@ -37,8 +38,10 @@ public:
     void set_shots(size_t shots) {
         this->shots = shots;
     }
+    int num = 0; 
 private:
     size_t shots;
+
 };
 
 #endif

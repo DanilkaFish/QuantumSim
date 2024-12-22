@@ -68,9 +68,9 @@ std::ostream& operator<<(std::ostream& os, QUSO quso){
 
 int toto() {
     int seed = 200;
-    int num_init_points = 20;
+    int num_init_points = 10;
     // BaseGenerator* rd = RandGeneratorFactory::CreateRandGenerator(seed, GeneratorKind::LCG);
-    int size = 8;
+    int size = 4;
     int layers = 6;
     QUBO qubo(size);
     for (int i=0; i<size; i++ ){
@@ -98,13 +98,14 @@ int toto() {
     DoubleVec x = qc_data.second.get_row_values();
     Plot plt;
     int max_num_shots = 1024;
-    int step = 64;
+    int step = 256;
     auto ans = quso.ans();
     DoubleVec _x(max_num_shots/step);
     DoubleVec _theory_y(max_num_shots/step, ans.first);
     DoubleVec _y(max_num_shots/step);
     for (int i=0; i<max_num_shots/step;i++ ){
         exec.set_shots(i*step + 1);
+        exec.num = 0;
         double min_minf=100000000;
         _x[i] = i*step + 1;
         
@@ -118,16 +119,23 @@ int toto() {
                 << std::setprecision(10) << minf << std::endl;
             if (min_minf > minf){
                 min_minf = minf;
+                _y = nl.get_res_array();
             }
+            DoubleVec __x;
+            for (int j=1; j<_y.size()+1; j++){
+                __x.push_back(j*(i*step + 1));
+            }
+            _x = __x;
         }
-        _y[i] = min_minf;
+        plt.set_x(_x);
+        plt.set_y(_y);
+        plt.plot();
     }
-    plt.set_x(_x);
-    plt.set_y(_y);
-    plt.plot();
-    plt.set_x(_x);
-    plt.set_y(_theory_y);
-    plt.plot();
+    // plt.set_x(_x);
+    // plt.set_y(_y);
+    // plt.plot();
+    // plt.set_x(_x);
+    // plt.set_y(_theory_y);
     plt.save();
     
     std::cout << ans.first << " "<<ans.second<<std::endl;

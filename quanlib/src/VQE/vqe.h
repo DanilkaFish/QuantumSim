@@ -58,12 +58,12 @@ namespace opt{
     struct quantum_obj_data{
         MetaProvider& mp;
         ParameterVector& pv;
-        // DoubleVec res_array{};
+        DoubleVec res_array{};
         static double eval_cost(const std::vector<double> &x, std::vector<double> &grad, void *data){
             quantum_obj_data *d = reinterpret_cast<quantum_obj_data *>(data);
             d->pv.set_row_values(x);
             double r = d->mp.evaluate_cost();
-            // d->res_array.push_back(r);
+            d->res_array.push_back(r);
             // std::cout << "value_est: " << r << std::endl;
             return r;
         }
@@ -79,12 +79,12 @@ namespace opt{
             // this->opt. = 1;
         }
         nlopt::result optimize(std::vector<double>& init, double& res){
-            // qod.res_array = DoubleVec{};
+            qod.res_array = DoubleVec{};
             return this->opt.optimize(init, res);
         }
-        // DoubleVec get_res_array(){
-        //     return qod.res_array;
-        // }
+        DoubleVec get_res_array(){
+            return qod.res_array;
+        }
     private:
         nlopt::opt opt;
         quantum_obj_data qod;
