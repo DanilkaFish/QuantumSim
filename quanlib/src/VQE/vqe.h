@@ -85,8 +85,8 @@ namespace opt{
         DoubleVec get_res_array(){
             return qod.res_array;
         }
-    private:
         nlopt::opt opt;
+    private:
         quantum_obj_data qod;
     };
 };

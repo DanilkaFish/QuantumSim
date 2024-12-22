@@ -106,6 +106,7 @@
         "stacktrace": "cpp",
         "syncstream": "cpp",
         "typeindex": "cpp",
-        "matrixfunctions": "cpp"
+        "matrixfunctions": "cpp",
+        "nonlinearoptimization": "cpp"
     },
 }
