@@ -91,7 +91,8 @@ public:
 class StateVQE: public StateProvider{
 public:
     StateVQE(const QuantumCircuit& qc, const Hamiltonian& Ham): StateProvider(qc), Ham{Ham} {}
-    virtual double evaluate_cost() override { state_evolve(); return Ham.eval(state); }
+    virtual double evaluate_cost() override { num++; state_evolve(); return Ham.eval(state); }
+    int num = 0; 
 protected:
     const Hamiltonian& Ham;
 };

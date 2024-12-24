@@ -74,58 +74,140 @@ std::ostream& operator<<(std::ostream& os, QUSO quso){
 
 int toto() {
     int seed = 200;
-    int num_init_points = 10;
+    int num_init_points = 5;
     BaseGenerator* rd = RandGeneratorFactory::CreateRandGenerator(seed, GeneratorKind::LCG);
-    int size = 8;
-    int layers = 5;
-    int max_iter = 200;
-    int opt_step = 20;
+    int size = 11;
+    int layers = 8;
+    int max_iter = 300;
+    int opt_step = 9;
+    std::vector<std::pair<int,int>> edges;
+    for (int i=0; i<size; i++){
+        edges.push_back(std::pair(i, (i + 1)%size));
+        if (i%2 == 1)
+            edges.push_back(std::pair(i, (i + 2)%size));
+        // edges.push_back(std::pair(i, i + 3));
+    }
+    edges.push_back(std::pair(1, (5)%size));
+    edges.push_back(std::pair(1, (6)%size));
     QUBO qubo(size);
     for (int i=0; i<size; i++ ){
         qubo.A(i) = 0;
-        for (int j=0; j<size; j++ ){ qubo.Q(i,j) = 1 - std::abs(j%3%2 -i%5%2 ); }
+        for (int j=0; j<size; j++ ){ qubo.Q(i,j) = 0;  }
     }
-    QUSO quso = qubo.to_QUSO();
+    for (auto x: edges){
+        qubo.Q(x.first,x.second) = 1; 
+        qubo.Q(x.second,x.first) = 1; 
+    }
 
+    QUSO quso = qubo.to_QUSO();
+    // QUSO quso(size);
+    // for (int i=0; i<size; i++ ){
+    //     quso.A(i) = 0;
+    //     for (int j=0; j<size; j++ ){ quso.Q(i,j) = 1 - ((i^j) + (i<<1)%5)%2 ; }
+    // }
+    
     std::cout << quso;
     auto qc_data = QAOA(quso, layers);
     std::cout << qc_data.first.get_qcr().s << std::endl <<std::endl;
 
     HamDiag ham = quso.to_diag_Ham();
     QuantumCircuit qc = qc_data.first.decompose().decompose();
-    ShotsVQE exec(qc_data.first, ham);
     nlopt::opt opti(nlopt::LN_COBYLA, qc_data.second.size());
-    // nlopt::LN_BOBYQA
     // nlopt::opt opti(nlopt::LN_NELDERMEAD, qc_data.second.size());
-
     std::vector<double> res;
-    opt::Nlopt_Optimizer nl(opti, exec, qc_data.second, opt_step, 1e-7);
-    
     double minf;
     DoubleVec x = qc_data.second.get_row_values();
+    DoubleVec _x;
+    DoubleVec _y;
     Plot plt;
+
+    StateVQE exec_th(qc_data.first, ham);
+    ShotsVQE exec(qc_data.first, ham);
+    double tol=1e-2;
+    opt::Nlopt_Optimizer nl_th(opti, exec_th, qc_data.second, max_iter, tol);
+    opt::Nlopt_Optimizer nl(opti, exec, qc_data.second, max_iter, tol);
+    auto ans = quso.ans();
+    State quso_state = quso.to_diag_Ham().diag_ham_state;
+    for (int i=0; i<quso_state.size(); i++){
+        if (quso_state[i] == ans.first){
+            std::cerr << quso_state[i] << std::endl;
+
+        }
+    }
+
+    double min_minf=100000000;
+    for (int k=0; k < num_init_points; k++){
+        DoubleVec __x;
+        DoubleVec __y;
+        
+        exec_th.num = 0;
+        for (int j=0; j<x.size(); j++){
+            x[j] = rd->get_double(-pi/2, pi/2);
+        }
+        
+        __y.push_back(exec_th.evaluate_cost());
+        __x.push_back(exec_th.num);
+        tol=1e-1;
+        nl_th.opt.set_ftol_rel(tol);
+        for (int j=0; j<opt_step; j++){
+            nl_th.opt.set_maxeval(max_iter);
+            nlopt::result result = nl_th.optimize(x, minf);
+            std::cerr << result;
+            if (result == 3){
+                tol = tol/10;
+                nl_th.opt.set_ftol_rel(tol);
+            }
+            __x.push_back(exec_th.num);
+            __y.push_back(minf);
+        }
+        if (min_minf > minf){
+            min_minf = minf;
+            _y = __y;
+            _x = __x;
+        }
+        std::cout << "found minimum at f(" << x[0] << "," << x[1] << ") = "
+            << std::setprecision(10) << minf << std::endl;
+    }
+    plt.set_x(_x);
+    plt.set_y(_y);
+    plt.plot("Statevector");
+
+    DoubleVec _theory_y(_x.size(), ans.first);
+    plt.set_x(_x);
+    plt.set_y(_theory_y);
+    plt.plot("Theory");
+    
+    // nlopt::LN_BOBYQA
+
     int max_num_shots = 2049;
     int step = 1;
-    auto ans = quso.ans();
-    DoubleVec _x(max_num_shots/step);
-    DoubleVec _theory_y(max_num_shots/step, ans.first);
-    DoubleVec _y(max_num_shots/step);
-    for (int i=0; i<5;i++ ){
+
+
+    for (int i=0; i<5; i++ ){
         exec.set_shots(step);
         double min_minf=100000000;
         for (int k=0; k < num_init_points; k++){
             DoubleVec __x;
             DoubleVec __y;
+            
             exec.num = 0;
             for (int j=0; j<x.size(); j++){
                 x[j] = rd->get_double(-pi, pi);
                 // x[j] = (double(std::rand())/INT32_MAX-0.5)*pi;
             }
-            nlopt::result result = nl.optimize(x, minf);
+            
+            __y.push_back(exec.evaluate_cost());
             __x.push_back(exec.num);
-            __y.push_back(nl.opt.last_optimum_value());
-            for (int j=0; j<max_iter/opt_step; j++){
+            tol=1e-1;
+            nl.opt.set_ftol_rel(tol);
+            for (int j=0; j<opt_step; j++){
+                nl.opt.set_maxeval(max_iter);
                 nlopt::result result = nl.optimize(x, minf);
+                if (result == 3){
+                    tol = tol/10;
+                    nl.opt.set_ftol_rel(tol);
+                }
+                std::cerr << result;
                 __x.push_back(exec.num);
                 __y.push_back(minf);
                 // minf = nl.opt.last_optimum_value()
@@ -138,17 +220,15 @@ int toto() {
             std::cout << "found minimum at f(" << x[0] << "," << x[1] << ") = "
                 << std::setprecision(10) << minf << std::endl;
         }
-        step = step*8;
         plt.set_x(_x);
         plt.set_y(_y);
-        plt.plot();
+        plt.plot(std::to_string(step) + " shots");
+        step = step*8;
     }
     // plt.set_x(_x);
     // plt.set_y(_y);
-    // plt.plot();
-    // plt.set_x(_x);
-    // plt.set_y(_theory_y);
     plt.save();
+
     
     std::cout << ans.first << " "<<ans.second<<std::endl;
     delete rd;

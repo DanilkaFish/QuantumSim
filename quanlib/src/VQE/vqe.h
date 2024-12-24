@@ -74,7 +74,7 @@ namespace opt{
     public:
         Nlopt_Optimizer(const nlopt::opt& opt, MetaProvider& mp, ParameterVector& pv, int maxeval=10, double tol=1e-6): opt{opt}, qod{mp,pv}{
             this->opt.set_min_objective(quantum_obj_data::eval_cost, &qod);
-            this->opt.set_xtol_rel(tol);
+            // this->opt.set_xtol_rel(tol);
             this->opt.set_maxeval(maxeval);
             // this->opt. = 1;
         }
